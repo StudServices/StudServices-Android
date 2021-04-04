@@ -6,4 +6,7 @@
     <string name="title">Title</string>
     <string name="price">Price</string>
     <string name="tags">Tags</string>
+    <string name="userServicesFragmentBottomNavigationMenu">userServicesFragmentBottomNavigationMenu</string>
+    <string name="servicesFragmentBottomNavigationMenu">servicesFragmentBottomNavigationMenu</string>
+    <string name="profileFragmentBottomNavigationMenu">profileFragmentBottomNavigationMenu</string>
 </resources>
