@@ -1,14 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.main.profile.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/frament_main__profile__avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        tools:src="@tools:sample/avatars"
+        />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/frament_main__profile__username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frament_main__profile__username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frament_main__profile__avatar"
+        android:textSize="25sp"
+        android:layout_margin="30dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/frament_main__profile__usertag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frament_main__profile__usertag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frament_main__profile__username"
+        android:textSize="25sp"
+        android:layout_margin="30dp"
+        />
+
+    <TextView
+        android:id="@+id/frament_main__profile__geography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frament_main__profile__geography"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frament_main__profile__usertag"
+        android:textSize="25sp"
+        android:layout_margin="30dp"
+        />
+
+    <TextView
+        android:id="@+id/frament_main__profile__description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/frament_main__profile__description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frament_main__profile__geography"
+        android:textSize="25sp"
+        android:layout_margin="30dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

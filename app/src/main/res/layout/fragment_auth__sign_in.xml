@@ -20,7 +20,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Авторизация"
+        android:text="@string/fragment_auth__sign_in__text"
         android:textSize="30sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
@@ -38,7 +38,7 @@
 
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Login"
+        android:text="@string/fragment_auth__sign_in__login"
         android:layout_marginBottom="30dp"
         />
 
@@ -53,7 +53,7 @@
 
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Password"
+        android:text="@string/fragment_auth__sign_in__password"
         />
 
 
@@ -68,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"
-        android:text="Sign in"
+        android:text="@string/fragment_auth__sign_in__button"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
@@ -89,7 +89,7 @@
         android:layout_height="30dp"
         android:textSize="16sp"
         android:gravity="center"
-        android:text="Don't have an account? Sign up"
+        android:text="@string/fragment_auth__sign_in__link"
         android:layout_marginBottom="40dp"
         />
 

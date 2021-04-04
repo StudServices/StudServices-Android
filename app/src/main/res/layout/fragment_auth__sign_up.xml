@@ -21,7 +21,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Регистрация"
+        android:text="@string/fragment_auth__sign_up__text"
         android:textSize="30sp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
@@ -39,7 +39,7 @@
 
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="nickname"
+        android:text="@string/fragment_auth__sign_up__nickname"
         />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -52,7 +52,7 @@
 
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="E-mail"
+        android:text="@string/fragment_auth__sign_up__email"
 
         />
 
@@ -67,7 +67,7 @@
 
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Password"
+        android:text="@string/fragment_auth__sign_up__password"
         />
 
     <com.google.android.material.textfield.TextInputEditText
@@ -80,7 +80,7 @@
 
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Password again"
+        android:text="@string/fragment_auth__sign_up__password_again"
         />
 
 
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_up__password_again"
 
         android:gravity="center"
-        android:text="Well done!"
+        android:text="@string/fragment_auth__sign_up__button"
         android:textSize="25sp"
         android:textStyle="bold"
         />
