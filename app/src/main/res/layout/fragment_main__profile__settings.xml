@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.main.profile.settings.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/fragment_main__profile__settings__avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        tools:src="@tools:sample/avatars"
+        />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_main__profile__settings__change_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__avatar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_main__profile__settings__username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main__profile__settings__change_avatar"
+        android:textSize="14sp"
+        android:background="@color/button_background"
+        android:padding="5dp"
+        />
+
+    <TextView
+        android:id="@+id/fragment_main__profile__settings__username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main__profile__settings__username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__change_avatar"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        />
+
+
+
+    <TextView
+        android:id="@+id/fragment_main__profile__settings__usertag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main__profile__settings__usertag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__username"
+        android:textSize="25sp"
+        android:layout_margin="30dp"
+        />
+
+    <Spinner
+        android:id="@+id/fragment_main__profile__settings__geography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints="@string/fragment_main__profile__settings__geography_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__usertag"
+        android:textSize="25sp"
+        android:entries="@array/dormsList"
+        android:layout_margin="30dp"
+        />
+
+    <EditText
+        android:id="@+id/fragment_main__profile__settings__description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/fragment_main__profile__settings__description_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__geography"
+        android:textSize="25sp"
+        android:layout_margin="30dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
