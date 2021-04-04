@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.main.userservices.newservice.NewServiceFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <EditText
+        android:id="@+id/fragment_main__user_services__new_service__etTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTitle__marginTop"
+        android:hint="@string/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/fragment_main__user_services__new_service__etDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etDescription__marginTop"
+        android:hint="@string/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etTitle" />
+
+    <RadioGroup
+        android:id="@+id/fragment_main__user_services__new_service__rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__rg__marginTop"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etDescription">
+
+        <RadioButton
+            android:id="@+id/fragment_main__user_services__new_service__rbOffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/fragment_main__user_services__new_service__rbRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/fragment_main__user_services__new_service__rbEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/fragment_main__user_services__new_service__spnCurrency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnCurrency__marginTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__rg" />
+
+
+    <EditText
+        android:id="@+id/fragment_main__user_services__new_service__etPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etPrice__marginTop"
+        android:hint="@string/price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragment_main__user_services__new_service__spnCurrency" />
+
+    <Spinner
+        android:id="@+id/fragment_main__user_services__new_service__spnGeography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnGeography__marginTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etPrice" />
+
+    <EditText
+        android:id="@+id/fragment_main__user_services__new_service__etTags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/tags"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__spnGeography" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
