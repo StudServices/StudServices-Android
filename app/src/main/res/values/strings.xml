@@ -9,4 +9,22 @@
     <string name="userServicesFragmentBottomNavigationMenu">userServicesFragmentBottomNavigationMenu</string>
     <string name="servicesFragmentBottomNavigationMenu">servicesFragmentBottomNavigationMenu</string>
     <string name="profileFragmentBottomNavigationMenu">profileFragmentBottomNavigationMenu</string>
+    <string name="fragment_auth__sign_in__text">Авторизация</string>
+    <string name="fragment_auth__sign_in__login">Login</string>
+    <string name="fragment_auth__sign_in__password">Password</string>
+    <string name="fragment_auth__sign_in__button">Sign in</string>
+    <string name="fragment_auth__sign_in__link">Don\'t have an account? Sign up</string>
+    <string name="fragment_auth__sign_up__text">Регистрация</string>
+    <string name="fragment_auth__sign_up__nickname">nickname</string>
+    <string name="fragment_auth__sign_up__email">E-mail</string>
+    <string name="fragment_auth__sign_up__password">Password</string>
+    <string name="fragment_auth__sign_up__password_again">Password again</string>
+    <string name="fragment_auth__sign_up__button">Well done!</string>
+    <string name="fragment_main__filters__checkbox_study">Помощь с учёбой</string>
+    <string name="fragment_main__filters__checkbox_dorm">Помощь в общежитии</string>
+    <string name="fragment_main__filters__dorm_spinner_desc">Выберите общежитие</string>
+    <string name="frament_main__profile__username">Username</string>
+    <string name="frament_main__profile__usertag">Usertag</string>
+    <string name="frament_main__profile__geography">Geography</string>
+    <string name="frament_main__profile__description">Description</string>
 </resources>
