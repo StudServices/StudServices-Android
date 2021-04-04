@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="fragment_main__user_services__new_service__etTags__marginTop">36dp</dimen>
-    <dimen name="fragment_main__user_services__new_service__spnGeography__marginTop">68dp</dimen>
+    <dimen name="fragment_main__user_services__new_service__etTags__marginTop">16dp</dimen>
+    <dimen name="fragment_main__user_services__new_service__spnGeography__marginTop">38dp</dimen>
     <dimen name="fragment_main__user_services__new_service__etPrice__marginTop">60dp</dimen>
     <dimen name="fragment_main__user_services__new_service__spnCurrency__marginTop">36dp</dimen>
     <dimen name="fragment_main__user_services__new_service__rg__marginTop">36dp</dimen>
