@@ -2,12 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/userServicesFragment"
+        android:id="@+id/menu_item__userServices"
+        android:icon="@drawable/ic_user_services"
         android:title="@string/userServicesFragmentBottomNavigationMenu" />
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/menu_item__profile"
+        android:icon="@drawable/ic_user_profile_24"
         android:title="@string/profileFragmentBottomNavigationMenu" />
     <item
-        android:id="@+id/servicesFragment"
+        android:id="@+id/menu_item__services"
+        android:icon="@drawable/ic_other_services"
         android:title="@string/servicesFragmentBottomNavigationMenu" />
 </menu>

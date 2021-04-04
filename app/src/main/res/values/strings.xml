@@ -1,14 +1,13 @@
 <resources>
     <string name="app_name">StudService</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description">Description</string>
     <string name="title">Title</string>
     <string name="price">Price</string>
     <string name="tags">Tags</string>
-    <string name="userServicesFragmentBottomNavigationMenu">userServicesFragmentBottomNavigationMenu</string>
-    <string name="servicesFragmentBottomNavigationMenu">servicesFragmentBottomNavigationMenu</string>
-    <string name="profileFragmentBottomNavigationMenu">profileFragmentBottomNavigationMenu</string>
+    <string name="userServicesFragmentBottomNavigationMenu">My Services</string>
+    <string name="servicesFragmentBottomNavigationMenu">Services</string>
+    <string name="profileFragmentBottomNavigationMenu">Profile</string>
     <string name="fragment_auth__sign_in__text">Авторизация</string>
     <string name="fragment_auth__sign_in__login">Login</string>
     <string name="fragment_auth__sign_in__password">Password</string>
@@ -23,10 +22,10 @@
     <string name="fragment_main__filters__checkbox_study">Помощь с учёбой</string>
     <string name="fragment_main__filters__checkbox_dorm">Помощь в общежитии</string>
     <string name="fragment_main__filters__dorm_spinner_desc">Выберите общежитие</string>
-    <string name="frament_main__profile__username">Username</string>
-    <string name="frament_main__profile__usertag">Usertag</string>
-    <string name="frament_main__profile__geography">Geography</string>
-    <string name="frament_main__profile__description">Description</string>
+    <string name="fragment_main__profile__username">Username</string>
+    <string name="fragment_main__profile__usertag">Usertag</string>
+    <string name="fragment_main__profile__geography">Geography</string>
+    <string name="fragment_main__profile__description">Description</string>
     <string name="fragment_main__profile__settings__change_avatar">Выбрать фотографию</string>
     <string name="fragment_main__profile__settings__username">Username</string>
     <string name="fragment_main__profile__settings__usertag">Usertag</string>
