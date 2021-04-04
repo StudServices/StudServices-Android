@@ -26,4 +26,16 @@
     <string name="fragment_main__profile__usertag">Usertag</string>
     <string name="fragment_main__profile__geography">Geography</string>
     <string name="fragment_main__profile__description">Description</string>
+    <string name="fragment_main__profile__settings__change_avatar">Выбрать фотографию</string>
+    <string name="fragment_main__profile__settings__username">Username</string>
+    <string name="fragment_main__profile__settings__usertag">Usertag</string>
+    <string name="fragment_main__profile__settings__geography">Geography</string>
+    <string name="fragment_main__profile__settings__description">Description</string>
+    <string name="fragment_main__profile__settings__description_hint">Измените описание профиля</string>
+    <string name="fragment_main__profile__settings__geography_hint">Выберите общежитие</string>
+    <string name="fragment_main__user_services__new_service__rbOffer">Помогу</string>
+    <string name="fragment_main__user_services__new_service__rbRequest">Помогите</string>
+    <string name="fragment_main__user_services__new_service__rbEvent">Мероприятие</string>
+    <string name="fragment_main__service_info__type">Type</string>
+    <string name="currency">Currency</string>
 </resources>
