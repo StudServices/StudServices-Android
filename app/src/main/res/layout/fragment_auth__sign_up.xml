@@ -1,14 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.auth.signup.SignUpFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.auth.signup.SignUpFragment"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="100dp"
+    android:paddingTop="150dp">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/fragment_auth__sign_up__text"
 
-</FrameLayout>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_up__nickname"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Регистрация"
+        android:textSize="30sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="40dp"
+        />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/fragment_auth__sign_up__nickname"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_up__text"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_up__email"
+
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="nickname"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/fragment_auth__sign_up__email"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_up__nickname"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_up__password"
+
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="E-mail"
+
+        />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/fragment_auth__sign_up__password"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_up__email"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_up__password_again"
+
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Password"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/fragment_auth__sign_up__password_again"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_up__password"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_up__button"
+
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:text="Password again"
+        />
+
+
+    <Button
+        android:id="@+id/fragment_auth__sign_up__button"
+
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_up__password_again"
+
+        android:gravity="center"
+        android:text="Well done!"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
