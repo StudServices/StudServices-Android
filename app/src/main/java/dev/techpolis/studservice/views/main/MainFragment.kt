@@ -12,27 +12,20 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.techpolis.studservice.R
-
+import dev.techpolis.studservice.utils.findNavControllerByHostId
 
 class MainFragment : Fragment() {
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        val navController = Navigation.findNavController(this, R.id.fragment_main__nav_host_fragment)
-////        val navController = view.findNavController()
-//        navController.navigate(R.id.profileFragment)
-        val navHostFragment =
-            childFragmentManager.findFragmentById(R.id.fragment_main__nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
+        super.onViewCreated(view, savedInstanceState)
+        val navController = findNavControllerByHostId(R.id.fragment_main__nav_host_fragment)
         val bottomBar = view.findViewById<BottomNavigationView>(R.id.fragment_main__bottom_nav_view)
         bottomBar?.setupWithNavController(navController)
         bottomBar?.setOnNavigationItemSelectedListener { item ->
@@ -46,6 +39,5 @@ class MainFragment : Fragment() {
             )
             return@setOnNavigationItemSelectedListener true
         }
-        super.onViewCreated(view, savedInstanceState)
     }
 }
