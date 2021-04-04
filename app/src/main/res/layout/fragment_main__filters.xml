@@ -1,14 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".views.main.filters.FiltersFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <!-- TODO: Update blank fragment layout -->
+    <CheckBox
+        android:id="@+id/fragment_main__filters__checkbox_study"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main__filters__checkbox_study"
+        />
+
+    <CheckBox
+        android:id="@+id/fragment_main__filters__checkbox_dorm"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__checkbox_study"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main__filters__checkbox_dorm"
+        />
+
+    <TextView
+        android:id="@+id/fragment_main__filters__dorm_spn_desc"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__checkbox_dorm"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_main__filters__dorm_spinner_desc"
+        android:textSize="15sp"
+        />
+
+    <Spinner
+        android:id="@+id/fragment_main__filters__spnGeography"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__checkbox_dorm"
+        app:layout_constraintStart_toEndOf="@id/fragment_main__filters__dorm_spn_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/dormsList"
+        android:layout_gravity="center_horizontal"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_main__filters__tags_rv"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__spnGeography"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
