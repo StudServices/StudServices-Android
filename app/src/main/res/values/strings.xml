@@ -12,7 +12,7 @@
     <string name="fragment_auth__sign_in__login">Login</string>
     <string name="fragment_auth__sign_in__password">Password</string>
     <string name="fragment_auth__sign_in__button">Sign in</string>
-    <string name="fragment_auth__sign_in__link">Don\'t have an account? Sign up</string>
+    <string name="fragment_auth__sign_in__link">Don`t have an account? Sign up</string>
     <string name="fragment_auth__sign_up__text">Sign Up</string>
     <string name="fragment_auth__sign_up__username">Username</string>
     <string name="fragment_auth__sign_up__email">E-mail</string>
