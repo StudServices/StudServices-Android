@@ -7,6 +7,7 @@ import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavSwitchController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UnlimitedTabHistoryStrategy
+import dev.techpolis.studservice.R
 
 class LobbyFragmentNavigator(
     val groupId: Long,
