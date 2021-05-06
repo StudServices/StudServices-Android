@@ -18,7 +18,7 @@ class SignUpFragment : BaseFragment() {
     ): View? {
         val view: SignUpMvpView = mvpViewFactory.createSignUpMvpView(container)
         presenter.bindView(view)
-        return inflater.inflate(R.layout.fragment_auth__sign_up, container, false)
+        return view.rootView
     }
 
     override fun onStart() {

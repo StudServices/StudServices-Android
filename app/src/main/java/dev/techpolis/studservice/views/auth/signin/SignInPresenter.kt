@@ -2,10 +2,10 @@ package dev.techpolis.studservice.views.auth.signin
 
 import dev.techpolis.studservice.common.mvp.MvpPresenter
 import dev.techpolis.studservice.common.nav.BackPressDispatcher
-import dev.techpolis.studservice.common.nav.app.AppScreenNavigator
+import dev.techpolis.studservice.common.nav.app.AppScreenRouterImpl
 
 class SignInPresenter(
-    private val appScreenNavigator: AppScreenNavigator,
+    private val appScreenRouterImpl: AppScreenRouterImpl,
     private val backPressDispatcher: BackPressDispatcher,
 ) : MvpPresenter<SignInMvpView>, SignInMvpView.Listener{
 
@@ -16,7 +16,7 @@ class SignInPresenter(
     }
 
     override fun onStart() {
-        TODO("Not yet implemented")
+
     }
 
     override fun onStop() {

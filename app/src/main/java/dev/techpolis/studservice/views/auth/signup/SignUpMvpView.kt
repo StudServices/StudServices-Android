@@ -10,7 +10,10 @@ interface SignUpMvpView: MvpViewObservable<SignUpMvpView.Listener> {
         fun onUsernameFieldTextChanged(text: String)
         fun onEmailFieldTextChanged(text: String)
         fun onPasswordFieldTextChanged(text: String)
+        fun onPasswordCorrectionFieldTextChanged(text: String)
     }
+
+
 
     fun showLoading()
     fun hideLoading()
@@ -23,4 +26,6 @@ interface SignUpMvpView: MvpViewObservable<SignUpMvpView.Listener> {
     fun hideUsernameFieldError()
     fun hideEmailFieldError()
     fun hidePasswordFieldError()
+
+    fun setStateSignUpButton(isEnabled: Boolean)
 }
