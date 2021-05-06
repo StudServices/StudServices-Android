@@ -13,8 +13,7 @@ import androidx.navigation.fragment.findNavController
 import dev.techpolis.studservice.R
 
 import dev.techpolis.studservice.common.base.BaseFragment
-
-
+import dev.techpolis.studservice.views.auth.signup.SignUpFragment
 
 class SignInFragment : BaseFragment() {
 
@@ -36,7 +35,6 @@ class SignInFragment : BaseFragment() {
         tvSignUp = findViewById(R.id.fragment_auth__sign_in__link)
 
         authNavController = findNavController()
-        activityNavController = requireGrandParentFragment().findNavController()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,6 +49,10 @@ class SignInFragment : BaseFragment() {
             authNavController.navigate(R.id.signUpFragment)
         }
 
+    }
+
+    companion object {
+        fun newInstance(): Fragment = SignInFragment()
     }
 
 }

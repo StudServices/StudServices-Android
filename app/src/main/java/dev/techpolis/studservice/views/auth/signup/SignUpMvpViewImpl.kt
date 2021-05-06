@@ -3,10 +3,9 @@ package dev.techpolis.studservice.views.auth.signup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.doOnTextChanged
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.common.mvp.MvpViewObservableBase
 
@@ -14,15 +13,53 @@ class SignUpMvpViewImpl(
     inflater: LayoutInflater,
     parent: ViewGroup?
 ) : MvpViewObservableBase<SignUpMvpView.Listener>(), SignUpMvpView {
+
+
     override var rootView: View = inflater.inflate(R.layout.fragment_auth__sign_up, parent, false)
 
- //   private val pbLoading: ProgressBar = findViewById(R.id.fragment_signup__loading)
+    //   private val pbLoading: ProgressBar = findViewById(R.id.fragment_signup__loading)
     private val etUsername: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__nickname)
     private val etPassword: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__password)
-    private val etPasswordAgain: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__password_again)
+    private val etPasswordCorrection: AppCompatEditText =
+        findViewById(R.id.fragment_auth__sign_up__password_again)
     private val etEmail: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__email)
-    private val ibSignUp: AppCompatImageButton = findViewById(R.id.fragment_auth__sign_up__button)
+    private val buttonSignUp: AppCompatButton = findViewById(R.id.fragment_auth__sign_up__button)
 
+    init {
+        etUsername.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onUsernameFieldTextChanged(text.toString())
+            }
+        }
+
+        etPassword.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onPasswordFieldTextChanged(text.toString())
+            }
+        }
+
+        etPasswordCorrection.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onPasswordCorrectionFieldTextChanged(text.toString())
+            }
+        }
+
+        etEmail.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onEmailFieldTextChanged(text.toString())
+            }
+        }
+
+        buttonSignUp.setOnClickListener {
+            listeners.forEach {
+                it.onSignUpBtnClicked(
+                    username = etUsername.text.toString(),
+                    email = etEmail.text.toString(),
+                    password = etPassword.text.toString()
+                )
+            }
+        }
+    }
 
 
     override fun showLoading() {
@@ -59,5 +96,9 @@ class SignUpMvpViewImpl(
 
     override fun hidePasswordFieldError() {
         TODO("Not yet implemented")
+    }
+
+    override fun setStateSignUpButton(isEnabled: Boolean) {
+        buttonSignUp.isEnabled = isEnabled
     }
 }
