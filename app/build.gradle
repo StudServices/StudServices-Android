@@ -64,6 +64,8 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:${var.fragmentVersion}"
 
     // Navigation
+    implementation "com.ncapdevi:frag-nav:${var.fragNavVersion}"
+
     implementation "androidx.navigation:navigation-fragment-ktx:${var.navVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${var.navVersion}"
     androidTestImplementation "androidx.navigation:navigation-testing:${var.navVersion}"

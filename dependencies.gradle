@@ -10,6 +10,7 @@ ext.var = [
         lifecycleVersion       : '2.3.1',
         roomVersion            : '2.2.6',
         navVersion             : '2.3.4',
+        fragNavVersion          : '3.3.0',
         fragmentVersion        : '1.3.2',
 
         okHttpVersion          : '4.9.0',
