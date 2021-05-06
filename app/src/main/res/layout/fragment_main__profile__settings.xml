@@ -1,14 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.main.profile.settings.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/fragment_main__profile__settings__avatar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/avatar" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_main__profile__settings__change_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/button_background"
+        android:padding="5dp"
+        android:text="@string/fragment_main__profile__settings__change_avatar"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_main__profile__settings__username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__avatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__profile__settings__username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_main__profile__settings__username"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__change_avatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__profile__settings__usertag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:text="@string/fragment_main__profile__settings__usertag"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__username" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/fragment_main__profile__settings__geography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:autofillHints="@string/fragment_main__profile__settings__geography_hint"
+        android:entries="@array/dormsList"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__usertag" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_main__profile__settings__description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:hint="@string/fragment_main__profile__settings__description_hint"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__profile__settings__geography" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

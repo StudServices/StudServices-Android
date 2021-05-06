@@ -25,6 +25,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -61,6 +64,8 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:${var.fragmentVersion}"
 
     // Navigation
+    implementation "com.ncapdevi:frag-nav:${var.fragNavVersion}"
+
     implementation "androidx.navigation:navigation-fragment-ktx:${var.navVersion}"
     implementation "androidx.navigation:navigation-ui-ktx:${var.navVersion}"
     androidTestImplementation "androidx.navigation:navigation-testing:${var.navVersion}"

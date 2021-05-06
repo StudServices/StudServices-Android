@@ -1,58 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    android:orientation="vertical"
-    android:layout_marginBottom="200dp"
-    >
+    android:orientation="vertical">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_auth__sign_in__text"
-
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Авторизация"
-        android:textSize="30sp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:paddingBottom="40dp"
-        />
+        android:text="@string/fragment_auth__sign_in__text"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2"/>
 
-
-    <com.google.android.material.textfield.TextInputEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_auth__sign_in__login"
-
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__text"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_in__password"
-
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="Login"
-        android:layout_marginBottom="30dp"
-        />
+        android:layout_marginTop="20dp"
+        android:hint="@string/fragment_auth__sign_in__login"
+        android:textColorHint="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__text" />
 
-
-    <com.google.android.material.textfield.TextInputEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_auth__sign_in__password"
-
-        app:layout_constraintTop_toBottomOf="@id/fragment_auth__sign_in__login"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_in__button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-
         android:layout_width="350dp"
         android:layout_height="50dp"
+
         android:text="Password"
         />
 
@@ -60,16 +43,23 @@
     <AppCompatButton
         android:id="@+id/fragment_auth__sign_in__button"
 
+        android:hint="@string/fragment_auth__sign_in__password"
+        android:textColorHint="@color/black"
+        android:layout_marginTop="10dp"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__password"
-        app:layout_constraintBottom_toTopOf="@id/fragment_auth__sign_in__link"
+        app:layout_constraintTop_toBottomOf="@id/fragment_auth__sign_in__login" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_auth__sign_in__button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Sign in"
+        android:text="@string/fragment_auth__sign_in__button"
         android:textSize="25sp"
+
         android:textStyle="bold"
         android:layout_marginTop="20dp"
 
@@ -81,17 +71,24 @@
         android:id="@+id/fragment_auth__sign_in__link"
 
         app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__button"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__password" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_auth__sign_in__link"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:textSize="16sp"
-        android:gravity="center"
-        android:text="Don't have an account? Sign up"
         android:layout_marginBottom="40dp"
-        />
-
+        android:gravity="center"
+        android:text="@string/fragment_auth__sign_in__link"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

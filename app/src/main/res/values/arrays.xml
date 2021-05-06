@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dormsList">
+        <item>Общежитие 1</item>
+        <item>Общежитие 2</item>
+        <item>Общежитие 3</item>
+        <item>Общежитие 6</item>
+        <item>Общежитие ИМОП</item>
+    </string-array>
+
+    <string-array name="currencyList">
+        <item>Рубли</item>
+        <item>Другое</item>
+    </string-array>
+</resources>
