@@ -5,36 +5,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.AppCompatButton
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import dev.techpolis.studservice.R
-import dev.techpolis.studservice.utils.requireGrandParentFragment
+import dev.techpolis.studservice.common.base.BaseFragment
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : BaseFragment() {
 
-    private lateinit var activityNavController: NavController
-    private lateinit var btnSignUp: AppCompatButton
+    private lateinit var presenter: SignUpPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view: SignUpMvpView = mvpViewFactory.createSignUpMvpView(container)
+        presenter.bindView(view)
         return inflater.inflate(R.layout.fragment_auth__sign_up, container, false)
     }
 
-    private fun View.initViews() {
-        btnSignUp = findViewById(R.id.fragment_auth__sign_up__button)
-        activityNavController = requireGrandParentFragment().findNavController()
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.initViews()
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
+    }
 
-        btnSignUp.setOnClickListener {
-            activityNavController.navigate(R.id.mainFragment)
-        }
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
+    companion object {
+        fun newInstance(): Fragment = SignUpFragment()
     }
 
 }

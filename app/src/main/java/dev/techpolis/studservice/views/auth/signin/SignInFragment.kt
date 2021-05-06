@@ -11,9 +11,12 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import dev.techpolis.studservice.R
-import dev.techpolis.studservice.utils.requireGrandParentFragment
 
-class SignInFragment : Fragment() {
+import dev.techpolis.studservice.common.base.BaseFragment
+
+
+
+class SignInFragment : BaseFragment() {
 
     private lateinit var activityNavController: NavController
     private lateinit var authNavController: NavController

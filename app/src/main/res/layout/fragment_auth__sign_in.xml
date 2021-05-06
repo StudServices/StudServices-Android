@@ -35,9 +35,18 @@
         android:id="@+id/fragment_auth__sign_in__password"
         android:layout_width="350dp"
         android:layout_height="50dp"
+
+        android:text="Password"
+        />
+
+
+    <AppCompatButton
+        android:id="@+id/fragment_auth__sign_in__button"
+
         android:hint="@string/fragment_auth__sign_in__password"
         android:textColorHint="@color/black"
         android:layout_marginTop="10dp"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fragment_auth__sign_in__login" />
@@ -50,6 +59,19 @@
         android:gravity="center"
         android:text="@string/fragment_auth__sign_in__button"
         android:textSize="25sp"
+
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+
+        />
+
+
+
+    <AppCompatTextView
+        android:id="@+id/fragment_auth__sign_in__link"
+
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__button"
+
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__password" />
