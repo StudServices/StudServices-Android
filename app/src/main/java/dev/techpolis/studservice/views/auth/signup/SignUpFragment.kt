@@ -6,15 +6,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dev.techpolis.studservice.R
+import dev.techpolis.studservice.common.base.BaseFragment
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : BaseFragment() {
+
+    private lateinit var presenter: SignUpPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val view: SignUpMvpView = mvpViewFactory.createSignUpMvpView(container)
+        presenter.bindView(view)
         return inflater.inflate(R.layout.fragment_auth__sign_up, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+    }
+
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
+    companion object {
+        fun newInstance(): Fragment = SignUpFragment()
     }
 
 }

@@ -84,7 +84,7 @@
         />
 
 
-    <Button
+    <AppCompatButton
         android:id="@+id/fragment_auth__sign_up__button"
 
         android:layout_width="match_parent"

@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import dev.techpolis.studservice.R
+import dev.techpolis.studservice.common.base.BaseFragment
 
-class SignInFragment : Fragment() {
+class SignInFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -57,7 +57,7 @@
         />
 
 
-    <Button
+    <AppCompatButton
         android:id="@+id/fragment_auth__sign_in__button"
 
         app:layout_constraintLeft_toLeftOf="parent"
@@ -77,7 +77,7 @@
 
 
 
-    <TextView
+    <AppCompatTextView
         android:id="@+id/fragment_auth__sign_in__link"
 
         app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__button"
