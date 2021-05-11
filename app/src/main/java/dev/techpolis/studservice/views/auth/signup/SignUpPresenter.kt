@@ -50,4 +50,8 @@ class SignUpPresenter(
     override fun onBackPressed(): Boolean {
         TODO("Not yet implemented")
     }
+
+    override fun onPasswordCorrectionFieldTextChanged(text: String) {
+        TODO("Not yet implemented")
+    }
 }

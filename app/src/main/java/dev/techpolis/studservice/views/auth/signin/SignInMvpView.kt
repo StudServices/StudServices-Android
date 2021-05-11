@@ -18,6 +18,9 @@ interface SignInMvpView : MvpViewObservable<SignInMvpView.Listener> {
     fun showError(msgId: Int)
     fun showUsernameFieldError(msgId: Int)
     fun showPasswordFieldError(msgId: Int)
+
     fun hideUsernameFieldError()
     fun hidePasswordFieldError()
+
+    fun setStateSignInButton(isEnabled: Boolean)
 }
