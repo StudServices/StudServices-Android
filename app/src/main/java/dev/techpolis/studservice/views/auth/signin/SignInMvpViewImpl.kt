@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.doOnTextChanged
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.common.mvp.MvpViewObservableBase
 
@@ -25,6 +26,34 @@ class SignInMvpViewImpl (
     private val ibSignIn: AppCompatButton = findViewById(R.id.fragment_auth__sign_in__button)
     private val tvHaveNotAcc: AppCompatTextView = findViewById(R.id.fragment_auth__sign_in__link)
 
+    init {
+        etUsername.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onUsernameFieldTextChanged(text.toString())
+            }
+        }
+
+        etPassword.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onPasswordFieldTextChanged(text.toString())
+            }
+        }
+
+        tvHaveNotAcc.setOnClickListener {
+            listeners.forEach {
+                it.onHaveNotAccTvClicked()
+            }
+        }
+
+        ibSignIn.setOnClickListener {
+            listeners.forEach {
+                it.onSignInBtnClicked(
+                    username = etUsername.text.toString(),
+                    password = etPassword.text.toString()
+                )
+            }
+        }
+    }
 
     override fun showLoading() {
         TODO("Not yet implemented")
@@ -52,5 +81,9 @@ class SignInMvpViewImpl (
 
     override fun hidePasswordFieldError() {
         TODO("Not yet implemented")
+    }
+
+    override fun setStateSignInButton(isEnabled: Boolean) {
+        ibSignIn.isEnabled = isEnabled
     }
 }

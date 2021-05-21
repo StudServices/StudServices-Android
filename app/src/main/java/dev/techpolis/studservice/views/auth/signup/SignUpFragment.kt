@@ -15,7 +15,7 @@ class SignUpFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: SignUpMvpView = mvpViewFactory.createSignUpMvpView(container)
         presenter.bindView(view)
         return view.rootView

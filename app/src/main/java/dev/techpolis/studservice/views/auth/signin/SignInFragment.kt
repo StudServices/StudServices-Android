@@ -14,41 +14,35 @@ import dev.techpolis.studservice.R
 
 import dev.techpolis.studservice.common.base.BaseFragment
 import dev.techpolis.studservice.views.auth.signup.SignUpFragment
+import dev.techpolis.studservice.views.auth.signup.SignUpMvpView
+import dev.techpolis.studservice.views.auth.signup.SignUpPresenter
 
 class SignInFragment : BaseFragment() {
 
-    private lateinit var activityNavController: NavController
-    private lateinit var authNavController: NavController
-
-    private lateinit var btnSignIn: AppCompatButton
-    private lateinit var tvSignUp: AppCompatTextView
+    private lateinit var presenter: SignInPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_auth__sign_in, container, false)
+    ): View {
+        val view: SignInMvpView = mvpViewFactory.createSignInMvpView(container)
+        presenter.bindView(view)
+        return view.rootView
     }
 
-    private fun View.initViews() {
-        btnSignIn = findViewById(R.id.fragment_auth__sign_in__button)
-        tvSignUp = findViewById(R.id.fragment_auth__sign_in__link)
-
-        authNavController = findNavController()
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.initViews()
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
+    }
 
-        btnSignIn.setOnClickListener {
-            activityNavController.navigate(R.id.mainFragment)
-        }
-
-        tvSignUp.setOnClickListener {
-            authNavController.navigate(R.id.signUpFragment)
-        }
-
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
     }
 
     companion object {
