@@ -1,13 +1,13 @@
 package dev.techpolis.studservice.views.main.services.requests
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.techpolis.studservice.views.auth.signin.SignInFragment
+import androidx.fragment.app.Fragment
+import dev.techpolis.studservice.common.base.BaseFragment
 
-class ServiceRequestsFragment : Fragment() {
+class ServiceRequestsFragment : BaseFragment() {
 
     private lateinit var presenter: ServiceRequestsPresenter
 

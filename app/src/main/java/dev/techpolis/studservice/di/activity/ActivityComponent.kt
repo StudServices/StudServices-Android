@@ -4,6 +4,7 @@ import android.os.Bundle
 import dagger.BindsInstance
 import dagger.Subcomponent
 import dev.techpolis.studservice.common.base.BaseActivity
+import dev.techpolis.studservice.di.presentation.PresentationComponent
 
 
 @Subcomponent(

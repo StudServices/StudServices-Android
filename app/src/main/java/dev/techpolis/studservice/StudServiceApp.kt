@@ -1,6 +1,7 @@
 package dev.techpolis.studservice
 
 import android.app.Application
+import dev.techpolis.studservice.di.app.AppComponent
 
 class StudServiceApp: Application() {
 
