@@ -19,10 +19,6 @@ class ServiceRequestsPresenter: MvpPresenter<ServiceRequestsMvpView>, ServiceReq
         TODO("Not yet implemented")
     }
 
-    override fun onServiceOfferClicked() {
-        TODO("Not yet implemented")
-    }
-
     override fun onBackPressed(): Boolean {
         TODO("Not yet implemented")
     }
