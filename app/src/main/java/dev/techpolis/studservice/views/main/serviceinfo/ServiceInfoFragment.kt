@@ -5,17 +5,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import dev.techpolis.studservice.R
+import dev.techpolis.studservice.common.base.BaseFragment
 
-class ServiceInfoFragment : Fragment() {
+class ServiceInfoFragment : BaseFragment() {
+
+    private lateinit var presenter: ServiceInfoPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main__service_info, container, false)
+    ): View {
+        val view: ServiceInfoMvpView = mvpViewFactory.createServiceInfoMvpView(container)
+        presenter.bindView(view)
+        return view.rootView
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+    }
+
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
+    companion object {
+        fun newInstance(): Fragment = ServiceInfoFragment()
     }
 
 }
