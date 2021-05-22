@@ -2,16 +2,24 @@ package dev.techpolis.studservice.common.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dev.techpolis.studservice.StudServiceApp
 import dev.techpolis.studservice.common.mvp.factory.MvpViewFactory
 import dev.techpolis.studservice.common.mvp.factory.PresenterFactory
+import dev.techpolis.studservice.common.nav.BackPressDispatcher
+import dev.techpolis.studservice.common.nav.BackPressedListener
+import dev.techpolis.studservice.common.nav.app.AppScreenRouter
+import dev.techpolis.studservice.common.nav.app.AppScreenRouterImpl
+import dev.techpolis.studservice.di.activity.ActivityComponent
 import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity(){
+abstract class BaseActivity : AppCompatActivity(), BackPressDispatcher {
 
     lateinit var activityComponent: ActivityComponent
         private set
 
     private val backPressedListeners: MutableSet<BackPressedListener> = HashSet()
+
+    @Inject lateinit var appScreenRouter: AppScreenRouterImpl
 
     @Inject
     lateinit var presenterFactory: PresenterFactory
@@ -19,7 +27,7 @@ abstract class BaseActivity : AppCompatActivity(){
     lateinit var mvpViewFactory: MvpViewFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent = (application as App).appComponent
+        activityComponent = (application as StudServiceApp).appComponent
             .newActivityComponentBuilder()
             .activity(this)
             .savedInstanceState(savedInstanceState)
@@ -30,7 +38,7 @@ abstract class BaseActivity : AppCompatActivity(){
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        appScreenNavigator.onSaveInstanceState(outState)
+        appScreenRouter.onSaveInstanceState(outState)
     }
 
     override fun registerListener(listener: BackPressedListener) {

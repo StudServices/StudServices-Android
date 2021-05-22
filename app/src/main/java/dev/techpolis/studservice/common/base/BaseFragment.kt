@@ -1,7 +1,11 @@
 package dev.techpolis.studservice.common.base
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.os.Bundle
+import dev.techpolis.studservice.common.mvp.factory.MvpViewFactory
+import dev.techpolis.studservice.common.mvp.factory.PresenterFactory
+import dev.techpolis.studservice.common.nav.app.AppScreenRouter
+import dev.techpolis.studservice.di.activity.ActivityComponent
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
@@ -11,8 +15,8 @@ abstract class BaseFragment : Fragment() {
     protected val activityComponent: ActivityComponent
         get() = (requireActivity() as BaseActivity).activityComponent
 
-    protected val appScreenNavigator: AppScreenNavigator
-        get() = (requireActivity() as BaseActivity).appScreenNavigator
+    protected val appScreenNavigator: AppScreenRouter
+        get() = (requireActivity() as BaseActivity).appScreenRouter
 
     @Inject
     lateinit var mvpViewFactory: MvpViewFactory
