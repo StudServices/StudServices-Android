@@ -10,7 +10,6 @@
     <string name="profileFragmentBottomNavigationMenu">Profile</string>
     <string name="fragment_auth__sign_in__text">Sign In</string>
     <string name="fragment_auth__sign_in__login">Login</string>
-    <string name="fragment_auth__sign_in__password">Password</string>
     <string name="fragment_auth__sign_in__button">Sign in</string>
     <string name="fragment_auth__sign_in__link">Don`t have an account? Sign up</string>
     <string name="fragment_auth__sign_up__text">Sign Up</string>
@@ -38,4 +37,5 @@
     <string name="fragment_main__user_services__new_service__rbEvent">Event</string>
     <string name="fragment_main__service_info__type">Type</string>
     <string name="currency">Currency</string>
+    <string name="fragment_auth__sign_in__password">Password</string>
 </resources>
