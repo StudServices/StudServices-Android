@@ -5,7 +5,7 @@ import dev.techpolis.studservice.common.nav.BackPressedListener
 
 interface ServiceRequestsMvpView: MvpViewObservable<ServiceRequestsMvpView.Listener> {
     interface Listener : BackPressedListener {
-        fun onServiceOfferClicked()
+        fun onServiceRequestClicked()
     }
 
 }
