@@ -9,9 +9,9 @@ class StudServiceApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerAppComponent.builder()
-            .application(this)
-            .build()
+//        appComponent = DaggerAppComponent.builder()
+//            .application(this)
+//            .build()
     }
 
 }

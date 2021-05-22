@@ -6,7 +6,11 @@ import dagger.Component
 import dev.techpolis.studservice.di.activity.ActivityComponent
 import javax.inject.Singleton
 
-@Component
+@Component (
+    modules = [
+        AppModule::class,
+    ]
+)
 @Singleton interface AppComponent {
     fun newActivityComponentBuilder() : ActivityComponent.Builder
 

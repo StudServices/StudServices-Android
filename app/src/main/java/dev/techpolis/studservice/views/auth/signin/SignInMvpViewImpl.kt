@@ -20,7 +20,6 @@ class SignInMvpViewImpl (
     override var rootView: View =
         layoutInflater.inflate(R.layout.fragment_auth__sign_in, parent, false)
 
-  //  private val pbLoading: ProgressBar = findViewById(R.id.fragment_signin__loading)
     private val etUsername: AppCompatEditText = findViewById(R.id.fragment_auth__sign_in__login)
     private val etPassword: AppCompatEditText = findViewById(R.id.fragment_auth__sign_in__password)
     private val ibSignIn: AppCompatButton = findViewById(R.id.fragment_auth__sign_in__button)
