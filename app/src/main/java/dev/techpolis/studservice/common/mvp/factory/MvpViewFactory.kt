@@ -16,10 +16,14 @@ import dev.techpolis.studservice.views.main.profile.settings.SettingsMvpView
 import dev.techpolis.studservice.views.main.profile.settings.SettingsMvpViewImpl
 import dev.techpolis.studservice.views.main.serviceinfo.ServiceInfoMvpView
 import dev.techpolis.studservice.views.main.serviceinfo.ServiceInfoMvpViewImpl
+import dev.techpolis.studservice.views.main.services.ServicesMvpView
+import dev.techpolis.studservice.views.main.services.ServicesMvpViewImpl
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpView
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpViewImpl
 import dev.techpolis.studservice.views.main.services.requests.ServiceRequestsMvpView
 import dev.techpolis.studservice.views.main.services.requests.ServiceRequestsMvpViewImpl
+import dev.techpolis.studservice.views.main.userservices.UserServicesMvpView
+import dev.techpolis.studservice.views.main.userservices.UserServicesMvpViewImpl
 import dev.techpolis.studservice.views.main.userservices.newservice.NewServiceMvpView
 import dev.techpolis.studservice.views.main.userservices.newservice.NewServiceMvpViewImpl
 import dev.techpolis.studservice.views.main.userservices.offers.UserServiceOffersMvpView
@@ -67,5 +71,10 @@ class MvpViewFactory @Inject constructor(
     fun createMapMvpView(parent: ViewGroup?): MapMvpView =
         MapMvpViewImpl(layoutInflater, parent)
 
+    fun createServicesMvpView(parent: ViewGroup?): ServicesMvpView =
+        ServicesMvpViewImpl(layoutInflater, parent)
+
+    fun createUserServicesMvpView(parent: ViewGroup?): UserServicesMvpView =
+        UserServicesMvpViewImpl(layoutInflater, parent)
 
 }

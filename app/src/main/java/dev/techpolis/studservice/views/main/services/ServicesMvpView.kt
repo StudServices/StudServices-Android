@@ -1,9 +1,9 @@
-package dev.techpolis.studservice.views.main.services.requests
+package dev.techpolis.studservice.views.main.services
 
 import dev.techpolis.studservice.common.mvp.MvpViewObservable
 import dev.techpolis.studservice.common.nav.BackPressedListener
 
-interface ServiceRequestsMvpView: MvpViewObservable<ServiceRequestsMvpView.Listener> {
+interface ServicesMvpView: MvpViewObservable<ServicesMvpView.Listener> {
     interface Listener : BackPressedListener {
     }
 

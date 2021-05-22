@@ -1,9 +1,9 @@
-package dev.techpolis.studservice.views.main.services.requests
+package dev.techpolis.studservice.views.main.services
 
 import dev.techpolis.studservice.common.mvp.MvpPresenter
 
-class ServiceRequestsPresenter: MvpPresenter<ServiceRequestsMvpView>, ServiceRequestsMvpView.Listener {
-    override fun bindView(view: ServiceRequestsMvpView) {
+class ServicesPresenter: MvpPresenter<ServicesMvpView>, ServicesMvpView.Listener {
+    override fun bindView(view: ServicesMvpView) {
         TODO("Not yet implemented")
     }
 
