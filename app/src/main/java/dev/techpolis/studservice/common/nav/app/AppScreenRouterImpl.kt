@@ -59,7 +59,7 @@ class AppScreenRouterImpl @Inject constructor(
     override fun getRootFragment(index: Int): Fragment {
         return when (index) {
             INDEX_AUTH -> SignInFragment.newInstance()
-            INDEX_MAIN -> MainFragment.newInstance()
+//            INDEX_MAIN -> MainFragment.newInstance()
             else -> throw IllegalStateException("Need to send an index that we know")
         }
     }

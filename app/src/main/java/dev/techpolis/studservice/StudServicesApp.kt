@@ -2,8 +2,9 @@ package dev.techpolis.studservice
 
 import android.app.Application
 import dev.techpolis.studservice.di.app.AppComponent
+import dev.techpolis.studservice.di.app.DaggerAppComponent
 
-class StudServiceApp: Application() {
+class StudServicesApp: Application() {
 
     lateinit var appComponent: AppComponent
 

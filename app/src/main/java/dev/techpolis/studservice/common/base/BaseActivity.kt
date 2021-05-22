@@ -2,12 +2,11 @@ package dev.techpolis.studservice.common.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dev.techpolis.studservice.StudServiceApp
+import dev.techpolis.studservice.StudServicesApp
 import dev.techpolis.studservice.common.mvp.factory.MvpViewFactory
 import dev.techpolis.studservice.common.mvp.factory.PresenterFactory
 import dev.techpolis.studservice.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.common.nav.BackPressedListener
-import dev.techpolis.studservice.common.nav.app.AppScreenRouter
 import dev.techpolis.studservice.common.nav.app.AppScreenRouterImpl
 import dev.techpolis.studservice.di.activity.ActivityComponent
 import javax.inject.Inject
@@ -27,7 +26,7 @@ abstract class BaseActivity : AppCompatActivity(), BackPressDispatcher {
     lateinit var mvpViewFactory: MvpViewFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        activityComponent = (application as StudServiceApp).appComponent
+        activityComponent = (application as StudServicesApp).appComponent
             .newActivityComponentBuilder()
             .activity(this)
             .savedInstanceState(savedInstanceState)

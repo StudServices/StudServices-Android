@@ -11,7 +11,7 @@ import dev.techpolis.studservice.views.main.profile.settings.SettingsFragment
 import dev.techpolis.studservice.views.main.serviceinfo.ServiceInfoFragment
 import dev.techpolis.studservice.views.main.services.ServicesFragment
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersFragment
-import dev.techpolis.studservice.views.main.services.requests.ServiceRequetsFragment
+import dev.techpolis.studservice.views.main.services.requests.ServiceRequestsFragment
 import dev.techpolis.studservice.views.main.userservices.UserServicesFragment
 import dev.techpolis.studservice.views.main.userservices.newservice.NewServiceFragment
 import dev.techpolis.studservice.views.main.userservices.offers.UserServiceOffersFragment
@@ -26,7 +26,7 @@ import dev.techpolis.studservice.views.main.userservices.requests.UserServiceReq
     fun inject(servicesFragment: ServicesFragment)
     fun inject(userServicesFragment: UserServicesFragment)
     fun inject(newServiceFragment: NewServiceFragment)
-    fun inject(serviceRequestFragment: ServiceRequetsFragment)
+//    fun inject(serviceRequestFragment: ServiceRequestsFragment)
     fun inject(serviceOffersFragment: ServiceOffersFragment)
     fun inject(userServiceOffersFragment: UserServiceOffersFragment)
     fun inject(userServicesRequestsFragment: UserServiceRequestsFragment)
