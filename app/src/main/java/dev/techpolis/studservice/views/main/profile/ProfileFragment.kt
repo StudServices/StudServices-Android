@@ -15,7 +15,7 @@ class ProfileFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: ProfileMvpView = mvpViewFactory.createNewProfileMvpView(container)
+        val view: ProfileMvpView = mvpViewFactory.createProfileMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }

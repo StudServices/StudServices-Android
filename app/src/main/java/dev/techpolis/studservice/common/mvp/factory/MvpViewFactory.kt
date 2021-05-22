@@ -6,10 +6,16 @@ import dev.techpolis.studservice.views.auth.signin.SignInMvpView
 import dev.techpolis.studservice.views.auth.signin.SignInMvpViewImpl
 import dev.techpolis.studservice.views.auth.signup.SignUpMvpView
 import dev.techpolis.studservice.views.auth.signup.SignUpMvpViewImpl
+import dev.techpolis.studservice.views.main.filters.FiltersMvpView
+import dev.techpolis.studservice.views.main.filters.FiltersMvpViewImpl
+import dev.techpolis.studservice.views.main.map.MapMvpView
+import dev.techpolis.studservice.views.main.map.MapMvpViewImpl
 import dev.techpolis.studservice.views.main.profile.ProfileMvpView
 import dev.techpolis.studservice.views.main.profile.ProfileMvpViewImpl
 import dev.techpolis.studservice.views.main.profile.settings.SettingsMvpView
 import dev.techpolis.studservice.views.main.profile.settings.SettingsMvpViewImpl
+import dev.techpolis.studservice.views.main.serviceinfo.ServiceInfoMvpView
+import dev.techpolis.studservice.views.main.serviceinfo.ServiceInfoMvpViewImpl
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpView
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpViewImpl
 import dev.techpolis.studservice.views.main.services.requests.ServiceRequestsMvpView
@@ -46,10 +52,20 @@ class MvpViewFactory @Inject constructor(
     fun createNewServiceMvpView(parent: ViewGroup?): NewServiceMvpView =
         NewServiceMvpViewImpl(layoutInflater, parent)
 
-    fun createNewSettingsMvpView(parent: ViewGroup?): SettingsMvpView =
+    fun createSettingsMvpView(parent: ViewGroup?): SettingsMvpView =
         SettingsMvpViewImpl(layoutInflater, parent)
 
-    fun createNewProfileMvpView(parent: ViewGroup?): ProfileMvpView =
+    fun createProfileMvpView(parent: ViewGroup?): ProfileMvpView =
         ProfileMvpViewImpl(layoutInflater, parent)
+
+    fun createServiceInfoMvpView(parent: ViewGroup?): ServiceInfoMvpView =
+        ServiceInfoMvpViewImpl(layoutInflater, parent)
+
+    fun createFiltersMvpView(parent: ViewGroup?): FiltersMvpView =
+        FiltersMvpViewImpl(layoutInflater, parent)
+
+    fun createMapMvpView(parent: ViewGroup?): MapMvpView =
+        MapMvpViewImpl(layoutInflater, parent)
+
 
 }

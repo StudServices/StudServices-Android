@@ -15,7 +15,7 @@ class SettingsFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: SettingsMvpView = mvpViewFactory.createNewSettingsMvpView(container)
+        val view: SettingsMvpView = mvpViewFactory.createSettingsMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
