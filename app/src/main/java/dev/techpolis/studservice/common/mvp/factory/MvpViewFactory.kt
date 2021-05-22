@@ -6,6 +6,8 @@ import dev.techpolis.studservice.views.auth.signin.SignInMvpView
 import dev.techpolis.studservice.views.auth.signin.SignInMvpViewImpl
 import dev.techpolis.studservice.views.auth.signup.SignUpMvpView
 import dev.techpolis.studservice.views.auth.signup.SignUpMvpViewImpl
+import dev.techpolis.studservice.views.main.profile.ProfileMvpView
+import dev.techpolis.studservice.views.main.profile.ProfileMvpViewImpl
 import dev.techpolis.studservice.views.main.profile.settings.SettingsMvpView
 import dev.techpolis.studservice.views.main.profile.settings.SettingsMvpViewImpl
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpView
@@ -46,5 +48,8 @@ class MvpViewFactory @Inject constructor(
 
     fun createNewSettingsMvpView(parent: ViewGroup?): SettingsMvpView =
         SettingsMvpViewImpl(layoutInflater, parent)
+
+    fun createNewProfileMvpView(parent: ViewGroup?): ProfileMvpView =
+        ProfileMvpViewImpl(layoutInflater, parent)
 
 }
