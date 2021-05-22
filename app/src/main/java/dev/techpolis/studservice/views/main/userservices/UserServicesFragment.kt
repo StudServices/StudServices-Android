@@ -5,16 +5,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.techpolis.studservice.R
+import dev.techpolis.studservice.common.base.BaseFragment
 
-class UserServicesFragment : Fragment() {
+class UserServicesFragment : BaseFragment() {
+
+    private lateinit var presenter: UserServicesPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main__user_services, container, false)
+    ): View {
+        val view: UserServicesMvpView = mvpViewFactory.createUserServicesMvpView(container)
+        presenter.bindView(view)
+        return view.rootView
+    }
+
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+    }
+
+    override fun onStop() {
+        presenter.onStop()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        presenter.onDestroy()
+        super.onDestroy()
+    }
+
+    companion object {
+        fun newInstance(): Fragment = UserServicesFragment()
     }
 
 }
