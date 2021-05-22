@@ -10,6 +10,10 @@ import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpView
 import dev.techpolis.studservice.views.main.services.offers.ServiceOffersMvpViewImpl
 import dev.techpolis.studservice.views.main.services.requests.ServiceRequestsMvpView
 import dev.techpolis.studservice.views.main.services.requests.ServiceRequestsMvpViewImpl
+import dev.techpolis.studservice.views.main.userservices.offers.UserServiceOffersMvpView
+import dev.techpolis.studservice.views.main.userservices.offers.UserServiceOffersMvpViewImpl
+import dev.techpolis.studservice.views.main.userservices.requests.UserServiceRequestsMvpView
+import dev.techpolis.studservice.views.main.userservices.requests.UserServiceRequestsMvpViewImpl
 import javax.inject.Inject
 
 class MvpViewFactory @Inject constructor(
@@ -26,4 +30,10 @@ class MvpViewFactory @Inject constructor(
 
     fun createServiceRequestsMvpView(parent: ViewGroup?): ServiceRequestsMvpView =
         ServiceRequestsMvpViewImpl(layoutInflater, parent)
+
+    fun createUserServiceOffersMvpView(parent: ViewGroup?): UserServiceOffersMvpView =
+        UserServiceOffersMvpViewImpl(layoutInflater, parent)
+
+    fun createUserServiceRequestsMvpView(parent: ViewGroup?): UserServiceRequestsMvpView =
+        UserServiceRequestsMvpViewImpl(layoutInflater, parent)
 }
