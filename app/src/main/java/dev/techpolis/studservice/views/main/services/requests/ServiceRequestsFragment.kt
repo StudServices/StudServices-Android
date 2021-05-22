@@ -1,24 +1,21 @@
-package dev.techpolis.studservice.views.main.services.offers
+package dev.techpolis.studservice.views.main.services.requests
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.techpolis.studservice.R
 import dev.techpolis.studservice.views.auth.signin.SignInFragment
-import dev.techpolis.studservice.views.auth.signin.SignInMvpView
-import dev.techpolis.studservice.views.auth.signin.SignInPresenter
 
-class ServiceOffersFragment : Fragment() {
+class ServiceRequestsFragment : Fragment() {
 
-    private lateinit var presenter: ServiceOffersPresenter
+    private lateinit var presenter: ServiceRequestsPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: ServiceOffersMvpView = mvpViewFactory.createServiceOffersMvpView(container)
+        val view: ServiceRequestsMvpView = mvpViewFactory.createServiceRequestsMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
@@ -39,7 +36,7 @@ class ServiceOffersFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(): Fragment = ServiceOffersFragment()
+        fun newInstance(): Fragment = ServiceRequestsFragment()
     }
 
 }
