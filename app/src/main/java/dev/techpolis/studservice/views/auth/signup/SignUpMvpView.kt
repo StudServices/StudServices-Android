@@ -13,8 +13,6 @@ interface SignUpMvpView: MvpViewObservable<SignUpMvpView.Listener> {
         fun onPasswordCorrectionFieldTextChanged(text: String)
     }
 
-
-
     fun showLoading()
     fun hideLoading()
 
