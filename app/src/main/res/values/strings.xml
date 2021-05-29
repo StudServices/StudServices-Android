@@ -32,10 +32,18 @@
     <string name="fragment_main__profile__settings__description">Description</string>
     <string name="fragment_main__profile__settings__description_hint">Change description</string>
     <string name="fragment_main__profile__settings__geography_hint">Choose dorm</string>
-    <string name="fragment_main__user_services__new_service__rbOffer">Will help</string>
-    <string name="fragment_main__user_services__new_service__rbRequest">Help me</string>
+    <string name="fragment_main__user_services__new_service__rbOffer">I will help</string>
+    <string name="fragment_main__user_services__new_service__rbRequest">Help me please</string>
     <string name="fragment_main__user_services__new_service__rbEvent">Event</string>
     <string name="fragment_main__service_info__type">Type</string>
     <string name="currency">Currency</string>
     <string name="fragment_auth__sign_in__password">Password</string>
+    <string name="fragment_main__user_services__new_service__cgTags__cooking">Готовка</string>
+    <string name="fragment_main__user_services__new_service__cgTags__study">Учёба</string>
+    <string name="fragment_main__user_services__new_service__cgTags__event">Мероприятие</string>
+    <string name="fragment_main__user_services__new_service__etTitle">Введите название</string>
+    <string name="fragment_main__user_services__new_service__etDescription">Введите описание</string>
+    <string name="fragment_main__user_services__new_service__etPrice">Введите цену</string>
+    <string name="fragment_main__user_services__new_service__btnCreate">Создать</string>
+    <string name="fragment_main__filters__btnCreate">Отфильтровать</string>
 </resources>
