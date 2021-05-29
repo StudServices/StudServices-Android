@@ -15,26 +15,30 @@ class LocalServicesRepoImpl @Inject constructor(
 ): LocalServicesRepo {
 
     override fun readServices(limit: Int, offset: Int): Flow<List<ServiceEntity>> {
-        return emptyFlow()
+        return servicesDAO.readAllService()
     }
 
     override fun readServicesByUser(
-        user: User,
+        userId: Long,
         limit: Int,
         offset: Int
     ): Flow<List<ServiceEntity>> {
-        TODO("Not yet implemented")
+        return servicesDAO.readAllServiceByUserId(userId)
     }
 
     override suspend fun addService(service: ServiceEntity) {
-        TODO("Not yet implemented")
+        servicesDAO.addService(service)
+    }
+
+    override suspend fun addServices(services: List<ServiceEntity>) {
+        servicesDAO.addServices(services)
     }
 
     override suspend fun deleteService(service: ServiceEntity) {
-        TODO("Not yet implemented")
+        servicesDAO.deleteService(service)
     }
 
     override suspend fun updateService(newService: ServiceEntity) {
-        TODO("Not yet implemented")
+        servicesDAO.updateService(newService)
     }
 }

@@ -2,6 +2,7 @@ package dev.techpolis.studservice.screens.common.mvp.factory
 
 import dev.techpolis.studservice.di.scope.ActivityScope
 import dev.techpolis.studservice.interactors.ServiceInteractor
+import dev.techpolis.studservice.providers.ServiceProvider
 import dev.techpolis.studservice.screens.auth.signin.SignInPresenter
 import dev.techpolis.studservice.screens.auth.signup.SignUpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
@@ -27,6 +28,7 @@ class PresenterFactory @Inject constructor(
     private val appScreenRouter: AppScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
     private val serviceInteractor: ServiceInteractor,
+    private val serviceProvider: ServiceProvider,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
 
@@ -44,23 +46,47 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createServiceRequestPresenter(): ServiceRequestsPresenter {
-        return ServiceRequestsPresenter(serviceInteractor)
+        return ServiceRequestsPresenter(
+            serviceInteractor,
+            serviceProvider,
+            mainScreenRouter,
+            backPressDispatcher
+        )
     }
 
     fun createServiceOffersPresenter(): ServiceOffersPresenter {
-        return ServiceOffersPresenter(serviceInteractor)
+        return ServiceOffersPresenter(
+            serviceInteractor,
+            serviceProvider,
+            mainScreenRouter,
+            backPressDispatcher
+        )
+    }
+
+    fun createServicesPresenter(): ServicesPresenter {
+        return ServicesPresenter(backPressDispatcher, mainScreenRouter)
     }
 
     fun createUserServicesPresenter(): UserServicesPresenter {
-        return UserServicesPresenter()
+        return UserServicesPresenter(backPressDispatcher, mainScreenRouter)
     }
 
     fun createUserServiceOffersPresenter(): UserServiceOffersPresenter {
-        return UserServiceOffersPresenter(serviceInteractor)
+        return UserServiceOffersPresenter(
+            serviceInteractor,
+            serviceProvider,
+            mainScreenRouter,
+            backPressDispatcher
+        )
     }
 
     fun createUserServiceRequestsPresenter(): UserServiceRequestsPresenter {
-        return UserServiceRequestsPresenter(serviceInteractor)
+        return UserServiceRequestsPresenter(
+            serviceInteractor,
+            serviceProvider,
+            mainScreenRouter,
+            backPressDispatcher
+        )
     }
 
     fun createNewServicePresenter(): NewServicePresenter {
@@ -68,7 +94,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createServiceInfoPresenter(): ServiceInfoPresenter {
-        return ServiceInfoPresenter()
+        return ServiceInfoPresenter(serviceProvider, backPressDispatcher, mainScreenRouter)
     }
 
     fun createSettingsPresenter(): SettingsPresenter {
@@ -77,10 +103,6 @@ class PresenterFactory @Inject constructor(
 
     fun createMapPresenter(): MapPresenter {
         return MapPresenter()
-    }
-
-    fun createServicesPresenter(): ServicesPresenter {
-        return ServicesPresenter()
     }
 
     fun createFilterPresenter(): FiltersPresenter {

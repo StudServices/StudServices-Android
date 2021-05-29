@@ -43,6 +43,7 @@ class MainFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: MainMvpView = mvpViewFactory.createMainMvpView(container)
+        mainScreenRouter.bindBottomBarView(view)
         presenter.bindView(view)
         return view.rootView
     }

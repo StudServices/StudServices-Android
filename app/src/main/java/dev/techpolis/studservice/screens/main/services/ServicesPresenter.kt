@@ -1,8 +1,15 @@
 package dev.techpolis.studservice.screens.main.services
 
+import android.util.Log
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
+import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
+import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
+import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouterImpl
 
-class ServicesPresenter: MvpPresenter<ServicesMvpView>, ServicesMvpView.Listener {
+class ServicesPresenter(
+    private val backPressDispatcher: BackPressDispatcher,
+    private val mainScreenRouter: MainScreenRouter
+): MvpPresenter<ServicesMvpView>, ServicesMvpView.Listener {
     private lateinit var view: ServicesMvpView
 
     override fun bindView(view: ServicesMvpView) {
@@ -10,11 +17,13 @@ class ServicesPresenter: MvpPresenter<ServicesMvpView>, ServicesMvpView.Listener
     }
 
     override fun onStart() {
-//        TODO("Not yet implemented")
+        view.registerListener(this)
+        backPressDispatcher.registerListener(this)
     }
 
     override fun onStop() {
-//        TODO("Not yet implemented")
+        view.unregisterListener(this)
+        backPressDispatcher.unregisterListener(this)
     }
 
     override fun onDestroy() {
@@ -22,6 +31,8 @@ class ServicesPresenter: MvpPresenter<ServicesMvpView>, ServicesMvpView.Listener
     }
 
     override fun onBackPressed(): Boolean {
-        return false
+        Log.e("ServicesPresenter", "NavigateUp")
+        mainScreenRouter.navigateUp()
+        return true
     }
 }

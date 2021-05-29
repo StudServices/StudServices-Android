@@ -29,8 +29,8 @@ class UserServicesMvpViewImpl(
         viewPager.adapter = ViewPagerAdapter(fragment)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Offers"
-                1 -> tab.text = "Requests"
+                0 -> tab.text = "My Offers"
+                1 -> tab.text = "My Requests"
             }
         }.attach()
     }

@@ -1,8 +1,10 @@
 package dev.techpolis.studservice.di.module
 
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.Module
 import dagger.Provides
+import dev.techpolis.studservice.R
 import dev.techpolis.studservice.di.scope.ActivityScope
 import dev.techpolis.studservice.di.qual.MainFragmentManager
 import dev.techpolis.studservice.di.scope.MainScope
