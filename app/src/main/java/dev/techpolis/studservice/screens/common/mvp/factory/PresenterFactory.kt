@@ -72,7 +72,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createSettingsPresenter(): SettingsPresenter {
-        return SettingsPresenter()
+        return SettingsPresenter(appScreenRouter, backPressDispatcher)
     }
 
     fun createMapPresenter(): MapPresenter {
