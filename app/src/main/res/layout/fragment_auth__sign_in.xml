@@ -41,7 +41,8 @@
         app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_in__button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__login" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__login"
+        android:inputType="textPassword"/>
 
 
     <androidx.appcompat.widget.AppCompatButton

@@ -8,30 +8,30 @@
     android:padding="15dp"
     tools:context=".screens.main.filters.FiltersFragment">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/fragment_main__filters__checkbox_study"
+    <RadioGroup
+        android:id="@+id/fragment_main__filters__type_rg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fragment_main__filters__checkbox_study"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/fragment_main__filters__checkbox_dorm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_main__filters__checkbox_dorm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__checkbox_study" />
+        <RadioButton
+            android:id="@+id/fragment_main__filters__rbOffer"
+            android:layout_width="wrap_content"
+            android:text="@string/fragment_main__user_services__new_service__rbOffer"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__filters__dorm_spn_desc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_main__filters__dorm_spinner_desc"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__checkbox_dorm" />
+        <RadioButton
+            android:id="@+id/fragment_main__filters__rbRequest"
+            android:text="@string/fragment_main__user_services__new_service__rbRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/fragment_main__filters__spnGeography"
@@ -39,17 +39,69 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:entries="@array/dormsList"
-        app:layout_constraintStart_toEndOf="@id/fragment_main__filters__dorm_spn_desc"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__checkbox_dorm" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__type_rg" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_main__filters__tags_rv"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/fragment_main__filters__cgTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__spnGeography" />
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__spnGeography"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
+        android:orientation="vertical">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fragment_main__filters__cgTags__cooking"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="@string/fragment_main__user_services__new_service__cgTags__cooking"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fragment_main__filters__cgTags__study"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_main__user_services__new_service__cgTags__study"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__cgTags__cooking" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fragment_main__filters__cgTags__event"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_main__user_services__new_service__cgTags__event"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__cgTags__study" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_main__filters__btnFilter"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="@string/fragment_main__filters__btnCreate"
+        android:textColorHint="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__cgTags"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
