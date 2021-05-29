@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    tools:context=".views.main.serviceinfo.ServiceInfoFragment">
+    tools:context=".screens.main.serviceinfo.ServiceInfoFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_main__service_info__tvTitle"

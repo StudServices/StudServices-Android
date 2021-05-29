@@ -24,9 +24,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures {
-        viewBinding true
-    }
     kapt {
         generateStubs = true
     }
@@ -44,58 +41,40 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:${var.coreVersion}"
     implementation "androidx.appcompat:appcompat:${var.appCompatVersion}"
+
+    // UI Components
     implementation "com.google.android.material:material:${var.materialVersion}"
+    implementation "androidx.constraintlayout:constraintlayout:${var.constraintLayoutVersion}"
+    implementation "androidx.recyclerview:recyclerview:${var.recyclerViewVersion}"
+    implementation "androidx.viewpager2:viewpager2:${var.viewPagerVersion}"
 
-    // RecyclerView
-    implementation "androidx.recyclerview:recyclerview:${var.recyclerviewVersion}"
-
-    // Room components
-    implementation "androidx.room:room-ktx:${var.roomVersion}"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt "androidx.room:room-compiler:${var.roomVersion}"
+    // Room
     implementation "androidx.room:room-runtime:${var.roomVersion}"
+    implementation "androidx.legacy:legacy-support-v4:${var.androidLegacyVersion}"
+    kapt "androidx.room:room-compiler:${var.roomVersion}"
+    implementation "androidx.room:room-ktx:${var.roomVersion}"
     androidTestImplementation "androidx.room:room-testing:${var.roomVersion}"
-
-    // Lifecycle components
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${var.lifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${var.lifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-common-java8:${var.lifecycleVersion}"
-
-    // Fragment components
-    implementation "androidx.fragment:fragment-ktx:${var.fragmentVersion}"
-    debugImplementation "androidx.fragment:fragment-testing:${var.fragmentVersion}"
 
     // Navigation
     implementation "com.ncapdevi:frag-nav:${var.fragNavVersion}"
 
-    implementation "androidx.navigation:navigation-fragment-ktx:${var.navVersion}"
-    implementation "androidx.navigation:navigation-ui-ktx:${var.navVersion}"
-    androidTestImplementation "androidx.navigation:navigation-testing:${var.navVersion}"
-
-    // Kotlin components
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:${var.coroutines}"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${var.coroutines}"
-
-    // UI
-    implementation "androidx.constraintlayout:constraintlayout:${var.constraintLayoutVersion}"
-    implementation "com.google.android.material:material:${var.materialVersion}"
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${var.coroutinesAndroidVersion}"
 
     // Gson
     implementation "com.google.code.gson:gson:${var.gsonVersion}"
 
-    //Internet
+    // Retrofit
     implementation "com.squareup.retrofit2:retrofit:${var.retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${var.retrofitVersion}"
+
+    // OkHttp
     implementation "com.squareup.okhttp3:okhttp:${var.okHttpVersion}"
     implementation "com.squareup.okhttp3:logging-interceptor:${var.okHttpVersion}"
 
-    //Dagger
+    // Dagger
     implementation "com.google.dagger:dagger:${var.daggerVersion}"
     kapt "com.google.dagger:dagger-compiler:${var.daggerVersion}"
-    implementation "com.google.dagger:dagger-android:${var.daggerVersion}"
-    implementation "com.google.dagger:dagger-android-support:${var.daggerVersion}"
-    kapt "com.google.dagger:dagger-android-processor:${var.daggerVersion}"
 
     //Glide
     implementation "com.github.bumptech.glide:glide:${var.glideVersion}"

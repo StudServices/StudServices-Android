@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.main.profile.settings.SettingsFragment">
+    tools:context=".screens.main.profile.settings.SettingsFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/fragment_main__profile__settings__avatar"
