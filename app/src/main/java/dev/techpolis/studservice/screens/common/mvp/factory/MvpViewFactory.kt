@@ -3,6 +3,7 @@ package dev.techpolis.studservice.screens.common.mvp.factory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.RequestManager
 import dev.techpolis.studservice.di.scope.ActivityScope
 import dev.techpolis.studservice.screens.auth.signin.SignInMvpView
 import dev.techpolis.studservice.screens.auth.signin.SignInMvpViewImpl
@@ -20,8 +21,11 @@ import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpView
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpViewImpl
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoMvpView
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoMvpViewImpl
+import dev.techpolis.studservice.screens.main.services.ServicesAdapter
 import dev.techpolis.studservice.screens.main.services.ServicesMvpView
 import dev.techpolis.studservice.screens.main.services.ServicesMvpViewImpl
+import dev.techpolis.studservice.screens.main.services_item.ServicesItemMvpView
+import dev.techpolis.studservice.screens.main.services_item.ServicesItemMvpViewImpl
 import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersMvpView
 import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersMvpViewImpl
 import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsMvpView
@@ -47,16 +51,16 @@ class MvpViewFactory @Inject constructor(
         SignUpMvpViewImpl(layoutInflater, parent)
 
     fun createServiceOffersMvpView(parent: ViewGroup?): ServiceOffersMvpView =
-        ServiceOffersMvpViewImpl(layoutInflater, parent)
+        ServiceOffersMvpViewImpl(layoutInflater, parent, this)
 
     fun createServiceRequestsMvpView(parent: ViewGroup?): ServiceRequestsMvpView =
-        ServiceRequestsMvpViewImpl(layoutInflater, parent)
+        ServiceRequestsMvpViewImpl(layoutInflater, parent, this)
 
     fun createUserServiceOffersMvpView(parent: ViewGroup?): UserServiceOffersMvpView =
-        UserServiceOffersMvpViewImpl(layoutInflater, parent)
+        UserServiceOffersMvpViewImpl(layoutInflater, parent, this)
 
     fun createUserServiceRequestsMvpView(parent: ViewGroup?): UserServiceRequestsMvpView =
-        UserServiceRequestsMvpViewImpl(layoutInflater, parent)
+        UserServiceRequestsMvpViewImpl(layoutInflater, parent, this)
 
     fun createNewServiceMvpView(parent: ViewGroup?): NewServiceMvpView =
         NewServiceMvpViewImpl(layoutInflater, parent)
@@ -84,5 +88,19 @@ class MvpViewFactory @Inject constructor(
 
     fun createMainMvpView(parent: ViewGroup?): MainMvpView =
         MainMvpViewImpl(layoutInflater, parent)
+
+    fun createServicesAdapter(
+        listener: ServicesItemMvpView.Listener,
+        glide: RequestManager
+    ): ServicesAdapter =
+        ServicesAdapter(listener, this, glide)
+
+    fun createServiceItemMvpView(
+        parent: ViewGroup,
+        listener: ServicesItemMvpView.Listener,
+        glide: RequestManager
+    ): ServicesItemMvpView {
+        return ServicesItemMvpViewImpl(layoutInflater, parent, listener, glide)
+    }
 
 }

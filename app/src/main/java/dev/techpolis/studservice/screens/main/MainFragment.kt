@@ -35,7 +35,7 @@ class MainFragment : BaseFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        appScreenRouter.onSaveInstanceState(outState)
+        mainScreenRouter.onSaveInstanceState(outState)
     }
 
     override fun onCreateView(

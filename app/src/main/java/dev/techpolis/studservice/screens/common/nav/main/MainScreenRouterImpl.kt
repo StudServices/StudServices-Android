@@ -51,7 +51,7 @@ class MainScreenRouterImpl @Inject constructor(
                 R.anim.fade_in,
                 R.anim.fade_out,
             )
-            initialize(INDEX_SERVICES, savedInstanceState)
+            initialize(INDEX_USER_SERVICES, savedInstanceState)
         }
     }
 

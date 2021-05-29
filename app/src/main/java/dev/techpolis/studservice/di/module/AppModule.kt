@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
+import dev.techpolis.studservice.repositories.service.ServicesRepo
+import dev.techpolis.studservice.repositories.service.ServicesRepoImpl
 import dev.techpolis.studservice.repositories.user.UserRepo
 import dev.techpolis.studservice.repositories.user.UserRepoImpl
 import dev.techpolis.studservice.utils.Constants.Companion.PREFERENCE_NAME
@@ -31,6 +33,9 @@ object AppModule {
     interface Binds {
         @dagger.Binds
         fun userRepo(userRepoImpl: UserRepoImpl): UserRepo
+
+        @dagger.Binds
+        fun servicesRepo(servicesRepoImpl: ServicesRepoImpl): ServicesRepo
     }
 
 }

@@ -7,6 +7,10 @@ import androidx.room.PrimaryKey
 data class ServiceEntity(
     @PrimaryKey
     val id: Long,
+    val title: String,
+    val description: String,
+    val price: Int,
+    val avatarUrl: String,
 ) {
     companion object {
         const val TABLE_NAME = "service_table"

@@ -1,6 +1,7 @@
 package dev.techpolis.studservice.screens.common.mvp.factory
 
 import dev.techpolis.studservice.di.scope.ActivityScope
+import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.screens.auth.signin.SignInPresenter
 import dev.techpolis.studservice.screens.auth.signup.SignUpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
@@ -24,7 +25,8 @@ import javax.inject.Inject
 @ActivityScope
 class PresenterFactory @Inject constructor(
     private val appScreenRouter: AppScreenRouter,
-    private val backPressDispatcher: BackPressDispatcher
+    private val backPressDispatcher: BackPressDispatcher,
+    private val serviceInteractor: ServiceInteractor,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
 
@@ -42,11 +44,11 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createServiceRequestPresenter(): ServiceRequestsPresenter {
-        return ServiceRequestsPresenter()
+        return ServiceRequestsPresenter(serviceInteractor)
     }
 
     fun createServiceOffersPresenter(): ServiceOffersPresenter {
-        return ServiceOffersPresenter()
+        return ServiceOffersPresenter(serviceInteractor)
     }
 
     fun createUserServicesPresenter(): UserServicesPresenter {
@@ -54,11 +56,11 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createUserServiceOffersPresenter(): UserServiceOffersPresenter {
-        return UserServiceOffersPresenter()
+        return UserServiceOffersPresenter(serviceInteractor)
     }
 
     fun createUserServiceRequestsPresenter(): UserServiceRequestsPresenter {
-        return UserServiceRequestsPresenter()
+        return UserServiceRequestsPresenter(serviceInteractor)
     }
 
     fun createNewServicePresenter(): NewServicePresenter {
