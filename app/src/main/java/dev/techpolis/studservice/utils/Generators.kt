@@ -8,11 +8,29 @@ fun generateOffers(): List<ServiceEntity> {
     for (i in 1..30) {
         res.add(
             ServiceEntity(
-                Random.nextLong(),
-                randomWord(7),
-                randomWord(20),
-                Random.nextInt(1000),
-                if (Random.nextBoolean()) "av1" else "av2"
+                title = randomWord(7),
+                ownerId = Random.nextLong(),
+                description = randomWord(20),
+                price = Random.nextInt(1000),
+                avatarUrl = if (Random.nextBoolean()) "av1" else "av2",
+                tagList = listOf(randomWord(4), randomWord(4), randomWord(4))
+            )
+        )
+    }
+    return res
+}
+
+fun generateOffers(id: Long): List<ServiceEntity> {
+    val res = mutableListOf<ServiceEntity>()
+    for (i in 1..30) {
+        res.add(
+            ServiceEntity(
+                title = randomWord(7),
+                ownerId = id,
+                description = randomWord(20),
+                price = Random.nextInt(1000),
+                avatarUrl = if (Random.nextBoolean()) "av1" else "av2",
+                tagList = listOf(randomWord(4), randomWord(4), randomWord(4))
             )
         )
     }

@@ -11,6 +11,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AppModule::class,
+        AppModule.Binds::class,
         RoomModule::class,
         NetworkModule::class
     ]

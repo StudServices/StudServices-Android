@@ -1,13 +1,20 @@
 package dev.techpolis.studservice.screens.main.services.requests
 
+import android.util.Log
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.interactors.ServiceInteractor
+import dev.techpolis.studservice.providers.ServiceProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
+import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
+import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 import kotlinx.coroutines.*
 
 class ServiceRequestsPresenter(
     private val serviceInteractor: ServiceInteractor,
+    private val serviceProvider: ServiceProvider,
+    private val mainScreenRouter: MainScreenRouter,
+    private val backPressDispatcher: BackPressDispatcher,
 ) : MvpPresenter<ServiceRequestsMvpView>, ServiceRequestsMvpView.Listener {
 
     private lateinit var view: ServiceRequestsMvpView
@@ -15,7 +22,6 @@ class ServiceRequestsPresenter(
 
     override fun bindView(view: ServiceRequestsMvpView) {
         this.view = view
-        initData()
     }
 
     private fun initData() {
@@ -28,11 +34,14 @@ class ServiceRequestsPresenter(
     }
 
     override fun onStart() {
-//        TODO("Not yet implemented")
+        view.registerListener(this)
+        backPressDispatcher.registerListener(this)
+        initData()
     }
 
     override fun onStop() {
-//        TODO("Not yet implemented")
+        view.unregisterListener(this)
+        backPressDispatcher.unregisterListener(this)
     }
 
     override fun onDestroy() {
@@ -40,11 +49,12 @@ class ServiceRequestsPresenter(
     }
 
     override fun onServiceClicked(service: ServiceEntity) {
-//        TODO("Not yet implemented")
+        serviceProvider.service = service
+        mainScreenRouter.toServiceInfo()
     }
 
     override fun onBackPressed(): Boolean {
-//        TODO("Not yet implemented")
+        Log.e("ServiceRequestPresenter", "NavigateUp")
         return false
     }
 }

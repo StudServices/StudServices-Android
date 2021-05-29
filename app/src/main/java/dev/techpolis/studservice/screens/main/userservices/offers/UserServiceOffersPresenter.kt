@@ -1,13 +1,20 @@
 package dev.techpolis.studservice.screens.main.userservices.offers
 
+import android.util.Log
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.interactors.ServiceInteractor
+import dev.techpolis.studservice.providers.ServiceProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
+import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
+import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 import kotlinx.coroutines.*
 
 class UserServiceOffersPresenter(
     private val serviceInteractor: ServiceInteractor,
+    private val serviceProvider: ServiceProvider,
+    private val mainScreenRouter: MainScreenRouter,
+    private val backPressDispatcher: BackPressDispatcher,
 ): MvpPresenter<UserServiceOffersMvpView>, UserServiceOffersMvpView.Listener {
 
     private lateinit var view: UserServiceOffersMvpView
@@ -15,12 +22,11 @@ class UserServiceOffersPresenter(
 
     override fun bindView(view: UserServiceOffersMvpView) {
         this.view = view
-        initData()
     }
 
     private fun initData() {
         coroutineScope.launch {
-            val services = serviceInteractor.getServices()
+            val services = serviceInteractor.getUserServices(2)
             if (services.status is Status.Success) {
                 view.bindData(services.data!!)
             }
@@ -28,11 +34,14 @@ class UserServiceOffersPresenter(
     }
 
     override fun onStart() {
-//        TODO("Not yet implemented")
+        view.registerListener(this)
+        backPressDispatcher.registerListener(this)
+        initData()
     }
 
     override fun onStop() {
-//        TODO("Not yet implemented")
+        view.unregisterListener(this)
+        backPressDispatcher.unregisterListener(this)
     }
 
     override fun onDestroy() {
@@ -40,11 +49,12 @@ class UserServiceOffersPresenter(
     }
 
     override fun onServiceOfferClicked(service: ServiceEntity) {
-//        TODO("Not yet implemented")
+        serviceProvider.service = service
+        mainScreenRouter.toServiceInfo()
     }
 
     override fun onBackPressed(): Boolean {
-//        TODO("Not yet implemented")
+        Log.e("UserServiceOffer", "NavigateUp")
         return false
     }
 }

@@ -43,6 +43,6 @@ class ServicesItemMvpViewImpl(
         )
         tvTitle.text = service.title
         tvPrice.text = "$${service.price}"
-        tvDescription.text = service.description
+        tvDescription.text = service.tagList.joinToString(separator = ",")
     }
 }

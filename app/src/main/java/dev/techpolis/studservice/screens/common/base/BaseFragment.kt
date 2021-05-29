@@ -6,6 +6,7 @@ import dev.techpolis.studservice.screens.common.mvp.factory.MvpViewFactory
 import dev.techpolis.studservice.screens.common.mvp.factory.PresenterFactory
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouterImpl
 import dev.techpolis.studservice.di.component.ActivityComponent
+import dev.techpolis.studservice.repositories.service.local.LocalServicesRepo
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
 import javax.inject.Inject
 
