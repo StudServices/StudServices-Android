@@ -14,7 +14,9 @@
         android:hint="@string/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="@string/fragment_main__user_services__new_service__etTitle"
+        android:inputType="text" />
 
     <EditText
         android:id="@+id/fragment_main__user_services__new_service__etDescription"
@@ -24,7 +26,9 @@
         android:hint="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etTitle"
+        android:autofillHints="@string/fragment_main__user_services__new_service__etDescription"
+        android:inputType="text" />
 
     <RadioGroup
         android:id="@+id/fragment_main__user_services__new_service__rg"
@@ -48,12 +52,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <RadioButton
-            android:id="@+id/fragment_main__user_services__new_service__rbEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__rbEvent"
-            />
 
     </RadioGroup>
 
@@ -76,7 +74,9 @@
         android:hint="@string/price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_main__user_services__new_service__spnCurrency" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_main__user_services__new_service__spnCurrency"
+        android:autofillHints="@string/fragment_main__user_services__new_service__etPrice"
+        android:inputType="text" />
 
     <Spinner
         android:id="@+id/fragment_main__user_services__new_service__spnGeography"
@@ -85,19 +85,69 @@
         android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnGeography__marginTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_main__user_services__new_service__cgTags"
         app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etPrice" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_main__user_services__new_service__rvTags"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/fragment_main__user_services__new_service__cgTags"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:orientation="horizontal"
-        android:hint="@string/tags"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__spnGeography" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__spnGeography"
+        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
+        android:orientation="vertical">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fragment_main__user_services__new_service__cgTags__cooking"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:clickable="true"
+            android:text="@string/fragment_main__user_services__new_service__cgTags__cooking"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="true" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fragment_main__user_services__new_service__cgTags__study"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/fragment_main__user_services__new_service__cgTags__study"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__cgTags__cooking" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/fragment_main__user_services__new_service__cgTags__event"
+            style="@style/Widget.MaterialComponents.Chip.Entry"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/fragment_main__user_services__new_service__cgTags__event"
+            android:theme="@style/Theme.MaterialComponents.Light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__cgTags__study" />
+            </com.google.android.material.chip.ChipGroup>
 
 
 
