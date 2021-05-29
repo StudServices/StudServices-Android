@@ -3,16 +3,14 @@ package dev.techpolis.studservice.screens.main.filters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.RadioGroup
 import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
-import androidx.core.widget.doOnTextChanged
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
+import dev.techpolis.studservice.data.model.ServiceTypeEnum
 
 class FiltersMvpViewImpl(
     layoutInflater: LayoutInflater,
@@ -28,33 +26,29 @@ class FiltersMvpViewImpl(
     private val btnFilter: AppCompatButton = findViewById(R.id.fragment_main__filters__btnFilter)
 
     init {
-        cgTags.setOnCheckedChangeListener { chipGroup: ChipGroup, position: Int ->
-            listeners.forEach {
-                it.onTagsCheckedChanged(chipGroup, position)
-            }
-        }
-
-        rgType.setOnCheckedChangeListener { radioGroup: RadioGroup, _ ->
-            listeners.forEach {
-                it.onServiceTypeChanged(radioGroup)
-            }
-        }
-
-        spnGeography.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                listeners.forEach {
-                    it.onGeographyChanged(parent?.getItemAtPosition(position).toString())
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-        }
-
         btnFilter.setOnClickListener {
             listeners.forEach {
-                it.onFilterBtnClicked()
+                it.onFilterBtnClicked(
+                    serviceType = getServiceTypeEnum(),
+                    geography = spnGeography.selectedItem.toString(),
+                    tags = getTagsList())
             }
         }
     }
+
+    private fun getTagsList(): List<String> {
+        val checkedChipsText = mutableListOf<String>()
+        cgTags.checkedChipIds.forEach {
+            val chip = cgTags.findViewById<Chip>(it).text.toString()
+            checkedChipsText.add(chip)
+        }
+        return checkedChipsText
+    }
+
+    private fun getServiceTypeEnum() =
+        if (rgType.checkedRadioButtonId == 0)
+            ServiceTypeEnum.OFFER
+        else
+            ServiceTypeEnum.REQUEST
 
 }

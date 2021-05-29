@@ -90,7 +90,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createNewServicePresenter(): NewServicePresenter {
-        return NewServicePresenter(appScreenRouter, backPressDispatcher)
+        return NewServicePresenter(mainScreenRouter, backPressDispatcher)
     }
 
     fun createServiceInfoPresenter(): ServiceInfoPresenter {
@@ -98,7 +98,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createSettingsPresenter(): SettingsPresenter {
-        return SettingsPresenter(appScreenRouter, backPressDispatcher)
+        return SettingsPresenter(mainScreenRouter, backPressDispatcher)
     }
 
     fun createMapPresenter(): MapPresenter {
@@ -106,7 +106,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createFilterPresenter(): FiltersPresenter {
-        return FiltersPresenter(appScreenRouter, backPressDispatcher)
+        return FiltersPresenter(mainScreenRouter, backPressDispatcher)
     }
 
 }
