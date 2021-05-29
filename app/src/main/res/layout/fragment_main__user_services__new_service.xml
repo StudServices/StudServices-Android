@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.main.userservices.newservice.NewServiceFragment">
+    tools:context=".screens.main.userservices.newservice.NewServiceFragment">
 
     <EditText
         android:id="@+id/fragment_main__user_services__new_service__etTitle"

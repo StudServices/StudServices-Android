@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".views.main.filters.FiltersFragment">
+    tools:context=".screens.main.filters.FiltersFragment">
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/fragment_main__filters__checkbox_study"
