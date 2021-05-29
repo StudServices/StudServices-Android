@@ -64,7 +64,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createNewServicePresenter(): NewServicePresenter {
-        return NewServicePresenter()
+        return NewServicePresenter(appScreenRouter, backPressDispatcher)
     }
 
     fun createServiceInfoPresenter(): ServiceInfoPresenter {

@@ -44,4 +44,5 @@
     <string name="fragment_main__user_services__new_service__etTitle">Введите название</string>
     <string name="fragment_main__user_services__new_service__etDescription">Введите описание</string>
     <string name="fragment_main__user_services__new_service__etPrice">Введите цену</string>
+    <string name="fragment_main__user_services__new_service__btnCreate">Создать</string>
 </resources>

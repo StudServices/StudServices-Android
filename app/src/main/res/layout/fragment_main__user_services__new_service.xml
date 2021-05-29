@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".screens.main.userservices.newservice.NewServiceFragment">
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_main__user_services__new_service__etTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:autofillHints="@string/fragment_main__user_services__new_service__etTitle"
         android:inputType="text" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_main__user_services__new_service__etDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
 
     </RadioGroup>
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/fragment_main__user_services__new_service__spnCurrency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__rg" />
 
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_main__user_services__new_service__etPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -78,11 +78,12 @@
         android:autofillHints="@string/fragment_main__user_services__new_service__etPrice"
         android:inputType="text" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/fragment_main__user_services__new_service__spnGeography"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnGeography__marginTop"
+        android:entries="@array/dormsList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/fragment_main__user_services__new_service__cgTags"
@@ -100,14 +101,9 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/fragment_main__user_services__new_service__cgTags__cooking"
-            style="@style/Widget.MaterialComponents.Chip.Entry"
-            android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:clickable="true"
             android:text="@string/fragment_main__user_services__new_service__cgTags__cooking"
             android:theme="@style/Theme.MaterialComponents.Light"
@@ -118,14 +114,9 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/fragment_main__user_services__new_service__cgTags__study"
-            style="@style/Widget.MaterialComponents.Chip.Entry"
-            android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:text="@string/fragment_main__user_services__new_service__cgTags__study"
             android:theme="@style/Theme.MaterialComponents.Light"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,14 +125,9 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/fragment_main__user_services__new_service__cgTags__event"
-            style="@style/Widget.MaterialComponents.Chip.Entry"
-            android:layout_width="0dp"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:text="@string/fragment_main__user_services__new_service__cgTags__event"
             android:theme="@style/Theme.MaterialComponents.Light"
             app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +135,19 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__cgTags__study" />
             </com.google.android.material.chip.ChipGroup>
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_main__user_services__new_service__btnCreate"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="@string/fragment_main__user_services__new_service__btnCreate"
+        android:textColorHint="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service__cgTags"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
