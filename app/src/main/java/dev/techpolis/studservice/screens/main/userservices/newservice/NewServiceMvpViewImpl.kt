@@ -25,13 +25,9 @@ class NewServiceMvpViewImpl(
     private val etTitle: AppCompatEditText = findViewById(R.id.fragment_main__user_services__new_service__etTitle)
     private val etDescription: AppCompatEditText = findViewById(R.id.fragment_main__user_services__new_service__etDescription)
     private val rgType: RadioGroup = findViewById(R.id.fragment_main__user_services__new_service__rg)
-    private val spnCurrency: AppCompatSpinner = findViewById(R.id.fragment_main__user_services__new_service__spnCurrency)
     private val etPrice: AppCompatEditText = findViewById(R.id.fragment_main__user_services__new_service__etPrice)
     private val spnGeography: AppCompatSpinner = findViewById(R.id.fragment_main__user_services__new_service__spnGeography)
     private val cgTags: ChipGroup = findViewById(R.id.fragment_main__user_services__new_service__cgTags)
-    private val cgStudyTag: Chip = findViewById(R.id.fragment_main__user_services__new_service__cgTags__study)
-    private val cgEventTag: Chip = findViewById(R.id.fragment_main__user_services__new_service__cgTags__event)
-    private val cgCookingTag: Chip = findViewById(R.id.fragment_main__user_services__new_service__cgTags__cooking)
     private val btnCreate: AppCompatButton = findViewById(R.id.fragment_main__user_services__new_service__btnCreate)
 
 

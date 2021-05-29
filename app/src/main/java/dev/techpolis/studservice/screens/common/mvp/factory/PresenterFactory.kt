@@ -84,7 +84,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createFilterPresenter(): FiltersPresenter {
-        return FiltersPresenter()
+        return FiltersPresenter(appScreenRouter, backPressDispatcher)
     }
 
 }
