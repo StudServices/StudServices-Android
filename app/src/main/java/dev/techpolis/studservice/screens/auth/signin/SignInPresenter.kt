@@ -1,13 +1,24 @@
 package dev.techpolis.studservice.screens.auth.signin
 
+import android.util.Log
+import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuth.AuthStateListener
+import dev.techpolis.studservice.data.Status
+import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
 
+
 class SignInPresenter(
     private val appScreenRouter: AppScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
-) : MvpPresenter<SignInMvpView>, SignInMvpView.Listener{
+    private val authInteractor: AuthInteractor
+) : MvpPresenter<SignInMvpView>, SignInMvpView.Listener {
 
     private lateinit var view: SignInMvpView
 
@@ -30,7 +41,15 @@ class SignInPresenter(
     }
 
     override fun onSignInBtnClicked(username: String, password: String) {
-        appScreenRouter.toMain()
+        val listener =
+            OnCompleteListener<AuthResult> { result ->
+                if (result.isSuccessful) {
+                    appScreenRouter.toMain()
+                } else {
+                    view.unsuccessAuth()
+                }
+            }
+        authInteractor.signInWithEmailAndPassword(username, password, listener)
     }
 
     override fun onForgotPasswordTvClicked() {

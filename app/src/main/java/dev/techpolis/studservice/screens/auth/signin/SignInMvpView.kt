@@ -23,4 +23,5 @@ interface SignInMvpView : MvpViewObservable<SignInMvpView.Listener> {
     fun hidePasswordFieldError()
 
     fun setStateSignInButton(isEnabled: Boolean)
+    fun unsuccessAuth()
 }

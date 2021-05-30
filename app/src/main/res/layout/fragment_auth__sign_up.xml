@@ -35,6 +35,7 @@
         style="@style/EditTextStyle"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
         android:hint="@string/fragment_auth__sign_up__email"
         app:layout_constraintBottom_toTopOf="@id/fragment_auth__sign_up__password"
         app:layout_constraintLeft_toLeftOf="parent"

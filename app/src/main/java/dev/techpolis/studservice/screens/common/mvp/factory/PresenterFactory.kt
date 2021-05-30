@@ -1,6 +1,7 @@
 package dev.techpolis.studservice.screens.common.mvp.factory
 
 import dev.techpolis.studservice.di.scope.ActivityScope
+import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.ServiceProvider
 import dev.techpolis.studservice.screens.auth.signin.SignInPresenter
@@ -28,15 +29,16 @@ class PresenterFactory @Inject constructor(
     private val appScreenRouter: AppScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
     private val serviceInteractor: ServiceInteractor,
+    private val authInteractor: AuthInteractor,
     private val serviceProvider: ServiceProvider,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
 
     fun createSignInPresenter(): SignInPresenter =
-        SignInPresenter(appScreenRouter, backPressDispatcher)
+        SignInPresenter(appScreenRouter, backPressDispatcher, authInteractor)
 
     fun createSignUpPresenter(): SignUpPresenter =
-        SignUpPresenter(appScreenRouter, backPressDispatcher)
+        SignUpPresenter(appScreenRouter, backPressDispatcher, authInteractor)
 
     fun createMainPresenter(): MainPresenter =
         MainPresenter(mainScreenRouter, backPressDispatcher)

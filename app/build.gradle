@@ -52,6 +52,7 @@ dependencies {
     // Room
     implementation "androidx.room:room-runtime:${var.roomVersion}"
     implementation "androidx.legacy:legacy-support-v4:${var.androidLegacyVersion}"
+    implementation 'com.google.firebase:firebase-auth:21.0.1'
     kapt "androidx.room:room-compiler:${var.roomVersion}"
     implementation "androidx.room:room-ktx:${var.roomVersion}"
     androidTestImplementation "androidx.room:room-testing:${var.roomVersion}"
