@@ -3,12 +3,14 @@ package dev.techpolis.studservice.screens.auth.signin
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.widget.doOnTextChanged
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
+
 
 class SignInMvpViewImpl (
     layoutInflater: LayoutInflater,
@@ -81,5 +83,9 @@ class SignInMvpViewImpl (
 
     override fun setStateSignInButton(isEnabled: Boolean) {
         ibSignIn.isEnabled = isEnabled
+    }
+
+    override fun unsuccessAuth() {
+        Toast.makeText(this.context, "Unsuccessful authorization", Toast.LENGTH_SHORT).show()
     }
 }

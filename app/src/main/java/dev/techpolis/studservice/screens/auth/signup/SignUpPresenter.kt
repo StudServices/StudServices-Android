@@ -1,5 +1,10 @@
 package dev.techpolis.studservice.screens.auth.signup
 
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
+import dev.techpolis.studservice.data.Status
+import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
@@ -8,6 +13,7 @@ import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouterImpl
 class SignUpPresenter(
     private val appScreenRouter: AppScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
+    private val authInteractor: AuthInteractor
 ) : MvpPresenter<SignUpMvpView>, SignUpMvpView.Listener {
 
     private lateinit var view: SignUpMvpView
@@ -31,7 +37,15 @@ class SignUpPresenter(
     }
 
     override fun onSignUpBtnClicked(username: String, email: String, password: String) {
-//        TODO("Not yet implemented")
+        val listener =
+            OnCompleteListener<AuthResult> { result ->
+                if (result.isSuccessful) {
+                    appScreenRouter.toMain()
+                } else {
+                    view.unsuccessSignUp()
+                }
+            }
+        authInteractor.signUpWithEmailAndPassword(email, password, listener)
     }
 
     override fun onHaveAccTvClicked() {

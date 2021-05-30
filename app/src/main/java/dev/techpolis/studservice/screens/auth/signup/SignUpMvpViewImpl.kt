@@ -3,6 +3,7 @@ package dev.techpolis.studservice.screens.auth.signup
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.widget.doOnTextChanged
@@ -92,5 +93,9 @@ class SignUpMvpViewImpl(
 
     override fun setStateSignUpButton(isEnabled: Boolean) {
         buttonSignUp.isEnabled = isEnabled
+    }
+
+    override fun unsuccessSignUp() {
+        Toast.makeText(this.context, "Unsuccessful registration", Toast.LENGTH_SHORT).show()
     }
 }
