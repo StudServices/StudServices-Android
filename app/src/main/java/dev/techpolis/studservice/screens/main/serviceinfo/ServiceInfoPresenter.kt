@@ -32,6 +32,14 @@ class ServiceInfoPresenter(
 //        TODO("Not yet implemented")
     }
 
+    override fun onContactBtnClicked() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun onBackArrowBtnClicked() {
+        mainScreenRouter.navigateUp()
+    }
+
     override fun onBackPressed(): Boolean {
         Log.e("ServiceInfo", "NavigateUp")
         mainScreenRouter.navigateUp()

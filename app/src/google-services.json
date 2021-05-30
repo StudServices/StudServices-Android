@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:985040188633:android:dac32d1a1990d0ac8d3ac8",
         "android_client_info": {
-          "package_name": "dev.techpolis.studservice.screens"
+          "package_name": "dev.techpolis.studservice"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "985040188633-6l1r1pu15pggumeeqpprelbn1j3j86jp.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "dev.techpolis.studservice.screens",
+            "package_name": "dev.techpolis.studservice",
             "certificate_hash": "01d4e146773337a6d1067be68d894c072fd46ea9"
           }
         },

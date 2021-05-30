@@ -20,7 +20,8 @@ class FiltersMvpViewImpl(
         layoutInflater.inflate(R.layout.fragment_main__filters, parent, false)
 
     private val rgType: RadioGroup = findViewById(R.id.fragment_main__filters__type_rg)
-    private val spnGeography: AppCompatSpinner = findViewById(R.id.fragment_main__filters__spnGeography)
+    private val spnGeography: AppCompatSpinner =
+        findViewById(R.id.fragment_main__filters__spnGeography)
     private val cgTags: ChipGroup = findViewById(R.id.fragment_main__filters__cgTags)
 
     private val btnFilter: AppCompatButton = findViewById(R.id.fragment_main__filters__btnFilter)
@@ -31,7 +32,8 @@ class FiltersMvpViewImpl(
                 it.onFilterBtnClicked(
                     serviceType = getServiceTypeEnum(),
                     geography = spnGeography.selectedItem.toString(),
-                    tags = getTagsList())
+                    tags = getTagsList()
+                )
             }
         }
     }

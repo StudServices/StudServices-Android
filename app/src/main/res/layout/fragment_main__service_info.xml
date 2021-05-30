@@ -1,84 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="15dp"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical"
     tools:context=".screens.main.serviceinfo.ServiceInfoFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTitle__marginTop"
-        android:hint="@string/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__tvDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etDescription__marginTop"
-        android:hint="@string/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__service_info__tvTitle" />
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/fragment_main__service_info__back_btn"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__rg__marginTop"
-        android:hint="@string/fragment_main__service_info__type"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__service_info__tvDescription" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_main__service_info__service_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/dark"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@id/fragment_main__service_info__back_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/fragment_main__service_info__back_btn"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Offer" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_main__service_info__price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:textColor="@color/primary_green"
+            android:textSize="26sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="$1000" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__spnCurrency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnCurrency__marginTop"
-        android:hint="@string/currency"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__service_info__type" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/fragment_main__service_info__service_type">
 
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EditTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__etPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etPrice__marginTop"
-        android:hint="@string/price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_main__service_info__spnCurrency" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__service_info__title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/text_green_dark"
+                android:textSize="26sp"
+                tools:text="Лабораторная по мат. анализу" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__spnGeography"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnGeography__marginTop"
-        android:hint="@string/fragment_main__profile__geography"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__service_info__etPrice" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EditTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Owner" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/fragment_main__service_info__etTags"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="36dp"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
-        android:hint="@string/tags"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__service_info__spnGeography" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__service_info__owner_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/text_green_dark"
+                android:textSize="26sp"
+                tools:text="My name" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EditTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_main__profile__description" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__service_info__description"
+                style="@style/EditTextStyle.Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/custom__background_gray"
+                android:ellipsize="end"
+                android:maxLength="1000"
+                android:maxLines="50"
+                tools:text="С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. Идейные соображения высшего порядка, а также укрепление и развитие структуры играет важную роль в формировании существенных финансовых и административных условий. Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании новых предложений." />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/EditTextTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deadline" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_main__service_info__deadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="30dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:gravity="center"
+                    android:textColor="@color/red"
+                    android:textSize="22sp"
+                    tools:text="до 22.05" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/EditTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tags" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/fragment_main__service_info__cgTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
+                app:singleLine="true"
+                android:layout_marginEnd="30dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/fragment_main__service_info__contact_btn"
+                style="@style/ButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:paddingStart="40dp"
+                android:paddingEnd="40dp"
+                android:text="@string/contact_text"
+                android:textSize="14sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

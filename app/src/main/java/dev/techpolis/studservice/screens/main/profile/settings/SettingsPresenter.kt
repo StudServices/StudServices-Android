@@ -32,9 +32,6 @@ class SettingsPresenter(
         TODO("Not yet implemented")
     }
 
-    override fun onChangePhotoBtnClicked() {
-        TODO("Not yet implemented")
-    }
 
     override fun onDescriptionFieldTextChanged(text: String) {
         TODO("Not yet implemented")

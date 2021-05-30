@@ -6,7 +6,6 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 interface SettingsMvpView: MvpViewObservable<SettingsMvpView.Listener> {
     interface Listener : BackPressedListener {
         fun onGeographyChanged(geography: String)
-        fun onChangePhotoBtnClicked()
         fun onDescriptionFieldTextChanged(text: String)
     }
 

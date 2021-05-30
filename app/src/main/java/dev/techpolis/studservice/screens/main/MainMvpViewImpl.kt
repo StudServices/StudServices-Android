@@ -28,6 +28,7 @@ class MainMvpViewImpl(
     private val bottomBar: BottomNavigationView = findViewById(R.id.fragment_main__bottom_nav_view)
 
     init {
+        bottomBar.selectedItemId = R.id.menu_item__userServices
         bottomBar.setOnNavigationItemSelectedListener { item ->
             listeners.forEach { it.onNavigationItemSelectedListener(item) }
             return@setOnNavigationItemSelectedListener true

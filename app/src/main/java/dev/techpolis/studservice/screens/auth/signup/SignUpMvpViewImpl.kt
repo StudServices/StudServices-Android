@@ -20,8 +20,6 @@ class SignUpMvpViewImpl(
     //   private val pbLoading: ProgressBar = findViewById(R.id.fragment_signup__loading)
     private val etUsername: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__nickname)
     private val etPassword: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__password)
-    private val etPasswordCorrection: AppCompatEditText =
-        findViewById(R.id.fragment_auth__sign_up__password_again)
     private val etEmail: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__email)
     private val buttonSignUp: AppCompatButton = findViewById(R.id.fragment_auth__sign_up__button)
 
@@ -35,12 +33,6 @@ class SignUpMvpViewImpl(
         etPassword.doOnTextChanged { text, _, _, _ ->
             listeners.forEach {
                 it.onPasswordFieldTextChanged(text.toString())
-            }
-        }
-
-        etPasswordCorrection.doOnTextChanged { text, _, _, _ ->
-            listeners.forEach {
-                it.onPasswordCorrectionFieldTextChanged(text.toString())
             }
         }
 

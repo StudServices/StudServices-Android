@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -8,25 +9,22 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_auth__sign_in__text"
+        style="@style/AuthTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/fragment_auth__sign_in__text"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragment_auth__sign_in__login"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_auth__sign_in__login"
+        style="@style/EditTextStyle"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="@string/fragment_auth__sign_in__login"
-        android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_in__password"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -34,27 +32,24 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/fragment_auth__sign_in__password"
+        style="@style/EditTextStyle"
         android:layout_width="350dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:hint="@string/fragment_auth__sign_in__password"
-        android:textColorHint="@color/black"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/fragment_auth__sign_in__button"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__login"
-        android:inputType="textPassword"/>
+        app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__login" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/fragment_auth__sign_in__button"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:hint="@string/fragment_auth__sign_in__password"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:text="@string/fragment_auth__sign_in__button"
-        android:textColorHint="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_auth__sign_in__password" />
@@ -62,12 +57,11 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_auth__sign_in__link"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
+        style="@style/SmallText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:text="@string/fragment_auth__sign_in__link"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

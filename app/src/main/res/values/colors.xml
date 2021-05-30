@@ -5,7 +5,20 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
     <color name="black">#FF000000</color>
+    <color name="primary_green">#249950</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="button_background">#FFFFB266</color>
+    <color name="dark">#040F08</color>
+    <color name="dark_opacity">#99040F08</color>
+    <color name="light">#F5FAF7</color>
+    <color name="btn_light_green">#2CBD63</color>
+    <color name="et_dark_green">#11998E</color>
+    <color name="red">#B41111</color>
+    <color name="background_gray">#F0F4F7</color>
+    <color name="text_black">#1A1A1A</color>
+    <color name="text_gray">#BABABA</color>
+    <color name="text_green_dark">#15592F</color>
+    <color name="background_chip">#38EF7D</color>
+
 </resources>

@@ -3,6 +3,7 @@ package dev.techpolis.studservice.screens.main.services.requests
 import android.util.Log
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.data.entities.ServiceEntity
+import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.ServiceProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
@@ -26,7 +27,7 @@ class ServiceRequestsPresenter(
 
     private fun initData() {
         coroutineScope.launch {
-            val services = serviceInteractor.getServices()
+            val services = serviceInteractor.getServices(type = ServiceTypeEnum.REQUEST)
             if (services.status is Status.Success) {
                 view.bindData(services.data!!)
             }

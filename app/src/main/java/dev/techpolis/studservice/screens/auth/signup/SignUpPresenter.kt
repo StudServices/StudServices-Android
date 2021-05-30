@@ -50,10 +50,6 @@ class SignUpPresenter(
 //        TODO("Not yet implemented")
     }
 
-    override fun onPasswordCorrectionFieldTextChanged(text: String) {
-//        TODO("Not yet implemented")
-    }
-
     override fun onBackPressed(): Boolean {
         appScreenRouter.navigateUp()
         return true

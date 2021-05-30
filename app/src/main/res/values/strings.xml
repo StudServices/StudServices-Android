@@ -17,7 +17,7 @@
     <string name="fragment_auth__sign_up__email">E-mail</string>
     <string name="fragment_auth__sign_up__password">Password</string>
     <string name="fragment_auth__sign_up__password_again">Password again</string>
-    <string name="fragment_auth__sign_up__button">Well done!</string>
+    <string name="fragment_auth__sign_up__button">Sign Up</string>
     <string name="fragment_main__filters__checkbox_study">Helping with studying</string>
     <string name="fragment_main__filters__checkbox_dorm">Helping in a dorm</string>
     <string name="fragment_main__filters__dorm_spinner_desc">Choose dorm</string>
@@ -38,6 +38,9 @@
     <string name="fragment_main__service_info__type">Type</string>
     <string name="currency">Currency</string>
     <string name="fragment_auth__sign_in__password">Password</string>
+    <string name="find_offer_or_request">Find offer or request</string>
+    <string name="already_have_an_account_sign_in">Already have an account? Sign In</string>
+
     <string name="fragment_main__user_services__new_service__cgTags__cooking">Готовка</string>
     <string name="fragment_main__user_services__new_service__cgTags__study">Учёба</string>
     <string name="fragment_main__user_services__new_service__cgTags__event">Мероприятие</string>
@@ -45,5 +48,14 @@
     <string name="fragment_main__user_services__new_service__etDescription">Введите описание</string>
     <string name="fragment_main__user_services__new_service__etPrice">Введите цену</string>
     <string name="fragment_main__user_services__new_service__btnCreate">Создать</string>
+
     <string name="fragment_main__filters__btnCreate">Отфильтровать</string>
+    <string name="new_service_text_btn">New</string>
+    <string name="location">Location</string>
+    <string name="contacts">Contacts</string>
+    <string name="profile">Profile</string>
+    <string name="contact_text">Contact</string>
+    <string name="deadline">Deadline</string>
+    <string name="offers_tab_title">Offers</string>
+    <string name="requests_tab_title">Requests</string>
 </resources>

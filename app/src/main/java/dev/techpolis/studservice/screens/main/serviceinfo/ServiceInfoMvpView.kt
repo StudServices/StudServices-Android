@@ -6,6 +6,8 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 
 interface ServiceInfoMvpView: MvpViewObservable<ServiceInfoMvpView.Listener> {
     interface Listener : BackPressedListener {
+        fun onContactBtnClicked()
+        fun onBackArrowBtnClicked()
     }
     fun bindData(service: ServiceEntity)
 }

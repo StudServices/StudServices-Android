@@ -18,7 +18,6 @@ class SettingsMvpViewImpl(
     override var rootView: View =
         layoutInflater.inflate(R.layout.fragment_main__profile__settings, parent, false)
     private val spnGeography: AppCompatSpinner = findViewById(R.id.fragment_main__profile__settings__geography)
-    private val btnChangePhoto: AppCompatButton = findViewById(R.id.fragment_main__profile__settings__change_avatar)
     private val evChangeDescription: AppCompatEditText = findViewById(R.id.fragment_main__profile__settings__description)
 
     init {
@@ -32,11 +31,6 @@ class SettingsMvpViewImpl(
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
 
-        btnChangePhoto.setOnClickListener {
-            listeners.forEach {
-                it.onChangePhotoBtnClicked()
-            }
-        }
 
         evChangeDescription.doOnTextChanged{text, _, _, _ ->
             listeners.forEach {
