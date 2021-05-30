@@ -12,7 +12,7 @@ interface MainScreenRouter : FragNavController.RootFragmentListener {
     fun toServices()
     fun toUserServices()
     fun toMap()
-    fun toFilters()
+    fun toSearchScreen()
     fun toNewService()
     fun navigateUp()
     fun onSaveInstanceState(outState: Bundle?)

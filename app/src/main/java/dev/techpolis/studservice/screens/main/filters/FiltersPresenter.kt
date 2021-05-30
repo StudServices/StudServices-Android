@@ -1,5 +1,6 @@
 package dev.techpolis.studservice.screens.main.filters
 
+import android.util.Log
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
@@ -18,11 +19,13 @@ class FiltersPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
+        Log.e("FiltersPresenter", "onStart")
     }
 
     override fun onStop() {
         view.unregisterListener(this)
         backPressDispatcher.unregisterListener(this)
+        Log.e("FiltersPresenter", "onStop")
     }
 
     override fun onDestroy() {
@@ -38,6 +41,8 @@ class FiltersPresenter(
     }
 
     override fun onBackPressed(): Boolean {
-        return false
+        Log.e("FiltersPresenter", "onBackPressed")
+        mainScreenRouter.navigateUp()
+        return true
     }
 }

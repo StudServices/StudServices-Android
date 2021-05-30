@@ -5,6 +5,7 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 
 interface ServicesMvpView: MvpViewObservable<ServicesMvpView.Listener> {
     interface Listener : BackPressedListener {
+        fun onSearchViewFocus()
     }
 
 }

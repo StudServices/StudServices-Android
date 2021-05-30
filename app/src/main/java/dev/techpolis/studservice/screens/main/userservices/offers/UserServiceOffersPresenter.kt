@@ -38,11 +38,13 @@ class UserServiceOffersPresenter(
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
         initData()
+        Log.e("UserOffersPresenter", "onStart")
     }
 
     override fun onStop() {
         view.unregisterListener(this)
         backPressDispatcher.unregisterListener(this)
+        Log.e("UserOffersPresenter", "onStop")
     }
 
     override fun onDestroy() {
@@ -55,7 +57,7 @@ class UserServiceOffersPresenter(
     }
 
     override fun onBackPressed(): Boolean {
-        Log.e("UserServiceOffer", "NavigateUp")
+        Log.e("UserOffersPresenter", "onBackPressed")
         return false
     }
 }

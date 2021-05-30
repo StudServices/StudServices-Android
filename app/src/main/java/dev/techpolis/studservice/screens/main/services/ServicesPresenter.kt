@@ -19,15 +19,21 @@ class ServicesPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
+        Log.e("ServicesPresenter", "onStart")
     }
 
     override fun onStop() {
         view.unregisterListener(this)
         backPressDispatcher.unregisterListener(this)
+        Log.e("ServicesPresenter", "onStop")
     }
 
     override fun onDestroy() {
 //        TODO("Not yet implemented")
+    }
+
+    override fun onSearchViewFocus() {
+        mainScreenRouter.toSearchScreen()
     }
 
     override fun onBackPressed(): Boolean {

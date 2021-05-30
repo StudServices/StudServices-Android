@@ -64,15 +64,15 @@ class ServiceInteractor @Inject constructor(
                     )
                     return@withContext getServices(userId, type)
                 }
-                Log.e(
-                    TAG,
-                    localServicesRepo.readServices(0, 0).first()
-                        .joinToString(separator = "\n", prefix = "ALL SERVICES:\n")
-                )
-                Log.e(
-                    TAG,
-                    cacheServices.joinToString(separator = "\n", prefix = "CACHE SERVICES:\n")
-                )
+//                Log.e(
+//                    TAG,
+//                    localServicesRepo.readServices(0, 0).first()
+//                        .joinToString(separator = "\n", prefix = "ALL SERVICES:\n")
+//                )
+//                Log.e(
+//                    TAG,
+//                    cacheServices.joinToString(separator = "\n", prefix = "CACHE SERVICES:\n")
+//                )
                 return@withContext Resource.success(cacheServices)
             } catch (t: Throwable) {
                 return@withContext Resource.error()

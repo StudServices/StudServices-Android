@@ -13,6 +13,7 @@ import dev.techpolis.studservice.screens.main.filters.FiltersPresenter
 import dev.techpolis.studservice.screens.main.map.MapPresenter
 import dev.techpolis.studservice.screens.main.profile.ProfilePresenter
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsPresenter
+import dev.techpolis.studservice.screens.main.search.SearchPresenter
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoPresenter
 import dev.techpolis.studservice.screens.main.services.ServicesPresenter
 import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersPresenter
@@ -107,6 +108,10 @@ class PresenterFactory @Inject constructor(
 
     fun createFilterPresenter(): FiltersPresenter {
         return FiltersPresenter(mainScreenRouter, backPressDispatcher)
+    }
+
+    fun createSearchPresenter(): SearchPresenter {
+        return SearchPresenter(mainScreenRouter, backPressDispatcher)
     }
 
 }

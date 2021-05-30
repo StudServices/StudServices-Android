@@ -3,6 +3,7 @@ package dev.techpolis.studservice.screens.main.services
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -24,6 +25,9 @@ class ServicesMvpViewImpl(
         layoutInflater.inflate(R.layout.fragment_main__services, parent, false)
     private val viewPager: ViewPager2 = findViewById(R.id.fragment_main__services_pager)
     private val tabLayout: TabLayout = findViewById(R.id.fragment_main__services_tab_layout)
+
+    private val etSearch: AppCompatEditText =
+        findViewById(R.id.fragment_main_services__search_edit_text)
 
     private val selectedColor = getColorStateList(R.color.text_black)
     private val unselectedColor = getColorStateList(R.color.text_gray)
@@ -73,6 +77,12 @@ class ServicesMvpViewImpl(
             override fun onTabReselected(tab: TabLayout.Tab?) {}
 
         })
+
+        etSearch.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                listeners.forEach { it.onSearchViewFocus() }
+            }
+        }
     }
 
     class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {

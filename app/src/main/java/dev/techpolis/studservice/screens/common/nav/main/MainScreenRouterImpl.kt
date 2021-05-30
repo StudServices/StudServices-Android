@@ -18,6 +18,7 @@ import dev.techpolis.studservice.screens.main.filters.FiltersFragment
 import dev.techpolis.studservice.screens.main.map.MapFragment
 import dev.techpolis.studservice.screens.main.profile.ProfileFragment
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsFragment
+import dev.techpolis.studservice.screens.main.search.SearchFragment
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoFragment
 import dev.techpolis.studservice.screens.main.services.ServicesFragment
 import dev.techpolis.studservice.screens.main.userservices.UserServicesFragment
@@ -122,8 +123,9 @@ class MainScreenRouterImpl @Inject constructor(
         fragNavController.pushFragment(MapFragment.newInstance())
     }
 
-    override fun toFilters() {
-        fragNavController.pushFragment(FiltersFragment.newInstance())
+    override fun toSearchScreen() {
+        bottomBar.isBottomBarVisible(false)
+        fragNavController.pushFragment(SearchFragment.newInstance())
     }
 
     override fun toNewService() {

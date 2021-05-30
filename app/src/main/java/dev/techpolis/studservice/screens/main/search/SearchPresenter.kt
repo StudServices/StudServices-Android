@@ -1,48 +1,54 @@
-package dev.techpolis.studservice.screens.main
+package dev.techpolis.studservice.screens.main.search
 
 import android.util.Log
-import android.view.MenuItem
-import dev.techpolis.studservice.R
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
+import dev.techpolis.studservice.data.model.ServiceTypeEnum
 
-class MainPresenter(
+class SearchPresenter(
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
-) : MvpPresenter<MainMvpView>, MainMvpView.Listener {
-    private lateinit var view: MainMvpView
+): MvpPresenter<SearchMvpView>, SearchMvpView.Listener {
+    private lateinit var view: SearchMvpView
 
-    override fun bindView(view: MainMvpView) {
+    override fun bindView(view: SearchMvpView) {
         this.view = view
     }
 
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
-        Log.e("MainPresenter", "onStart")
     }
 
     override fun onStop() {
         view.unregisterListener(this)
         backPressDispatcher.unregisterListener(this)
-        Log.e("MainPresenter", "onStop")
     }
 
     override fun onDestroy() {
 //        TODO("Not yet implemented")
     }
 
-    override fun onNavigationItemSelectedListener(item: MenuItem) {
-        when (item.itemId) {
-            R.id.menu_item__userServices -> mainScreenRouter.toUserServices()
-            R.id.menu_item__services -> mainScreenRouter.toServices()
-            R.id.menu_item__profile -> mainScreenRouter.toProfile()
+    override fun onSearchFieldTextChanged(text: String) {
+        if (text.isNotEmpty()) {
+            //TODO(Search)
+            view.setClearIconVisibility(true)
+        } else {
+            view.setClearIconVisibility(false)
         }
     }
 
+    override fun onBackIconClicked() {
+        mainScreenRouter.navigateUp()
+    }
+
+    override fun onClearIconClicked() {
+        view.clearSearchFieldText()
+    }
+
     override fun onBackPressed(): Boolean {
-        Log.e("MainPresenter", "onBackPressed")
+        Log.e("SearchPresenter", "NavigateUp")
         mainScreenRouter.navigateUp()
         return true
     }

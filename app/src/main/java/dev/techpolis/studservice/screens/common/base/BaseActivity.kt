@@ -1,6 +1,7 @@
 package dev.techpolis.studservice.screens.common.base
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import dev.techpolis.studservice.StudServicesApp
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
@@ -8,6 +9,10 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouterImpl
 import dev.techpolis.studservice.di.component.ActivityComponent
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), BackPressDispatcher {
@@ -15,7 +20,7 @@ abstract class BaseActivity : AppCompatActivity(), BackPressDispatcher {
     lateinit var activityComponent: ActivityComponent
         private set
 
-    private val backPressedListeners: MutableSet<BackPressedListener> = HashSet()
+    private val backPressedListeners: ArrayDeque<BackPressedListener> = ArrayDeque()
 
     @Inject
     lateinit var appScreenRouter: AppScreenRouter
@@ -36,7 +41,7 @@ abstract class BaseActivity : AppCompatActivity(), BackPressDispatcher {
     }
 
     override fun registerListener(listener: BackPressedListener) {
-        backPressedListeners.add(listener);
+        backPressedListeners.addFirst(listener)
     }
 
     override fun unregisterListener(listener: BackPressedListener) {
@@ -44,14 +49,9 @@ abstract class BaseActivity : AppCompatActivity(), BackPressDispatcher {
     }
 
     override fun onBackPressed() {
-        var isBackPressConsumedByAnyListener = false
-        backPressedListeners.forEach { listener ->
-            if (listener.onBackPressed()) {
-                isBackPressConsumedByAnyListener = true
-            }
+        for (listener in backPressedListeners) {
+            if (listener.onBackPressed()) return
         }
-        if (!isBackPressConsumedByAnyListener) {
-            super.onBackPressed()
-        }
+        super.onBackPressed()
     }
 }

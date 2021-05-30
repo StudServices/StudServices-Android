@@ -19,6 +19,8 @@ import dev.techpolis.studservice.screens.main.profile.ProfileMvpView
 import dev.techpolis.studservice.screens.main.profile.ProfileMvpViewImpl
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpView
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpViewImpl
+import dev.techpolis.studservice.screens.main.search.SearchMvpView
+import dev.techpolis.studservice.screens.main.search.SearchMvpViewImpl
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoMvpView
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoMvpViewImpl
 import dev.techpolis.studservice.screens.main.services.ServicesAdapter
@@ -101,6 +103,10 @@ class MvpViewFactory @Inject constructor(
         glide: RequestManager
     ): ServicesItemMvpView {
         return ServicesItemMvpViewImpl(layoutInflater, parent, listener, glide)
+    }
+
+    fun createSearchMvpView(parent: ViewGroup?): SearchMvpView {
+        return SearchMvpViewImpl(layoutInflater, parent)
     }
 
 }

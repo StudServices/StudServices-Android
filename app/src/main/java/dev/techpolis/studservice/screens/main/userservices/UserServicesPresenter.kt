@@ -18,19 +18,25 @@ class UserServicesPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
+        Log.e("UserServicesPresenter", "onStart")
     }
 
     override fun onStop() {
         view.unregisterListener(this)
         backPressDispatcher.unregisterListener(this)
+        Log.e("UserServicesPresenter", "onStop")
     }
 
     override fun onDestroy() {
 //        TODO("Not yet implemented")
     }
 
+    override fun onSearchViewFocus() {
+        mainScreenRouter.toSearchScreen()
+    }
+
     override fun onBackPressed(): Boolean {
-        Log.e("UserServicesPresenter", "NavigateUp")
+        Log.e("UserServicesPresenter", "onBackPressed")
         mainScreenRouter.navigateUp()
         return true
     }
