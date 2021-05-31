@@ -6,9 +6,11 @@ import dev.techpolis.studservice.data.model.ServiceTypeEnum
 
 interface FiltersMvpView: MvpViewObservable<FiltersMvpView.Listener> {
     interface Listener : BackPressedListener {
-        fun onFilterBtnClicked(serviceType: ServiceTypeEnum,
-                               geography: String,
-                               tags: List<String>)
+
+
+        fun onFiltersChanged(serviceType: ServiceTypeEnum,
+                             location: String,
+                             tags: List<String>)
     }
 
 }

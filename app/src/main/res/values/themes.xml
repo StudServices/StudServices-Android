@@ -95,7 +95,7 @@
     </style>
 
     <style name="Tablet" parent="Widget.MaterialComponents.Chip.Choice">
-        <item name="android:background">@drawable/tablet__background</item>
+        <item name="chipBackgroundColor">@color/background_chip</item>
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/montserrat_semi_bold</item>
         <item name="android:textColor">@color/dark</item>
@@ -105,5 +105,13 @@
         <item name="android:paddingEnd">16dp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
+        <item name="chipMinHeight">45dp</item>
+        <item name="chipCornerRadius">30dp</item>
+        <item name="closeIconEnabled">true</item>
+        <item name="closeIconVisible">true</item>
+        <item name="closeIcon">@drawable/ic_cancel</item>
+        <item name="closeIconSize">15dp</item>
+        <item name="closeIconEndPadding">10dp</item>
+        <item name="chipStartPadding">10dp</item>
     </style>
 </resources>

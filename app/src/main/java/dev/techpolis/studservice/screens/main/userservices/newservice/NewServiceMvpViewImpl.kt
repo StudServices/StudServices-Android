@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioGroup
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatSpinner
+import androidx.appcompat.widget.*
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.tabs.TabItem
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
@@ -20,48 +22,154 @@ class NewServiceMvpViewImpl(
     override var rootView: View =
         layoutInflater.inflate(R.layout.fragment_main__user_services__new_service, parent, false)
 
-    private val etTitle: AppCompatEditText = findViewById(R.id.fragment_main__user_services__new_service__etTitle)
-    private val etDescription: AppCompatEditText = findViewById(R.id.fragment_main__user_services__new_service__etDescription)
-    private val rgType: RadioGroup = findViewById(R.id.fragment_main__user_services__new_service__rg)
-    private val etPrice: AppCompatEditText = findViewById(R.id.fragment_main__user_services__new_service__etPrice)
-    private val spnCurrency: AppCompatSpinner = findViewById(R.id.fragment_main__user_services__new_service__spnCurrency)
-    private val spnGeography: AppCompatSpinner = findViewById(R.id.fragment_main__user_services__new_service__spnGeography)
-    private val cgTags: ChipGroup = findViewById(R.id.fragment_main__user_services__new_service__cgTags)
-    private val btnCreate: AppCompatButton = findViewById(R.id.fragment_main__user_services__new_service__btnCreate)
+    private val etTitle: AppCompatEditText =
+        findViewById(R.id.fragment_main__user_services__new_service_title_ev)
+    private val etDescription: AppCompatEditText =
+        findViewById(R.id.fragment_main__user_services__new_service_desc_ev)
+    private val tlType: TabLayout =
+        findViewById(R.id.fragment_main__user_services__new_service_tab_layout)
+    private val etPrice: AppCompatEditText =
+        findViewById(R.id.fragment_main__user_services__new_service_price_ev)
+    private val cgTags: ChipGroup =
+        findViewById(R.id.fragment_main__user_services__new_service__cgTags)
+    private val btnCreate: AppCompatButton =
+        findViewById(R.id.fragment_main__user_services__new_service__create_btn)
+    private val etDeadline: AppCompatEditText =
+        findViewById(R.id.fragment_main__user_services__new_service_deadlines_ev)
+    private val btnBack: AppCompatImageButton =
+        findViewById(R.id.fragment_main__user_services__new_service__back_btn)
+    private val etNewChip: AppCompatEditText =
+        findViewById(R.id.fragment_main__user_services__new_service_new_chip_ev)
+    private val btnNewChip: AppCompatButton =
+        findViewById(R.id.fragment_main__user_services__new_service__new_chip_btn)
 
+    private val selectedColor = getColorStateList(R.color.text_black)
+    private val unselectedColor = getColorStateList(R.color.text_gray)
 
     init {
+
+
+
+        cgTags.setOnCheckedChangeListener { group, checkedId -> listeners.forEach {  it.onChipGroupChanged() } }
+
         btnCreate.setOnClickListener {
             listeners.forEach {
                 it.onCreateServiceBtnClicked(
                     title = etTitle.text.toString(),
                     desc = etDescription.text.toString(),
-                    price = etPrice.text.toString().toDouble(),
+                    price = getPrice(),
                     serviceType = getServiceTypeEnum(),
-                    currency = spnCurrency.selectedItem.toString(),
-                    geography = spnGeography.selectedItem.toString(),
+                    deadline = getDeadline(),
                     tags = getTagsList()
                 )
             }
-
-
         }
-    }
 
-    private fun getTagsList(): List<String> {
-        val checkedChipsText = mutableListOf<String>()
-        cgTags.checkedChipIds.forEach {
-            val chip = cgTags.findViewById<Chip>(it).text.toString()
-            checkedChipsText.add(chip)
+        btnBack.setOnClickListener {
+            listeners.forEach {
+                it.onBackBtnClicked()
+            }
         }
-        return checkedChipsText
-    }
 
-    private fun getServiceTypeEnum() =
-        if (rgType.checkedRadioButtonId == 0)
-            ServiceTypeEnum.OFFER
-        else
-            ServiceTypeEnum.REQUEST
+        btnNewChip.setOnClickListener {
+            val newText = etNewChip.text.toString()
+            if (newText.isNotEmpty()) {
+                val newChip = layoutInflater.inflate(R.layout.custom_chip, cgTags, false) as Chip
+                newChip.text = newText
+                newChip.setOnCloseIconClickListener {
+                    listeners.forEach {
+                        it.onChipDeleted()
+                    }
+                    cgTags.removeView(newChip)
+                }
+                cgTags.addView(newChip)
+                etNewChip.text?.clear()
+
+            }
+        }
+
+        tlType.apply {
+            addTabWithText(getString(R.string.offers_tab_title), true)
+            addTabWithText(getString(R.string.requests_tab_title), false)
+
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+
+                private fun TabLayout.Tab.getTextView(): AppCompatTextView? {
+                    val customView: View = customView ?: return null
+                    return customView.findViewById(R.id.custom_tab_item__tv)
+                }
+
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    val textView = tab?.getTextView() ?: return
+                    textView.makeSelectedStyle()
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+                    val textView = tab?.getTextView() ?: return
+                    textView.makeUnselectedStyle()
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+
+            })
+
+         }
+}
+
+private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {
+    val tabContainer = LayoutInflater.from(context)
+        .inflate(R.layout.custom_tab_item, this, false) as ViewGroup?
+    if (tabContainer != null) {
+        val textView =
+            tabContainer.findViewById<AppCompatTextView>(R.id.custom_tab_item__tv)
+        val newTab = newTab()
+        if (isSelected) {
+            textView.makeSelectedStyle()
+        } else {
+            textView.makeUnselectedStyle()
+        }
+        textView.text = text
+        newTab.customView = tabContainer
+        addTab(newTab)
+    }
+}
+
+private fun getPrice(): Double =
+    if (etPrice.text!!.isEmpty()) 0.0
+    else etPrice.text.toString().toDouble()
+
+private fun getDeadline(): String = etDeadline.text.toString()
+
+private fun getTagsList(): List<String> {
+    val checkedChipsText = mutableListOf<String>()
+    cgTags.checkedChipIds.forEach {
+        val chip = cgTags.findViewById<Chip>(it).text.toString()
+        checkedChipsText.add(chip)
+    }
+    return checkedChipsText
+}
+
+private fun getServiceTypeEnum() =
+    if (tlType.selectedTabPosition == 0)
+        ServiceTypeEnum.OFFER
+    else
+        ServiceTypeEnum.REQUEST
+
+private fun AppCompatTextView.makeSelectedStyle() {
+    textSize = 28f
+    setTextColor(selectedColor)
+    setPadding(0, 0, 0, 0)
+}
+
+private fun AppCompatTextView.makeUnselectedStyle() {
+    textSize = 18f
+    setTextColor(unselectedColor)
+    setPadding(0, 0, 0, 0)
+}
 
 
 }
+
+
+

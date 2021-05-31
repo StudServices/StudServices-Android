@@ -58,4 +58,19 @@
     <string name="deadline">Deadline</string>
     <string name="offers_tab_title">Offers</string>
     <string name="requests_tab_title">Requests</string>
+    <string name="fragment_main__user_services__new_service_type_tv">Type</string>
+    <string name="fragment_main__user_services__new_service_title_tv">Title</string>
+    <string name="fragment_main__user_services__new_service_title_ev">My title</string>
+    <string name="fragment_main__user_services__new_service_price_tv">Price</string>
+    <string name="fragment_main__user_services__new_service_desc_tv">Description</string>
+    <string name="create_text">Create</string>
+    <string name="fragment_main__user_services__new_service_deadlines_tv">Deadlines</string>
+    <string name="fragment_main__user_services__new_service_head">New service</string>
+    <string name="fragment_main__filters_title_tv">Filters</string>
+    <string name="fragment_main__filters_price_tv">Price</string>
+    <string name="fragment_main__filters__price_from_ev">From</string>
+    <string name="fragment_main__filters__price_to_ev">To</string>
+    <string name="fragment_main__filters_location_tv">Location</string>
+    <string name="fragment_main__filters_tags_tv">Tags</string>
+    <string name="add_text">Add</string>
 </resources>

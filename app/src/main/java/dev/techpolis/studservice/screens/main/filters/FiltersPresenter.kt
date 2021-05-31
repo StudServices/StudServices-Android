@@ -32,12 +32,12 @@ class FiltersPresenter(
 //        TODO("Not yet implemented")
     }
 
-    override fun onFilterBtnClicked(
+    override fun onFiltersChanged(
         serviceType: ServiceTypeEnum,
-        geography: String,
+        location: String,
         tags: List<String>
     ) {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 
     override fun onBackPressed(): Boolean {

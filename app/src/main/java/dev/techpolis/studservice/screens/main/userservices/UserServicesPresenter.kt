@@ -35,6 +35,10 @@ class UserServicesPresenter(
         mainScreenRouter.toSearchScreen()
     }
 
+    override fun onNewBtnClicked() {
+        mainScreenRouter.toNewService()
+    }
+
     override fun onBackPressed(): Boolean {
         Log.e("UserServicesPresenter", "onBackPressed")
         mainScreenRouter.navigateUp()

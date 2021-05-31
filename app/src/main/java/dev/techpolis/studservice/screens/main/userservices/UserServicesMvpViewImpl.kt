@@ -3,6 +3,7 @@ package dev.techpolis.studservice.screens.main.userservices
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
@@ -29,9 +30,13 @@ class UserServicesMvpViewImpl(
     private val edSearch: AppCompatEditText = findViewById(R.id.fragment_main_user_services__search_edit_text)
     private val selectedColor = getColorStateList(R.color.text_black)
     private val unselectedColor = getColorStateList(R.color.text_gray)
+    private val btnNew : AppCompatButton = findViewById(R.id.fragment_main__user_services__new_btn)
 
     init {
         viewPager.adapter = ViewPagerAdapter(fragment)
+
+        btnNew.setOnClickListener { listeners.forEach { it.onNewBtnClicked() } }
+
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             val tabContainer = LayoutInflater.from(context)
                 .inflate(R.layout.custom_tab_item, tabLayout, false) as ViewGroup?
