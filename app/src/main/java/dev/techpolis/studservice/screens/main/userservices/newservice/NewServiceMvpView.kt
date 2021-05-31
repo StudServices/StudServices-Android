@@ -14,6 +14,9 @@ interface NewServiceMvpView: MvpViewObservable<NewServiceMvpView.Listener> {
                                       tags: List<String>)
 
         fun onBackBtnClicked()
+        fun onChipGroupChanged()
+        fun onNewChipBtnClicked(name: String)
+        fun onChipDeleted(name: String)
 
     }
 

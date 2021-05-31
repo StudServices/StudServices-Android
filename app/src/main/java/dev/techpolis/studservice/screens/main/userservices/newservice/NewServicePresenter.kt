@@ -44,6 +44,14 @@ class NewServicePresenter(
         mainScreenRouter.navigateUp()
     }
 
+    override fun onChipGroupChanged() {
+        //TODO("Not yet implemented")
+    }
+
+    override fun onNewChipBtnClicked(name: String) {
+        //TODO("Not yet implemented")
+    }
+
     override fun onBackPressed(): Boolean {
 //        TODO("Not yet implemented")
         return false

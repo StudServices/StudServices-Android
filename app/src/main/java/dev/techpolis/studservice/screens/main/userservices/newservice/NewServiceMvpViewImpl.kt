@@ -38,11 +38,20 @@ class NewServiceMvpViewImpl(
         findViewById(R.id.fragment_main__user_services__new_service_deadlines_ev)
     private val btnBack: AppCompatImageButton =
         findViewById(R.id.fragment_main__user_services__new_service__back_btn)
+    private val etNewChip: AppCompatEditText =
+        findViewById(R.id.fragment_main__user_services__new_service_new_chip_ev)
+    private val btnNewChip: AppCompatButton =
+        findViewById(R.id.fragment_main__user_services__new_service__new_chip_btn)
 
     private val selectedColor = getColorStateList(R.color.text_black)
     private val unselectedColor = getColorStateList(R.color.text_gray)
 
     init {
+
+
+
+        cgTags.setOnCheckedChangeListener { group, checkedId -> listeners.forEach {  it.onChipGroupChanged() } }
+
         btnCreate.setOnClickListener {
             listeners.forEach {
                 it.onCreateServiceBtnClicked(
@@ -62,11 +71,26 @@ class NewServiceMvpViewImpl(
             }
         }
 
+        btnNewChip.setOnClickListener {
+            val newText = etNewChip.text.toString()
+            if (newText.isNotEmpty()) {
+                val newChip = layoutInflater.inflate(R.layout.custom_chip, cgTags, false) as Chip
+                newChip.text = newText
+                newChip.setOnCloseIconClickListener {
+                    listeners.forEach {
+                        it.onChipDeleted()
+                    }
+                    cgTags.removeView(newChip)
+                }
+                cgTags.addView(newChip)
+                etNewChip.text?.clear()
+
+            }
+        }
+
         tlType.apply {
             addTabWithText(getString(R.string.offers_tab_title), true)
             addTabWithText(getString(R.string.requests_tab_title), false)
-
-
 
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
@@ -90,7 +114,7 @@ class NewServiceMvpViewImpl(
 
             })
 
-    }
+         }
 }
 
 private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {

@@ -175,15 +175,47 @@
         android:layout_height="wrap_content"
         android:text="@string/tags" />
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_main__user_services__new_service_new_chip_ev"
+        style="@style/EditTextStyle"
+        android:layout_width="210dp"
+        android:maxWidth="210dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/fragment_main__user_services__new_service_tags_tv"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_main__user_services__new_service_tags_tv"
+        app:layout_constraintTop_toTopOf="@+id/fragment_main__user_services__new_service_tags_tv"
+
+        android:layout_marginEnd="30dp"
+        />
+
+        <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/fragment_main__user_services__new_service__new_chip_btn"
+        style="@style/ButtonStyle"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_main__user_services__new_service_new_chip_ev"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:gravity="center"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/add_text"
+        android:textSize="14sp"
+       />
+
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/fragment_main__user_services__new_service__cgTags"
         app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service_tags_tv"
-        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
-        app:singleLine="true"
         android:layout_marginEnd="30dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -195,7 +227,8 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
         android:gravity="center"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
