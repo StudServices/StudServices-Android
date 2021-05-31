@@ -26,19 +26,22 @@ class NewServicePresenter(
     }
 
     override fun onDestroy() {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 
     override fun onCreateServiceBtnClicked(
         title: String,
         desc: String,
         serviceType: ServiceTypeEnum,
-        currency: String,
         price: Double,
-        geography: String,
+        deadline: String,
         tags: List<String>
     ) {
-        TODO("Not yet implemented")
+        mainScreenRouter.navigateUp()
+    }
+
+    override fun onBackBtnClicked() {
+        mainScreenRouter.navigateUp()
     }
 
     override fun onBackPressed(): Boolean {

@@ -9,10 +9,12 @@ interface NewServiceMvpView: MvpViewObservable<NewServiceMvpView.Listener> {
         fun onCreateServiceBtnClicked(title: String,
                                       desc: String,
                                       serviceType: ServiceTypeEnum,
-                                      currency: String,
                                       price: Double,
-                                      geography: String,
+                                      deadline: String,
                                       tags: List<String>)
+
+        fun onBackBtnClicked()
+
     }
 
 }

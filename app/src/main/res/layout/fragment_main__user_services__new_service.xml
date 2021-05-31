@@ -1,153 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:orientation="vertical"
     tools:context=".screens.main.userservices.newservice.NewServiceFragment">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_main__user_services__new_service__etTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/fragment_main__user_services__new_service__back_btn"
+            android:layout_width="35dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTitle__marginTop"
-        android:hint="@string/title"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/dark"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_main__user_services__new_service__back_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/fragment_main__user_services__new_service__back_btn"
         app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="@string/fragment_main__user_services__new_service__etTitle"
-        android:inputType="text" />
+        android:text="@string/fragment_main__user_services__new_service_head" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_type_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_head"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_main__user_services__new_service_type_tv"
+        style="@style/EditTextTitle"
+        />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/fragment_main__user_services__new_service_tab_layout"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service_type_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:tabMode="fixed"
+        android:layout_marginTop="15dp">
+
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_tab_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fragment_main__user_services__new_service_title_tv"
+        style="@style/EditTextTitle"
+        />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_main__user_services__new_service__etDescription"
+        android:id="@+id/fragment_main__user_services__new_service_title_ev"
+        style="@style/EditTextStyle"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/fragment_main__user_services__new_service_title_ev"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_title_tv"
+    />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_price_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etDescription__marginTop"
-        android:hint="@string/description"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_title_ev"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etTitle"
-        android:autofillHints="@string/fragment_main__user_services__new_service__etDescription"
-        android:inputType="text" />
-
-    <RadioGroup
-        android:id="@+id/fragment_main__user_services__new_service__rg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__rg__marginTop"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etDescription">
-
-        <RadioButton
-            android:id="@+id/fragment_main__user_services__new_service__rbOffer"
-            android:layout_width="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__rbOffer"
-            android:layout_height="wrap_content" />
-
-        <RadioButton
-            android:id="@+id/fragment_main__user_services__new_service__rbRequest"
-            android:text="@string/fragment_main__user_services__new_service__rbRequest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-    </RadioGroup>
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/fragment_main__user_services__new_service__spnCurrency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnCurrency__marginTop"
-        android:entries="@array/currencyList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__rg" />
-
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        style="@style/EditTextTitle"
+        android:text="@string/fragment_main__user_services__new_service_price_tv"
+        />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/fragment_main__user_services__new_service__etPrice"
-        android:layout_width="wrap_content"
+        android:id="@+id/fragment_main__user_services__new_service_price_ev"
+        style="@style/EditTextStyle"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etPrice__marginTop"
-        android:hint="@string/price"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/fragment_main__user_services__new_service__spnCurrency"
-        android:autofillHints="@string/fragment_main__user_services__new_service__etPrice"
-        android:inputType="text" />
+        android:hint="@string/fragment_main__user_services__new_service_price_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_price_tv"
+        />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/fragment_main__user_services__new_service__spnGeography"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_desc_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__spnGeography__marginTop"
-        android:entries="@array/dormsList"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_price_ev"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_main__user_services__new_service__cgTags"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__etPrice" />
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fragment_main__user_services__new_service_desc_tv"
+        style="@style/EditTextTitle"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_main__user_services__new_service_desc_ev"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:minHeight="250dp"
+        android:hint="@string/fragment_main__user_services__new_service_desc_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_desc_tv"
+        android:maxLength="1000"
+        android:maxLines="50"
+        android:ellipsize="end"
+        android:gravity="top|start"
+        style="@style/EditTextStyle.Text"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_deadlines_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_desc_ev"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/fragment_main__user_services__new_service_deadlines_tv"
+        style="@style/EditTextTitle"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_main__user_services__new_service_deadlines_ev"
+        style="@style/EditTextStyle"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service_desc_ev"
+        android:layout_marginEnd="30dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__user_services__new_service_tags_tv"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service_deadlines_ev"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        style="@style/EditTextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tags" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/fragment_main__user_services__new_service__cgTags"
-        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service_tags_tv"
+        app:layout_constraintEnd_toStartOf="parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__spnGeography"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
-        android:orientation="vertical">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fragment_main__user_services__new_service__cgTags__cooking"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:text="@string/fragment_main__user_services__new_service__cgTags__cooking"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fragment_main__user_services__new_service__cgTags__study"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__cgTags__study"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__cgTags__cooking" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fragment_main__user_services__new_service__cgTags__event"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__cgTags__event"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_main__user_services__new_service__cgTags__study" />
-            </com.google.android.material.chip.ChipGroup>
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        app:singleLine="true"
+        android:layout_marginEnd="30dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragment_main__user_services__new_service__btnCreate"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="@string/fragment_main__user_services__new_service__btnCreate"
-        android:textColorHint="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
+        android:id="@+id/fragment_main__user_services__new_service__create_btn"
+        style="@style/ButtonStyle"
         app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service__cgTags"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/create_text"
+        android:textSize="14sp" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

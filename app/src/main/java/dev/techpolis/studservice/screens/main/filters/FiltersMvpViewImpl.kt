@@ -3,14 +3,16 @@ package dev.techpolis.studservice.screens.main.filters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
-import androidx.appcompat.widget.AppCompatButton
+import android.widget.AdapterView
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatSpinner
+import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.tabs.TabLayout
 import dev.techpolis.studservice.R
-import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
+import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
 
 class FiltersMvpViewImpl(
     layoutInflater: LayoutInflater,
@@ -19,22 +21,56 @@ class FiltersMvpViewImpl(
     override var rootView: View =
         layoutInflater.inflate(R.layout.fragment_main__filters, parent, false)
 
-    private val rgType: RadioGroup = findViewById(R.id.fragment_main__filters__type_rg)
-    private val spnGeography: AppCompatSpinner =
-        findViewById(R.id.fragment_main__filters__spnGeography)
+    private val tlType: TabLayout = findViewById(R.id.fragment_main__filters_tlType)
+    private val etPriceFrom: AppCompatEditText = findViewById(R.id.fragment_main__filters__price_from_ev)
+    private val etPriceTo: AppCompatEditText = findViewById(R.id.fragment_main__filters__price_to_ev)
+
+    private val spnLocation: AppCompatSpinner =
+        findViewById(R.id.fragment_main__filters__location_spn)
     private val cgTags: ChipGroup = findViewById(R.id.fragment_main__filters__cgTags)
 
-    private val btnFilter: AppCompatButton = findViewById(R.id.fragment_main__filters__btnFilter)
-
     init {
-        btnFilter.setOnClickListener {
-            listeners.forEach {
-                it.onFilterBtnClicked(
-                    serviceType = getServiceTypeEnum(),
-                    geography = spnGeography.selectedItem.toString(),
-                    tags = getTagsList()
-                )
+        tlType.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                onFiltersChanged()
             }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) { }
+            override fun onTabReselected(tab: TabLayout.Tab?) { }
+        })
+
+        etPriceFrom.doAfterTextChanged {
+            onFiltersChanged()
+        }
+
+        etPriceTo.doAfterTextChanged {
+            onFiltersChanged()
+        }
+
+        spnLocation.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                onFiltersChanged()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) { }
+        }
+
+        cgTags.setOnCheckedChangeListener { _, _ -> onFiltersChanged() }
+
+    }
+
+    private fun onFiltersChanged() {
+        listeners.forEach {
+            it.onFiltersChanged(
+                serviceType = getServiceTypeEnum(),
+                location = spnLocation.selectedItem.toString(),
+                tags = getTagsList()
+            )
         }
     }
 
@@ -48,7 +84,7 @@ class FiltersMvpViewImpl(
     }
 
     private fun getServiceTypeEnum() =
-        if (rgType.checkedRadioButtonId == 0)
+        if (tlType.selectedTabPosition == 0)
             ServiceTypeEnum.OFFER
         else
             ServiceTypeEnum.REQUEST

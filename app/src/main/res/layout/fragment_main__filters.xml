@@ -8,100 +8,128 @@
     android:padding="15dp"
     tools:context=".screens.main.filters.FiltersFragment">
 
-    <RadioGroup
-        android:id="@+id/fragment_main__filters__type_rg"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__filters_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_main__filters_title_tv"
+        style="@style/EditTextTitle"
+        />
 
-        <RadioButton
-            android:id="@+id/fragment_main__filters__rbOffer"
-            android:layout_width="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__rbOffer"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"/>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/fragment_main__filters_tlType"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters_title_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
-        <RadioButton
-            android:id="@+id/fragment_main__filters__rbRequest"
-            android:text="@string/fragment_main__user_services__new_service__rbRequest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__filters_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters_tlType"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_main__filters_price_tv"
+        style="@style/EditTextTitle"
+        />
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_main__filters__price_from_ev"
+        style="@style/EditTextStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/fragment_main__filters__price_from_ev"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/fragment_main__filters__price_sep"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters_price_tv"
+        />
 
-    </RadioGroup>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__filters__price_sep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/fragment_main__filters__price_from_ev"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_main__filters__price_from_ev"
+        app:layout_constraintStart_toEndOf="@+id/fragment_main__filters__price_from_ev"
+       app:layout_constraintRight_toLeftOf="@id/fragment_main__filters__price_to_ev"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="—"
+        style="@style/EditTextTitle"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/fragment_main__filters__price_to_ev"
+        style="@style/EditTextStyle"
+        android:layout_marginStart="20dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/fragment_main__filters__price_to_ev"
+        app:layout_constraintStart_toEndOf="@id/fragment_main__filters__price_sep"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters_price_tv"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__filters_location_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__price_from_ev"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_main__filters_location_tv"
+        style="@style/EditTextTitle"
+        />
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/fragment_main__filters__spnGeography"
+        android:id="@+id/fragment_main__filters__location_spn"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters_location_tv"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/edit_text_frame"
         android:entries="@array/dormsList"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__type_rg" />
+        android:paddingStart="20dp"
+        android:paddingTop="15dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="15dp"
+        android:spinnerMode="dropdown"
+        android:textSize="25sp" />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fragment_main__filters_tags_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__location_spn"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/fragment_main__filters_tags_tv"
+        style="@style/EditTextTitle"
+        />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/fragment_main__filters__cgTags"
-        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters_tags_tv"
+        app:layout_constraintEnd_toStartOf="parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__spnGeography"
-        android:layout_marginTop="@dimen/fragment_main__user_services__new_service__etTags__marginTop"
-        android:orientation="vertical">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fragment_main__filters__cgTags__cooking"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:text="@string/fragment_main__user_services__new_service__cgTags__cooking"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:focusable="true" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fragment_main__filters__cgTags__study"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__cgTags__study"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__cgTags__cooking" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/fragment_main__filters__cgTags__event"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_main__user_services__new_service__cgTags__event"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__cgTags__study" />
-    </com.google.android.material.chip.ChipGroup>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/fragment_main__filters__btnFilter"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:gravity="center"
-        android:text="@string/fragment_main__filters__btnCreate"
-        android:textColorHint="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-
-        app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__cgTags"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:orientation="horizontal"
+        android:layout_marginStart="30dp"
+        app:singleLine="true"
+        android:layout_marginEnd="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
