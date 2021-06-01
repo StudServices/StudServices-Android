@@ -55,7 +55,7 @@ class ServiceInfoMvpViewImpl(
             ServiceTypeEnum.REQUEST -> "Request"
         }
         tvPrice.text = "${service.price} ₽"
-        tvDeadline.text = "до ${timeToString(service.deadlineTime)}"
+        tvDeadline.text = "${timeToString(service.deadlineTime)}"
 
         service.tagList.forEach { tagText ->
             val newChip = layoutInflater.inflate(R.layout.custom_chip, tvTags, false) as Chip

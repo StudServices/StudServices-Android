@@ -1,65 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/search_field__background"
-        android:orientation="horizontal"
-        android:padding="15dp"
-        android:paddingStart="16dp"
-        tools:ignore="RtlSymmetry">
+        android:orientation="vertical">
 
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/fragment_main__search__ic_back"
-            android:layout_width="17dp"
-            android:layout_height="16dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/ic_back_arrow"
-            android:backgroundTint="@color/dark" />
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/fragment_main__search__edit_text"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:fontFamily="@font/montserrat_medium"
-            android:hint="@string/find_offer_or_request"
-            android:inputType="text"
-            android:maxLines="1"
-            android:textColor="@color/text_black"
-            android:textColorHint="@color/text_black"
-            android:textSize="16sp" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/search_field__background"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:paddingStart="16dp"
+            tools:ignore="RtlSymmetry">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/fragment_main__search__ic_clear"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/ic_cancel"
-            android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/fragment_main__search__ic_back"
+                android:layout_width="17dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/ic_back_arrow"
+                android:backgroundTint="@color/dark" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fragment_main__search__edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:fontFamily="@font/montserrat_medium"
+                android:hint="@string/find_offer_or_request"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/text_black"
+                android:textColorHint="@color/text_black"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/fragment_main__search__ic_clear"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/ic_cancel"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/fragment_main__search__filters"
+            layout="@layout/fragment_main__filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:animateLayoutChanges="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_main__search__recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_main__search__recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

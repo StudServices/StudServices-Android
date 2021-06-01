@@ -73,6 +73,10 @@ class AppScreenRouterImpl @Inject constructor(
         fragNavController.pushFragment(SignUpFragment.newInstance())
     }
 
+    override fun toAuth() {
+        fragNavController.switchTab(INDEX_AUTH)
+    }
+
     override fun toMain() {
         fragNavController.switchTab(INDEX_MAIN)
     }

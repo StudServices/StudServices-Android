@@ -6,6 +6,7 @@ import com.ncapdevi.fragnav.FragNavController
 interface AppScreenRouter : FragNavController.RootFragmentListener {
     fun toSignIn()
     fun toSignUp()
+    fun toAuth()
     fun toMain()
     fun navigateUp()
     fun onSaveInstanceState(outState: Bundle?)

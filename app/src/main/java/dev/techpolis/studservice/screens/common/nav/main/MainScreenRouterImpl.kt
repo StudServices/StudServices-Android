@@ -1,20 +1,17 @@
 package dev.techpolis.studservice.screens.common.nav.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavSwitchController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
-import com.ncapdevi.fragnav.tabhistory.UnlimitedTabHistoryStrategy
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.di.qual.MainBundle
 import dev.techpolis.studservice.di.qual.MainFragmentManager
 import dev.techpolis.studservice.di.scope.MainScope
 import dev.techpolis.studservice.screens.main.MainMvpView
-import dev.techpolis.studservice.screens.main.filters.FiltersFragment
 import dev.techpolis.studservice.screens.main.map.MapFragment
 import dev.techpolis.studservice.screens.main.profile.ProfileFragment
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsFragment
@@ -47,11 +44,11 @@ class MainScreenRouterImpl @Inject constructor(
     init {
         fragNavController.apply {
             rootFragmentListener = this@MainScreenRouterImpl
-            navigationStrategy = UniqueTabHistoryStrategy(object : FragNavSwitchController {
-                override fun switchTab(index: Int, transactionOptions: FragNavTransactionOptions?) {
-                    fragNavController.switchTab(index, transactionOptions)
-                }
-            })
+//            navigationStrategy = UniqueTabHistoryStrategy(object : FragNavSwitchController {
+//                override fun switchTab(index: Int, transactionOptions: FragNavTransactionOptions?) {
+//                    fragNavController.switchTab(index, transactionOptions)
+//                }
+//            })
             defaultTransactionOptions = transactionOptions(
                 R.anim.fade_in,
                 R.anim.fade_out,
@@ -129,6 +126,7 @@ class MainScreenRouterImpl @Inject constructor(
     }
 
     override fun toNewService() {
+        bottomBar.isBottomBarVisible(false)
         fragNavController.pushFragment(NewServiceFragment.newInstance())
     }
 

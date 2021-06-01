@@ -2,7 +2,7 @@ package dev.techpolis.studservice.screens.main.search
 
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservable
 import dev.techpolis.studservice.screens.common.nav.BackPressedListener
-import dev.techpolis.studservice.data.model.ServiceTypeEnum
+import dev.techpolis.studservice.screens.main.search.filters.FiltersMvpView
 
 interface SearchMvpView: MvpViewObservable<SearchMvpView.Listener> {
     interface Listener : BackPressedListener {
@@ -13,4 +13,5 @@ interface SearchMvpView: MvpViewObservable<SearchMvpView.Listener> {
 
     fun setClearIconVisibility(isVisible: Boolean)
     fun clearSearchFieldText()
+    fun getFiltersMvpView(): FiltersMvpView
 }

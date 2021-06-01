@@ -57,6 +57,7 @@ class ServicesMvpViewImpl(
             }
         }.attach()
 
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             private fun TabLayout.Tab.getTextView(): AppCompatTextView? {
@@ -105,5 +106,19 @@ class ServicesMvpViewImpl(
         textSize = 18f
         setTextColor(unselectedColor)
     }
+
+    private fun addTabWithText(text: String) {
+        val tabContainer = LayoutInflater.from(context)
+            .inflate(R.layout.custom_tab_item, tabLayout, false) as ViewGroup?
+        if (tabContainer != null) {
+            val textView =
+                tabContainer.findViewById<AppCompatTextView>(R.id.custom_tab_item__tv)
+            val newTab = tabLayout.newTab()
+            textView.text = text
+            newTab.customView = tabContainer
+            tabLayout.addTab(newTab)
+        }
+    }
+
 }
 

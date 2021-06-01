@@ -42,8 +42,6 @@ class MainPresenter(
     }
 
     override fun onBackPressed(): Boolean {
-        Log.e("MainPresenter", "onBackPressed")
-        mainScreenRouter.navigateUp()
-        return true
+        return false
     }
 }

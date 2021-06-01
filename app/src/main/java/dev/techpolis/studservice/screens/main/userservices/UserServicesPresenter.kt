@@ -40,8 +40,6 @@ class UserServicesPresenter(
     }
 
     override fun onBackPressed(): Boolean {
-        Log.e("UserServicesPresenter", "onBackPressed")
-        mainScreenRouter.navigateUp()
-        return true
+        return false
     }
 }

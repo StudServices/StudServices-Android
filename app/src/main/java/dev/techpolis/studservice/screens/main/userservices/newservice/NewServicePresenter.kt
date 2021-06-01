@@ -9,6 +9,7 @@ class NewServicePresenter(
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
 ): MvpPresenter<NewServiceMvpView>, NewServiceMvpView.Listener {
+
     private lateinit var view: NewServiceMvpView
 
     override fun bindView(view: NewServiceMvpView) {
@@ -44,17 +45,17 @@ class NewServicePresenter(
         mainScreenRouter.navigateUp()
     }
 
-    override fun onChipGroupChanged() {
+    override fun onChipAdded(name: String) {
         //TODO("Not yet implemented")
     }
 
-    override fun onNewChipBtnClicked(name: String) {
+    override fun onChipDeleted(name: String) {
         //TODO("Not yet implemented")
     }
 
     override fun onBackPressed(): Boolean {
-//        TODO("Not yet implemented")
-        return false
+        mainScreenRouter.navigateUp()
+        return true
     }
 }
 

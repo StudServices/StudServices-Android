@@ -5,6 +5,7 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 
 interface ProfileMvpView: MvpViewObservable<ProfileMvpView.Listener> {
     interface Listener : BackPressedListener {
+        fun onLogoutBtnClicked()
     }
 
 }

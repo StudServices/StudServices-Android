@@ -1,13 +1,13 @@
 package dev.techpolis.studservice.screens.main.serviceinfo
 
 import android.util.Log
-import dev.techpolis.studservice.providers.ServiceProvider
+import dev.techpolis.studservice.providers.ServiceInfoProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 
 class ServiceInfoPresenter(
-    private val serviceProvider: ServiceProvider,
+    private val serviceInfoProvider: ServiceInfoProvider,
     private val backPressDispatcher: BackPressDispatcher,
     private val mainScreenRouter: MainScreenRouter
 ) : MvpPresenter<ServiceInfoMvpView>, ServiceInfoMvpView.Listener {
@@ -20,7 +20,7 @@ class ServiceInfoPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
-        view.bindData(serviceProvider.service)
+        view.bindData(serviceInfoProvider.service)
     }
 
     override fun onStop() {

@@ -5,7 +5,7 @@ import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.interactors.ServiceInteractor
-import dev.techpolis.studservice.providers.ServiceProvider
+import dev.techpolis.studservice.providers.ServiceInfoProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
@@ -13,7 +13,7 @@ import kotlinx.coroutines.*
 
 class UserServiceOffersPresenter(
     private val serviceInteractor: ServiceInteractor,
-    private val serviceProvider: ServiceProvider,
+    private val serviceInfoProvider: ServiceInfoProvider,
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
 ): MvpPresenter<UserServiceOffersMvpView>, UserServiceOffersMvpView.Listener {
@@ -52,7 +52,7 @@ class UserServiceOffersPresenter(
     }
 
     override fun onServiceOfferClicked(service: ServiceEntity) {
-        serviceProvider.service = service
+        serviceInfoProvider.service = service
         mainScreenRouter.toServiceInfo()
     }
 

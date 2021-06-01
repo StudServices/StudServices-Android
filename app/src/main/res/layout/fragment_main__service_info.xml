@@ -65,7 +65,7 @@
                 style="@style/EditTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Title" />
+                android:text="@string/title" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment_main__service_info__title"
@@ -83,7 +83,7 @@
                 style="@style/EditTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Owner" />
+                android:text="@string/owner" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment_main__service_info__owner_name"
@@ -115,33 +115,42 @@
                 android:ellipsize="end"
                 android:maxLength="1000"
                 android:maxLines="50"
+                android:inputType="none"
                 tools:text="С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. Идейные соображения высшего порядка, а также укрепление и развитие структуры играет важную роль в формировании существенных финансовых и административных условий. Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании новых предложений." />
 
-            <FrameLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/fragment_main__service_info__deadline_title"
                     style="@style/EditTextTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/deadline" />
+                    android:gravity="center_vertical|start"
+                    android:text="@string/deadline"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/fragment_main__service_info__deadline"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|end"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="30dp"
-                    android:ellipsize="end"
                     android:fontFamily="@font/montserrat_semi_bold"
-                    android:gravity="center"
+                    android:gravity="end"
                     android:textColor="@color/red"
                     android:textSize="22sp"
-                    tools:text="до 22.05" />
-            </FrameLayout>
+                    android:inputType="date"
+                    app:layout_constraintBaseline_toBaselineOf="@id/fragment_main__service_info__deadline_title"
+                    app:layout_constraintBottom_toBottomOf="@id/fragment_main__service_info__deadline_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fragment_main__service_info__deadline_title"
+                    tools:text="22.05" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/EditTextTitle"
@@ -149,14 +158,22 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tags" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/fragment_main__service_info__cgTags"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="30dp"
-                app:singleLine="true"
-                android:layout_marginEnd="30dp"/>
+                android:layout_marginTop="15dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/fragment_main__service_info__cgTags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="0dp"
+                    app:singleLine="true" />
+            </HorizontalScrollView>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/fragment_main__service_info__contact_btn"

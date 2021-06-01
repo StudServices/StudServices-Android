@@ -3,20 +3,17 @@ package dev.techpolis.studservice.screens.main.userservices.newservice
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
 import androidx.appcompat.widget.*
-import androidx.viewpager2.widget.ViewPager2
+import androidx.core.view.children
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
 
 class NewServiceMvpViewImpl(
-    layoutInflater: LayoutInflater,
+    private val layoutInflater: LayoutInflater,
     parent: ViewGroup?
 ) : MvpViewObservableBase<NewServiceMvpView.Listener>(), NewServiceMvpView {
     override var rootView: View =
@@ -47,11 +44,6 @@ class NewServiceMvpViewImpl(
     private val unselectedColor = getColorStateList(R.color.text_gray)
 
     init {
-
-
-
-        cgTags.setOnCheckedChangeListener { group, checkedId -> listeners.forEach {  it.onChipGroupChanged() } }
-
         btnCreate.setOnClickListener {
             listeners.forEach {
                 it.onCreateServiceBtnClicked(
@@ -72,19 +64,9 @@ class NewServiceMvpViewImpl(
         }
 
         btnNewChip.setOnClickListener {
-            val newText = etNewChip.text.toString()
-            if (newText.isNotEmpty()) {
-                val newChip = layoutInflater.inflate(R.layout.custom_chip, cgTags, false) as Chip
-                newChip.text = newText
-                newChip.setOnCloseIconClickListener {
-                    listeners.forEach {
-                        it.onChipDeleted()
-                    }
-                    cgTags.removeView(newChip)
-                }
-                cgTags.addView(newChip)
-                etNewChip.text?.clear()
-
+            val newTag = etNewChip.text.toString()
+            if (newTag.isNotEmpty() && isNewTagUnique(newTag)) {
+                addTag(newTag)
             }
         }
 
@@ -114,59 +96,82 @@ class NewServiceMvpViewImpl(
 
             })
 
-         }
-}
-
-private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {
-    val tabContainer = LayoutInflater.from(context)
-        .inflate(R.layout.custom_tab_item, this, false) as ViewGroup?
-    if (tabContainer != null) {
-        val textView =
-            tabContainer.findViewById<AppCompatTextView>(R.id.custom_tab_item__tv)
-        val newTab = newTab()
-        if (isSelected) {
-            textView.makeSelectedStyle()
-        } else {
-            textView.makeUnselectedStyle()
         }
-        textView.text = text
-        newTab.customView = tabContainer
-        addTab(newTab)
     }
-}
 
-private fun getPrice(): Double =
-    if (etPrice.text!!.isEmpty()) 0.0
-    else etPrice.text.toString().toDouble()
-
-private fun getDeadline(): String = etDeadline.text.toString()
-
-private fun getTagsList(): List<String> {
-    val checkedChipsText = mutableListOf<String>()
-    cgTags.checkedChipIds.forEach {
-        val chip = cgTags.findViewById<Chip>(it).text.toString()
-        checkedChipsText.add(chip)
+    private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {
+        val tabContainer = LayoutInflater.from(context)
+            .inflate(R.layout.custom_tab_item, this, false) as ViewGroup?
+        if (tabContainer != null) {
+            val textView =
+                tabContainer.findViewById<AppCompatTextView>(R.id.custom_tab_item__tv)
+            val newTab = newTab()
+            if (isSelected) {
+                textView.makeSelectedStyle()
+            } else {
+                textView.makeUnselectedStyle()
+            }
+            textView.text = text
+            newTab.customView = tabContainer
+            addTab(newTab)
+        }
     }
-    return checkedChipsText
-}
 
-private fun getServiceTypeEnum() =
-    if (tlType.selectedTabPosition == 0)
-        ServiceTypeEnum.OFFER
-    else
-        ServiceTypeEnum.REQUEST
+    private fun isNewTagUnique(text: String): Boolean {
+        for (chip in cgTags.children) {
+            if ((chip as Chip).text == text) {
+                return false
+            }
+        }
+        return true
+    }
 
-private fun AppCompatTextView.makeSelectedStyle() {
-    textSize = 28f
-    setTextColor(selectedColor)
-    setPadding(0, 0, 0, 0)
-}
+    private fun addTag(tagText: String) {
+        val newChip = layoutInflater.inflate(R.layout.custom_chip_closable, cgTags, false) as Chip
+        newChip.apply {
+            text = tagText
+            setOnCloseIconClickListener {
+                listeners.forEach { it.onChipDeleted(tagText) }
+                cgTags.removeView(newChip)
+            }
+        }
+        listeners.forEach { it.onChipAdded(tagText) }
+        cgTags.addView(newChip)
+        etNewChip.text?.clear()
+    }
 
-private fun AppCompatTextView.makeUnselectedStyle() {
-    textSize = 18f
-    setTextColor(unselectedColor)
-    setPadding(0, 0, 0, 0)
-}
+    private fun getPrice(): Double =
+        if (etPrice.text!!.isEmpty()) 0.0
+        else etPrice.text.toString().toDouble()
+
+    private fun getDeadline(): String = etDeadline.text.toString()
+
+    private fun getTagsList(): List<String> {
+        val checkedChipsText = mutableListOf<String>()
+        cgTags.checkedChipIds.forEach {
+            val chip = cgTags.findViewById<Chip>(it).text.toString()
+            checkedChipsText.add(chip)
+        }
+        return checkedChipsText
+    }
+
+    private fun getServiceTypeEnum() =
+        if (tlType.selectedTabPosition == 0)
+            ServiceTypeEnum.OFFER
+        else
+            ServiceTypeEnum.REQUEST
+
+    private fun AppCompatTextView.makeSelectedStyle() {
+        textSize = 20f
+        setTextColor(selectedColor)
+        setPadding(0, 0, 0, 0)
+    }
+
+    private fun AppCompatTextView.makeUnselectedStyle() {
+        textSize = 18f
+        setTextColor(unselectedColor)
+        setPadding(0, 0, 0, 0)
+    }
 
 
 }

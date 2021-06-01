@@ -50,6 +50,7 @@ class SignInPresenter(
                 }
             }
         authInteractor.signInWithEmailAndPassword(username, password, listener)
+//        appScreenRouter.toMain()
     }
 
     override fun onForgotPasswordTvClicked() {
