@@ -41,16 +41,16 @@ class SignInPresenter(
     }
 
     override fun onSignInBtnClicked(username: String, password: String) {
-        val listener =
-            OnCompleteListener<AuthResult> { result ->
-                if (result.isSuccessful) {
-                    appScreenRouter.toMain()
-                } else {
-                    view.unsuccessAuth()
-                }
-            }
-        authInteractor.signInWithEmailAndPassword(username, password, listener)
-//        appScreenRouter.toMain()
+//        val listener =
+//            OnCompleteListener<AuthResult> { result ->
+//                if (result.isSuccessful) {
+//                    appScreenRouter.toMain()
+//                } else {
+//                    view.unsuccessAuth()
+//                }
+//            }
+//        authInteractor.signInWithEmailAndPassword(username, password, listener)
+          appScreenRouter.toMain()
     }
 
     override fun onForgotPasswordTvClicked() {

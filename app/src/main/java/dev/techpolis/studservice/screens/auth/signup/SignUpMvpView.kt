@@ -10,6 +10,7 @@ interface SignUpMvpView: MvpViewObservable<SignUpMvpView.Listener> {
         fun onUsernameFieldTextChanged(text: String)
         fun onEmailFieldTextChanged(text: String)
         fun onPasswordFieldTextChanged(text: String)
+        fun onHaveAccClicked()
     }
 
     fun showLoading()

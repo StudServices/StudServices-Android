@@ -4,13 +4,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.ncapdevi.fragnav.FragNavController
-import com.ncapdevi.fragnav.FragNavSwitchController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
 import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.di.qual.MainBundle
 import dev.techpolis.studservice.di.qual.MainFragmentManager
 import dev.techpolis.studservice.di.scope.MainScope
+import dev.techpolis.studservice.screens.common.mvp.MvpView
 import dev.techpolis.studservice.screens.main.MainMvpView
 import dev.techpolis.studservice.screens.main.map.MapFragment
 import dev.techpolis.studservice.screens.main.profile.ProfileFragment
@@ -19,6 +19,7 @@ import dev.techpolis.studservice.screens.main.search.SearchFragment
 import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoFragment
 import dev.techpolis.studservice.screens.main.services.ServicesFragment
 import dev.techpolis.studservice.screens.main.userservices.UserServicesFragment
+import dev.techpolis.studservice.screens.main.userservices.datepicker.DatePickerFragment
 import dev.techpolis.studservice.screens.main.userservices.newservice.NewServiceFragment
 import javax.inject.Inject
 
@@ -80,16 +81,21 @@ class MainScreenRouterImpl @Inject constructor(
         }
     }
 
-    override fun navigateUp() {
+    override fun navigateUp(isBottomBarVisible: Boolean) {
         fragNavController.popFragment()
-        var isVisible = true
         when (fragNavController.currentStackIndex) {
-            INDEX_USER_SERVICES -> bottomBar.bottomBarSetSelected(R.id.menu_item__userServices)
-            INDEX_PROFILE -> bottomBar.bottomBarSetSelected(R.id.menu_item__profile)
-            INDEX_SERVICES -> bottomBar.bottomBarSetSelected(R.id.menu_item__services)
-            else -> isVisible = false
+            INDEX_USER_SERVICES -> {
+                bottomBar.bottomBarSetSelected(R.id.menu_item__userServices)
+            }
+
+            INDEX_PROFILE -> {
+                bottomBar.bottomBarSetSelected(R.id.menu_item__profile)
+            }
+            INDEX_SERVICES -> {
+                bottomBar.bottomBarSetSelected(R.id.menu_item__services)
+            }
         }
-        bottomBar.isBottomBarVisible(isVisible)
+        bottomBar.isBottomBarVisible(isBottomBarVisible)
     }
 
     override fun toProfile() {
@@ -128,6 +134,11 @@ class MainScreenRouterImpl @Inject constructor(
     override fun toNewService() {
         bottomBar.isBottomBarVisible(false)
         fragNavController.pushFragment(NewServiceFragment.newInstance())
+    }
+
+    override fun toDatePicker() {
+        bottomBar.isBottomBarVisible(false)
+        fragNavController.pushFragment(DatePickerFragment.newInstance())
     }
 
     private fun transactionOptions(vararg animationIds: Int): FragNavTransactionOptions =

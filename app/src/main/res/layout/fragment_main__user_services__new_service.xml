@@ -44,6 +44,7 @@
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@+id/fragment_main__user_services__new_service__back_btn"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -146,23 +147,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/fragment_main__user_services__new_service_deadlines_ev"
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__user_services__new_service_date_tv"
                 style="@style/EditTextStyle"
+                android:hint="@string/fragment_main__user_services__new_service_date_tv"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="30dp"
                 android:fontFamily="@font/montserrat_semi_bold"
                 android:gravity="center"
-                android:inputType="date"
+                android:inputType="none"
                 app:layout_constraintBaseline_toBaselineOf="@id/fragment_main__user_services__new_service_deadlines_title"
                 app:layout_constraintBottom_toBottomOf="@id/fragment_main__user_services__new_service_deadlines_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/fragment_main__user_services__new_service_deadlines_title"
-                tools:text="22.06" />
+                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/fragment_main__user_services__new_service_tags_tv"
@@ -172,7 +175,7 @@
             android:layout_marginStart="30dp"
             android:text="@string/tags"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service_deadlines_ev" />
+            app:layout_constraintTop_toBottomOf="@id/fragment_main__user_services__new_service_date_tv" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

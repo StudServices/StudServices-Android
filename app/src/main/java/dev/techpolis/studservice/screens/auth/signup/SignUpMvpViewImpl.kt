@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.widget.doOnTextChanged
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
@@ -23,8 +24,11 @@ class SignUpMvpViewImpl(
     private val etPassword: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__password)
     private val etEmail: AppCompatEditText = findViewById(R.id.fragment_auth__sign_up__email)
     private val buttonSignUp: AppCompatButton = findViewById(R.id.fragment_auth__sign_up__button)
+    private val tvHaveAcc: AppCompatTextView = findViewById(R.id.fragment_auth__sign_up__link)
 
     init {
+        tvHaveAcc.setOnClickListener { listeners.forEach { it.onHaveAccClicked() } }
+
         etUsername.doOnTextChanged { text, _, _, _ ->
             listeners.forEach {
                 it.onUsernameFieldTextChanged(text.toString())
