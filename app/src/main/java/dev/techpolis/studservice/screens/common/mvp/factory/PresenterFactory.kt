@@ -3,6 +3,7 @@ package dev.techpolis.studservice.screens.common.mvp.factory
 import dev.techpolis.studservice.di.scope.ActivityScope
 import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.interactors.ServiceInteractor
+import dev.techpolis.studservice.providers.NewServiceProvider
 import dev.techpolis.studservice.providers.ServiceInfoProvider
 import dev.techpolis.studservice.screens.auth.signin.SignInPresenter
 import dev.techpolis.studservice.screens.auth.signup.SignUpPresenter
@@ -19,6 +20,7 @@ import dev.techpolis.studservice.screens.main.services.ServicesPresenter
 import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersPresenter
 import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsPresenter
 import dev.techpolis.studservice.screens.main.userservices.UserServicesPresenter
+import dev.techpolis.studservice.screens.main.userservices.datepicker.DatePickerPresenter
 import dev.techpolis.studservice.screens.main.userservices.newservice.NewServicePresenter
 import dev.techpolis.studservice.screens.main.userservices.offers.UserServiceOffersPresenter
 import dev.techpolis.studservice.screens.main.userservices.requests.UserServiceRequestsPresenter
@@ -31,6 +33,7 @@ class PresenterFactory @Inject constructor(
     private val serviceInteractor: ServiceInteractor,
     private val authInteractor: AuthInteractor,
     private val serviceInfoProvider: ServiceInfoProvider,
+    private val newServiceProvider: NewServiceProvider,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
 
@@ -92,7 +95,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createNewServicePresenter(): NewServicePresenter {
-        return NewServicePresenter(mainScreenRouter, backPressDispatcher)
+        return NewServicePresenter(mainScreenRouter, backPressDispatcher, newServiceProvider)
     }
 
     fun createServiceInfoPresenter(): ServiceInfoPresenter {
@@ -109,6 +112,10 @@ class PresenterFactory @Inject constructor(
 
     fun createSearchPresenter(): SearchPresenter {
         return SearchPresenter(mainScreenRouter, backPressDispatcher)
+    }
+
+    fun createDatePickerPresenter(): DatePickerPresenter {
+        return DatePickerPresenter(mainScreenRouter, backPressDispatcher, newServiceProvider)
     }
 
 }

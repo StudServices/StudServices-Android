@@ -3,12 +3,14 @@ package dev.techpolis.studservice.screens.main.userservices.newservice
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import androidx.appcompat.widget.*
 import androidx.core.view.children
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.tabs.TabLayout
 import dev.techpolis.studservice.R
+import dev.techpolis.studservice.data.model.DeadlineDate
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
 
@@ -31,8 +33,8 @@ class NewServiceMvpViewImpl(
         findViewById(R.id.fragment_main__user_services__new_service__cgTags)
     private val btnCreate: AppCompatButton =
         findViewById(R.id.fragment_main__user_services__new_service__create_btn)
-    private val etDeadline: AppCompatEditText =
-        findViewById(R.id.fragment_main__user_services__new_service_deadlines_ev)
+    private val tvDate: AppCompatTextView =
+        findViewById(R.id.fragment_main__user_services__new_service_date_tv)
     private val btnBack: AppCompatImageButton =
         findViewById(R.id.fragment_main__user_services__new_service__back_btn)
     private val etNewChip: AppCompatEditText =
@@ -40,10 +42,17 @@ class NewServiceMvpViewImpl(
     private val btnNewChip: AppCompatButton =
         findViewById(R.id.fragment_main__user_services__new_service__new_chip_btn)
 
+    private lateinit var datePicker: DatePicker
     private val selectedColor = getColorStateList(R.color.text_black)
     private val unselectedColor = getColorStateList(R.color.text_gray)
 
     init {
+        tvDate.setOnClickListener {
+            listeners.forEach {
+                it.getToDatePicker()
+            }
+        }
+
         btnCreate.setOnClickListener {
             listeners.forEach {
                 it.onCreateServiceBtnClicked(
@@ -51,7 +60,7 @@ class NewServiceMvpViewImpl(
                     desc = etDescription.text.toString(),
                     price = getPrice(),
                     serviceType = getServiceTypeEnum(),
-                    deadline = getDeadline(),
+                    deadline = "$300",
                     tags = getTagsList()
                 )
             }
@@ -99,6 +108,16 @@ class NewServiceMvpViewImpl(
         }
     }
 
+    override fun setDate(deadline: DeadlineDate) {
+        tvDate.text = deadline.toString()
+    }
+
+    override fun setTagList(tagList: List<String>) {
+        tagList.forEach {
+            addChip(it)
+        }
+    }
+
     private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {
         val tabContainer = LayoutInflater.from(context)
             .inflate(R.layout.custom_tab_item, this, false) as ViewGroup?
@@ -140,11 +159,24 @@ class NewServiceMvpViewImpl(
         etNewChip.text?.clear()
     }
 
+    private fun addChip(tagText: String) {
+        val newChip = layoutInflater.inflate(R.layout.custom_chip_closable, cgTags, false) as Chip
+        newChip.apply {
+            text = tagText
+            setOnCloseIconClickListener {
+                listeners.forEach { it.onChipDeleted(tagText) }
+                cgTags.removeView(newChip)
+            }
+        }
+        cgTags.addView(newChip)
+        etNewChip.text?.clear()
+    }
+
     private fun getPrice(): Double =
         if (etPrice.text!!.isEmpty()) 0.0
         else etPrice.text.toString().toDouble()
 
-    private fun getDeadline(): String = etDeadline.text.toString()
+    private fun getDeadline(): String = tvDate.text.toString()
 
     private fun getTagsList(): List<String> {
         val checkedChipsText = mutableListOf<String>()
@@ -172,7 +204,6 @@ class NewServiceMvpViewImpl(
         setTextColor(unselectedColor)
         setPadding(0, 0, 0, 0)
     }
-
 
 }
 

@@ -76,4 +76,7 @@
     <string name="title">Title</string>
     <string name="new_tag">New tag</string>
     <string name="apply">Apply</string>
+    <string name="fragment_main__user_services__new_service_date_tv">Date</string>
+    <string name="fragment_main_user_services__ok_btn">Ok</string>
+    <string name="fragment_main_user_services__date_picker_head">Choose a date</string>
 </resources>

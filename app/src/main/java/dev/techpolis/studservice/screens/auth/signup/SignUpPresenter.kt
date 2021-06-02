@@ -64,6 +64,10 @@ class SignUpPresenter(
 //        TODO("Not yet implemented")
     }
 
+    override fun onHaveAccClicked() {
+        appScreenRouter.toSignIn()
+    }
+
     override fun onBackPressed(): Boolean {
         appScreenRouter.navigateUp()
         return true

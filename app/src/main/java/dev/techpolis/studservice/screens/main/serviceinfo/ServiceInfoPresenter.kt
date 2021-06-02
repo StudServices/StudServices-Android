@@ -42,7 +42,7 @@ class ServiceInfoPresenter(
 
     override fun onBackPressed(): Boolean {
         Log.e("ServiceInfo", "NavigateUp")
-        mainScreenRouter.navigateUp()
+        mainScreenRouter.navigateUp(true)
         return true
     }
 }
