@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.serviceinfo
+package dev.techpolis.studservice.screens.main.user_services.new
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import dev.techpolis.studservice.screens.common.base.BaseFragment
 
-class ServiceInfoFragment : BaseFragment() {
+class NewServiceFragment : BaseFragment() {
 
-    private lateinit var presenter: ServiceInfoPresenter
+    private lateinit var presenter: NewServicePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = presenterFactory.createServiceInfoPresenter()
+        presenter = presenterFactory.createNewServicePresenter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: ServiceInfoMvpView = mvpViewFactory.createServiceInfoMvpView(container)
+        val view: NewServiceMvpView = mvpViewFactory.createNewServiceMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
@@ -41,7 +41,7 @@ class ServiceInfoFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(): Fragment = ServiceInfoFragment()
+        fun newInstance(): Fragment = NewServiceFragment()
     }
 
 }

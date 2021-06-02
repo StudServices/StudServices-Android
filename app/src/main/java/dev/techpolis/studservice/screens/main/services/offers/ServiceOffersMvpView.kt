@@ -7,8 +7,9 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 interface ServiceOffersMvpView: MvpViewObservable<ServiceOffersMvpView.Listener> {
     interface Listener : BackPressedListener {
         fun onServiceOfferClicked(service: ServiceEntity)
+        fun onPullToRefresh()
     }
 
     fun bindData(listOffers: List<ServiceEntity>)
-
+    fun setRefreshed()
 }

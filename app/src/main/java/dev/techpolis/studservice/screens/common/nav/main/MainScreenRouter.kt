@@ -15,7 +15,7 @@ interface MainScreenRouter : FragNavController.RootFragmentListener {
     fun toMap()
     fun toSearchScreen()
     fun toNewService()
-    fun navigateUp(isBottomBarVisible: Boolean = false)
+    fun navigateUp()
     fun onSaveInstanceState(outState: Bundle?)
 
     fun bindBottomBarView(view: MainMvpView)

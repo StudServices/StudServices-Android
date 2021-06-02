@@ -24,7 +24,7 @@ class LocalServicesRepoImpl @Inject constructor(
         limit: Int,
         offset: Int
     ): Flow<List<ServiceEntity>> {
-        return servicesDAO.readAllServiceByType(type.ordinal)
+        return servicesDAO.readAllServiceByType(type)
     }
 
     override fun readServicesByUser(
@@ -41,7 +41,7 @@ class LocalServicesRepoImpl @Inject constructor(
         limit: Int,
         offset: Int
     ): Flow<List<ServiceEntity>> {
-        return servicesDAO.readAllServiceByUserIdAndType(userId, type.ordinal)
+        return servicesDAO.readAllServiceByUserIdAndType(userId, type)
     }
 
     override suspend fun addService(service: ServiceEntity) {

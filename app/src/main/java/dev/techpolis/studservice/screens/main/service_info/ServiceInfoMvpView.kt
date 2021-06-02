@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.serviceinfo
+package dev.techpolis.studservice.screens.main.service_info
 
 import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservable

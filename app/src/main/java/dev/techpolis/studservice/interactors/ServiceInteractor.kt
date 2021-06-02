@@ -29,51 +29,37 @@ class ServiceInteractor @Inject constructor(
     }
 
     suspend fun getServices(
-        userId: Long? = null,
-        type: ServiceTypeEnum? = null
+        type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =
         withContext(ioDispatcher) {
             try {
-                val cacheServices = if (userId == null) {
-                    if (type == null) {
-                        localServicesRepo.readServices(100, 0).firstOrNull()
-                    } else {
-                        localServicesRepo.readServicesByType(type, 100, 0).firstOrNull()
-                    }
-                } else {
-                    if (type == null) {
-                        localServicesRepo.readServicesByUser(userId, 100, 0).firstOrNull()
-                    } else {
-                        localServicesRepo.readServicesByUserAndType(userId, type, 100, 0)
-                            .firstOrNull()
-                    }
-                }
-
+                val cacheServices = localServicesRepo.readServicesByType(type, 100, 0).firstOrNull()
                 if (cacheServices.isNullOrEmpty()) {
                     val newServices = mutableListOf<ServiceEntity>()
                     newServices.addAll(generateOffers(ServiceTypeEnum.OFFER))
                     newServices.addAll(generateOffers(ServiceTypeEnum.REQUEST))
-                    if (userId != null) {
-                        newServices.addAll(generateOffers(userId, ServiceTypeEnum.OFFER))
-                        newServices.addAll(generateOffers(userId, ServiceTypeEnum.REQUEST))
-                    }
                     localServicesRepo.addServices(newServices)
                     Log.e(
                         TAG,
                         newServices.joinToString(separator = "\n", prefix = "NEW SERVICES:\n")
                     )
-                    return@withContext getServices(userId, type)
+                    return@withContext getServices(type)
                 }
-//                Log.e(
-//                    TAG,
-//                    localServicesRepo.readServices(0, 0).first()
-//                        .joinToString(separator = "\n", prefix = "ALL SERVICES:\n")
-//                )
-//                Log.e(
-//                    TAG,
-//                    cacheServices.joinToString(separator = "\n", prefix = "CACHE SERVICES:\n")
-//                )
                 return@withContext Resource.success(cacheServices)
+            } catch (t: Throwable) {
+                return@withContext Resource.error()
+            }
+        }
+
+    suspend fun getUserServices(
+        userId: Long,
+        type: ServiceTypeEnum
+    ): Resource<List<ServiceEntity>> =
+        withContext(ioDispatcher) {
+            try {
+                val cacheServices =
+                    localServicesRepo.readServicesByUserAndType(userId, type, 100, 0).firstOrNull()
+                return@withContext Resource.success(cacheServices ?: listOf())
             } catch (t: Throwable) {
                 return@withContext Resource.error()
             }

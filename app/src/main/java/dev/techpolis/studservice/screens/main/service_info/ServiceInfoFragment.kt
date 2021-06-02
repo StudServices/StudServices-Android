@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.offers
+package dev.techpolis.studservice.screens.main.service_info
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,21 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import dev.techpolis.studservice.screens.common.base.BaseFragment
 
-class UserServiceOffersFragment : BaseFragment() {
+class ServiceInfoFragment : BaseFragment() {
 
-    private lateinit var presenter: UserServiceOffersPresenter
+    private lateinit var presenter: ServiceInfoPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = presenterFactory.createUserServiceOffersPresenter()
+        presenter = presenterFactory.createServiceInfoPresenter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: UserServiceOffersMvpView =
-            mvpViewFactory.createUserServiceOffersMvpView(container)
+        val view: ServiceInfoMvpView = mvpViewFactory.createServiceInfoMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
@@ -32,17 +31,17 @@ class UserServiceOffersFragment : BaseFragment() {
     }
 
     override fun onStop() {
-        presenter.onStop()
         super.onStop()
+        presenter.onStop()
     }
 
     override fun onDestroy() {
-        presenter.onDestroy()
         super.onDestroy()
+        presenter.onDestroy()
     }
 
     companion object {
-        fun newInstance(): Fragment = UserServiceOffersFragment()
+        fun newInstance(): Fragment = ServiceInfoFragment()
     }
 
 }

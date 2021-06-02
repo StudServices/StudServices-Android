@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:fillViewport="true"
     android:orientation="vertical"
-    tools:context=".screens.main.serviceinfo.ServiceInfoFragment">
+    tools:context=".screens.main.service_info.ServiceInfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -98,6 +98,7 @@
                 tools:text="My name" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__service_info__description_title"
                 style="@style/EditTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -153,6 +154,7 @@
 
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__service_info__cgTags_title"
                 style="@style/EditTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

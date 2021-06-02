@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.datepicker
+package dev.techpolis.studservice.screens.main.datepicker
 
 import android.view.LayoutInflater
 import android.view.View

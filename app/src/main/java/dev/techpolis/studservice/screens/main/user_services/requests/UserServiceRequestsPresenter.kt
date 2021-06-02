@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.requests
+package dev.techpolis.studservice.screens.main.user_services.requests
 
 import android.util.Log
 import dev.techpolis.studservice.data.Status
@@ -6,6 +6,7 @@ import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.ServiceInfoProvider
+import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
@@ -16,6 +17,7 @@ class UserServiceRequestsPresenter(
     private val serviceInfoProvider: ServiceInfoProvider,
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
+    private val userProvider: UserProvider,
 ): MvpPresenter<UserServiceRequestsMvpView>, UserServiceRequestsMvpView.Listener {
 
     private lateinit var view: UserServiceRequestsMvpView
@@ -23,11 +25,12 @@ class UserServiceRequestsPresenter(
 
     override fun bindView(view: UserServiceRequestsMvpView) {
         this.view = view
+        initData()
     }
 
     private fun initData() {
         coroutineScope.launch {
-            val services = serviceInteractor.getServices(userId = 2, ServiceTypeEnum.REQUEST)
+            val services = serviceInteractor.getUserServices(userProvider.userId, ServiceTypeEnum.REQUEST)
             if (services.status is Status.Success) {
                 view.bindData(services.data!!)
             }
@@ -37,7 +40,6 @@ class UserServiceRequestsPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
-        initData()
     }
 
     override fun onStop() {

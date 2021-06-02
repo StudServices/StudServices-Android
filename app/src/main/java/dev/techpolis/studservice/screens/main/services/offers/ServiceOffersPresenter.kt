@@ -23,6 +23,7 @@ class ServiceOffersPresenter(
 
     override fun bindView(view: ServiceOffersMvpView) {
         this.view = view
+        initData()
     }
 
     private fun initData() {
@@ -37,7 +38,6 @@ class ServiceOffersPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
-        initData()
     }
 
     override fun onStop() {
@@ -52,6 +52,14 @@ class ServiceOffersPresenter(
     override fun onServiceOfferClicked(service: ServiceEntity) {
         serviceInfoProvider.service = service
         mainScreenRouter.toServiceInfo()
+    }
+
+    override fun onPullToRefresh() {
+        initData()
+        coroutineScope.launch {
+            delay(2000)
+            view.setRefreshed()
+        }
     }
 
     override fun onBackPressed(): Boolean {

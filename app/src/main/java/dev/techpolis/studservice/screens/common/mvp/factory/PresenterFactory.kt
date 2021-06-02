@@ -5,6 +5,7 @@ import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.NewServiceProvider
 import dev.techpolis.studservice.providers.ServiceInfoProvider
+import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.auth.signin.SignInPresenter
 import dev.techpolis.studservice.screens.auth.signup.SignUpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
@@ -15,15 +16,15 @@ import dev.techpolis.studservice.screens.main.map.MapPresenter
 import dev.techpolis.studservice.screens.main.profile.ProfilePresenter
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsPresenter
 import dev.techpolis.studservice.screens.main.search.SearchPresenter
-import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoPresenter
+import dev.techpolis.studservice.screens.main.service_info.ServiceInfoPresenter
 import dev.techpolis.studservice.screens.main.services.ServicesPresenter
 import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersPresenter
 import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsPresenter
-import dev.techpolis.studservice.screens.main.userservices.UserServicesPresenter
-import dev.techpolis.studservice.screens.main.userservices.datepicker.DatePickerPresenter
-import dev.techpolis.studservice.screens.main.userservices.newservice.NewServicePresenter
-import dev.techpolis.studservice.screens.main.userservices.offers.UserServiceOffersPresenter
-import dev.techpolis.studservice.screens.main.userservices.requests.UserServiceRequestsPresenter
+import dev.techpolis.studservice.screens.main.user_services.UserServicesPresenter
+import dev.techpolis.studservice.screens.main.datepicker.DatePickerPresenter
+import dev.techpolis.studservice.screens.main.user_services.new.NewServicePresenter
+import dev.techpolis.studservice.screens.main.user_services.offers.UserServiceOffersPresenter
+import dev.techpolis.studservice.screens.main.user_services.requests.UserServiceRequestsPresenter
 import javax.inject.Inject
 
 @ActivityScope
@@ -34,14 +35,16 @@ class PresenterFactory @Inject constructor(
     private val authInteractor: AuthInteractor,
     private val serviceInfoProvider: ServiceInfoProvider,
     private val newServiceProvider: NewServiceProvider,
+    private val userProvider: UserProvider,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
 
+
     fun createSignInPresenter(): SignInPresenter =
-        SignInPresenter(appScreenRouter, backPressDispatcher, authInteractor)
+        SignInPresenter(appScreenRouter, backPressDispatcher, authInteractor, userProvider)
 
     fun createSignUpPresenter(): SignUpPresenter =
-        SignUpPresenter(appScreenRouter, backPressDispatcher, authInteractor)
+        SignUpPresenter(appScreenRouter, backPressDispatcher, authInteractor, userProvider)
 
     fun createMainPresenter(): MainPresenter =
         MainPresenter(mainScreenRouter, backPressDispatcher)
@@ -81,7 +84,8 @@ class PresenterFactory @Inject constructor(
             serviceInteractor,
             serviceInfoProvider,
             mainScreenRouter,
-            backPressDispatcher
+            backPressDispatcher,
+            userProvider
         )
     }
 
@@ -90,12 +94,18 @@ class PresenterFactory @Inject constructor(
             serviceInteractor,
             serviceInfoProvider,
             mainScreenRouter,
-            backPressDispatcher
+            backPressDispatcher,
+            userProvider
         )
     }
 
     fun createNewServicePresenter(): NewServicePresenter {
-        return NewServicePresenter(mainScreenRouter, backPressDispatcher, newServiceProvider)
+        return NewServicePresenter(
+            mainScreenRouter,
+            backPressDispatcher,
+            newServiceProvider,
+            serviceInteractor
+        )
     }
 
     fun createServiceInfoPresenter(): ServiceInfoPresenter {

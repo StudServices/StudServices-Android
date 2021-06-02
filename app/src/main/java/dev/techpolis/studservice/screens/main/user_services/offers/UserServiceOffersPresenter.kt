@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.offers
+package dev.techpolis.studservice.screens.main.user_services.offers
 
 import android.util.Log
 import dev.techpolis.studservice.data.Status
@@ -6,6 +6,7 @@ import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.ServiceInfoProvider
+import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
@@ -16,6 +17,7 @@ class UserServiceOffersPresenter(
     private val serviceInfoProvider: ServiceInfoProvider,
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
+    private val userProvider: UserProvider,
 ): MvpPresenter<UserServiceOffersMvpView>, UserServiceOffersMvpView.Listener {
 
     private lateinit var view: UserServiceOffersMvpView
@@ -23,11 +25,12 @@ class UserServiceOffersPresenter(
 
     override fun bindView(view: UserServiceOffersMvpView) {
         this.view = view
+        initData()
     }
 
     private fun initData() {
         coroutineScope.launch {
-            val services = serviceInteractor.getServices(userId = 2, ServiceTypeEnum.OFFER)
+            val services = serviceInteractor.getUserServices(userProvider.userId, ServiceTypeEnum.OFFER)
             if (services.status is Status.Success) {
                 view.bindData(services.data!!)
             }
@@ -37,7 +40,6 @@ class UserServiceOffersPresenter(
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
-        initData()
         Log.e("UserOffersPresenter", "onStart")
     }
 
@@ -55,6 +57,8 @@ class UserServiceOffersPresenter(
         serviceInfoProvider.service = service
         mainScreenRouter.toServiceInfo()
     }
+
+
 
     override fun onBackPressed(): Boolean {
         Log.e("UserOffersPresenter", "onBackPressed")

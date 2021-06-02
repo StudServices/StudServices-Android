@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.datepicker
+package dev.techpolis.studservice.screens.main.datepicker
 
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservable
 import dev.techpolis.studservice.screens.common.nav.BackPressedListener

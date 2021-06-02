@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.serviceinfo
+package dev.techpolis.studservice.screens.main.service_info
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isVisible
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import dev.techpolis.studservice.R
@@ -29,10 +30,14 @@ class ServiceInfoMvpViewImpl(
         findViewById(R.id.fragment_main__service_info__owner_name)
     private val tvDescription: AppCompatTextView =
         findViewById(R.id.fragment_main__service_info__description)
+    private val tvDescriptionTitle: AppCompatTextView =
+        findViewById(R.id.fragment_main__service_info__description_title)
     private val tvType: AppCompatTextView =
         findViewById(R.id.fragment_main__service_info__service_type)
     private val tvPrice: AppCompatTextView = findViewById(R.id.fragment_main__service_info__price)
-    private val tvTags: ChipGroup = findViewById(R.id.fragment_main__service_info__cgTags)
+    private val cgTags: ChipGroup = findViewById(R.id.fragment_main__service_info__cgTags)
+    private val tvTagsTitle: AppCompatTextView =
+        findViewById(R.id.fragment_main__service_info__cgTags_title)
     private val btnContact: AppCompatButton =
         findViewById(R.id.fragment_main__service_info__contact_btn)
     private val btnBack: AppCompatImageButton =
@@ -49,18 +54,28 @@ class ServiceInfoMvpViewImpl(
         serviceEntity = service
         tvTitle.text = service.title
         tvOwner.text = "Owner with id=${service.ownerId}"
-        tvDescription.text = service.description
+        if (service.description.isEmpty()) {
+            tvDescription.isVisible = false
+            tvDescriptionTitle.isVisible = false
+        } else {
+            tvDescription.text = service.description
+        }
         tvType.text = when (service.type) {
             ServiceTypeEnum.OFFER -> "Offer"
             ServiceTypeEnum.REQUEST -> "Request"
         }
         tvPrice.text = "${service.price} ₽"
-        tvDeadline.text = "${timeToString(service.deadlineTime)}"
+        tvDeadline.text = timeToString(service.deadlineTime)
 
-        service.tagList.forEach { tagText ->
-            val newChip = layoutInflater.inflate(R.layout.custom_chip, tvTags, false) as Chip
-            newChip.text = tagText
-            tvTags.addView(newChip)
+        if (service.tagList.isEmpty()) {
+            tvTagsTitle.isVisible = false
+            cgTags.isVisible = false
+        } else {
+            service.tagList.forEach { tagText ->
+                val newChip = layoutInflater.inflate(R.layout.custom_chip, cgTags, false) as Chip
+                newChip.text = tagText
+                cgTags.addView(newChip)
+            }
         }
     }
 

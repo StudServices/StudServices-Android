@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices
+package dev.techpolis.studservice.screens.main.user_services
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

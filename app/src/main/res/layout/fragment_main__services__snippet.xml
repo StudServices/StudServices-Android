@@ -7,7 +7,7 @@
     android:background="@drawable/custom__background_gray"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginBottom="16dp"
     android:padding="20dp">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/fragment_main__services__offers__snippet__desc"
-        tools:text="$2 300" />
+        tools:text="230000 $" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/fragment_main__services__offers__snippet__deadline"

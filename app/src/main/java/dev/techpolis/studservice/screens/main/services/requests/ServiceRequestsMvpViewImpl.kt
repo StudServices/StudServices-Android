@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.entities.ServiceEntity
@@ -26,6 +27,7 @@ class ServiceRequestsMvpViewImpl(
         findViewById(R.id.fragment_main__services__requests__recycler)
     private val servicesAdapter: ServicesAdapter =
         viewFactory.createServicesAdapter(this, Glide.with(context))
+    private val refresh: SwipeRefreshLayout = findViewById(R.id.fragment_main__services__requests__refresh)
 
     init {
         recyclerView.apply {
@@ -33,6 +35,7 @@ class ServiceRequestsMvpViewImpl(
             adapter = servicesAdapter
 //            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
         }
+        refresh.setOnRefreshListener { listeners.forEach { it.onPullToRefresh() } }
     }
 
     override fun bindData(listRequests: List<ServiceEntity>) {
@@ -41,5 +44,9 @@ class ServiceRequestsMvpViewImpl(
 
     override fun onServiceClicked(service: ServiceEntity) {
         listeners.forEach { it.onServiceClicked(service) }
+    }
+
+    override fun setRefreshed() {
+        refresh.isRefreshing = false
     }
 }

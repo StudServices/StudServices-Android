@@ -17,11 +17,11 @@ interface ServiceDAO {
     @Query("SELECT * FROM ${ServiceEntity.TABLE_NAME} WHERE ownerId=:userId AND type=:type")
     fun readAllServiceByUserIdAndType(
         userId: Long,
-        type: Int
+        type: ServiceTypeEnum
     ): Flow<List<ServiceEntity>>
 
     @Query("SELECT * FROM ${ServiceEntity.TABLE_NAME} WHERE type=:type")
-    fun readAllServiceByType(type: Int): Flow<List<ServiceEntity>>
+    fun readAllServiceByType(type: ServiceTypeEnum): Flow<List<ServiceEntity>>
 
     @Insert(entity = ServiceEntity::class, onConflict = OnConflictStrategy.REPLACE)
     suspend fun addService(service: ServiceEntity)

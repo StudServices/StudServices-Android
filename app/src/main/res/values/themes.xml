@@ -40,6 +40,7 @@
     <style name="EditTextStyle.Text" parent="EditTextStyle">
         <item name="android:maxLines">15</item>
         <item name="android:maxLength">500</item>
+        <item name="android:inputType">textMultiLine</item>
     </style>
 
     <style name="AuthTitle" parent="Widget.AppCompat.TextView">
@@ -108,12 +109,13 @@
         <item name="android:paddingBottom">12dp</item>
         <item name="chipMinHeight">35dp</item>
         <item name="chipCornerRadius">20dp</item>
-        <item name="chipStartPadding">10dp</item>
+        <item name="chipStartPadding">5dp</item>
         <item name="closeIconEnabled">false</item>
         <item name="closeIconVisible">false</item>
     </style>
 
     <style name="ChipStyle.Closable" parent="ChipStyle">
+        <item name="chipStartPadding">10dp</item>
         <item name="closeIconEnabled">true</item>
         <item name="closeIconVisible">true</item>
         <item name="closeIcon">@drawable/ic_cancel</item>

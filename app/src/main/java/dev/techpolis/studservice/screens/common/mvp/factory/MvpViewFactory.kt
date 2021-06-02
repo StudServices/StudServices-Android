@@ -11,8 +11,6 @@ import dev.techpolis.studservice.screens.auth.signup.SignUpMvpView
 import dev.techpolis.studservice.screens.auth.signup.SignUpMvpViewImpl
 import dev.techpolis.studservice.screens.main.MainMvpView
 import dev.techpolis.studservice.screens.main.MainMvpViewImpl
-import dev.techpolis.studservice.screens.main.search.filters.FiltersMvpView
-import dev.techpolis.studservice.screens.main.search.filters.FiltersMvpViewImpl
 import dev.techpolis.studservice.screens.main.map.MapMvpView
 import dev.techpolis.studservice.screens.main.map.MapMvpViewImpl
 import dev.techpolis.studservice.screens.main.profile.ProfileMvpView
@@ -21,8 +19,8 @@ import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpView
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpViewImpl
 import dev.techpolis.studservice.screens.main.search.SearchMvpView
 import dev.techpolis.studservice.screens.main.search.SearchMvpViewImpl
-import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoMvpView
-import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoMvpViewImpl
+import dev.techpolis.studservice.screens.main.service_info.ServiceInfoMvpView
+import dev.techpolis.studservice.screens.main.service_info.ServiceInfoMvpViewImpl
 import dev.techpolis.studservice.screens.main.services.ServicesAdapter
 import dev.techpolis.studservice.screens.main.services.ServicesMvpView
 import dev.techpolis.studservice.screens.main.services.ServicesMvpViewImpl
@@ -32,15 +30,15 @@ import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersMvpVi
 import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersMvpViewImpl
 import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsMvpView
 import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsMvpViewImpl
-import dev.techpolis.studservice.screens.main.userservices.UserServicesMvpView
-import dev.techpolis.studservice.screens.main.userservices.UserServicesMvpViewImpl
-import dev.techpolis.studservice.screens.main.userservices.datepicker.DatePickerMvpViewImpl
-import dev.techpolis.studservice.screens.main.userservices.newservice.NewServiceMvpView
-import dev.techpolis.studservice.screens.main.userservices.newservice.NewServiceMvpViewImpl
-import dev.techpolis.studservice.screens.main.userservices.offers.UserServiceOffersMvpView
-import dev.techpolis.studservice.screens.main.userservices.offers.UserServiceOffersMvpViewImpl
-import dev.techpolis.studservice.screens.main.userservices.requests.UserServiceRequestsMvpView
-import dev.techpolis.studservice.screens.main.userservices.requests.UserServiceRequestsMvpViewImpl
+import dev.techpolis.studservice.screens.main.user_services.UserServicesMvpView
+import dev.techpolis.studservice.screens.main.user_services.UserServicesMvpViewImpl
+import dev.techpolis.studservice.screens.main.datepicker.DatePickerMvpViewImpl
+import dev.techpolis.studservice.screens.main.user_services.new.NewServiceMvpView
+import dev.techpolis.studservice.screens.main.user_services.new.NewServiceMvpViewImpl
+import dev.techpolis.studservice.screens.main.user_services.offers.UserServiceOffersMvpView
+import dev.techpolis.studservice.screens.main.user_services.offers.UserServiceOffersMvpViewImpl
+import dev.techpolis.studservice.screens.main.user_services.requests.UserServiceRequestsMvpView
+import dev.techpolis.studservice.screens.main.user_services.requests.UserServiceRequestsMvpViewImpl
 import javax.inject.Inject
 
 @ActivityScope

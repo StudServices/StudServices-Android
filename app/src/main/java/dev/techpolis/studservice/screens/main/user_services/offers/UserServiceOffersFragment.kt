@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.datepicker
+package dev.techpolis.studservice.screens.main.user_services.offers
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,20 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import dev.techpolis.studservice.screens.common.base.BaseFragment
 
-class DatePickerFragment : BaseFragment() {
+class UserServiceOffersFragment : BaseFragment() {
 
-    private lateinit var presenter: DatePickerPresenter
+    private lateinit var presenter: UserServiceOffersPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = presenterFactory.createDatePickerPresenter()
+        presenter = presenterFactory.createUserServiceOffersPresenter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: DatePickerMvpView = mvpViewFactory.createDatePickerMvpView(container, this)
+        val view: UserServiceOffersMvpView =
+            mvpViewFactory.createUserServiceOffersMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
@@ -41,7 +42,7 @@ class DatePickerFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(): Fragment = DatePickerFragment()
+        fun newInstance(): Fragment = UserServiceOffersFragment()
     }
 
 }

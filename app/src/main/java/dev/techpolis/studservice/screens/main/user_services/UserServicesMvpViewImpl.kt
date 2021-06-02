@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices
+package dev.techpolis.studservice.screens.main.user_services
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +13,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
-import dev.techpolis.studservice.screens.main.services.ServicesMvpViewImpl
-import dev.techpolis.studservice.screens.main.userservices.offers.UserServiceOffersFragment
-import dev.techpolis.studservice.screens.main.userservices.requests.UserServiceRequestsFragment
+import dev.techpolis.studservice.screens.main.user_services.offers.UserServiceOffersFragment
+import dev.techpolis.studservice.screens.main.user_services.requests.UserServiceRequestsFragment
 
 class UserServicesMvpViewImpl(
     layoutInflater: LayoutInflater,

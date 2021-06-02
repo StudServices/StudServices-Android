@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices
+package dev.techpolis.studservice.screens.main.user_services
 
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservable
 import dev.techpolis.studservice.screens.common.nav.BackPressedListener

@@ -12,17 +12,25 @@ fun generateOffers(type: ServiceTypeEnum): List<ServiceEntity> {
     for (i in 1..5) {
         res.add(
             ServiceEntity(
-                title = randomWord(7),
+                title = "Some_${type.name}${Random.nextInt(1000)}",
                 ownerId = Random.nextLong(),
                 description = randomWord(20),
                 price = Random.nextInt(1000),
                 type = type,
                 deadlineTime = calendar.timeInMillis,
-                tagList = listOf(randomWord(4), randomWord(4), randomWord(4))
+                tagList = generateTags()
             )
         )
     }
     return res
+}
+
+fun generateTags(): List<String> {
+    val list = mutableListOf<String>()
+    for (i in 1..5) {
+        list.add("Tag${i}[${randomWord(3)}]")
+    }
+    return list
 }
 
 fun generateOffers(id: Long, type: ServiceTypeEnum): List<ServiceEntity> {

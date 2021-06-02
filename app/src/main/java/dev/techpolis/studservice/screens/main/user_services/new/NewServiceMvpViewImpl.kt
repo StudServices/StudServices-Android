@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.newservice
+package dev.techpolis.studservice.screens.main.user_services.new
 
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +42,6 @@ class NewServiceMvpViewImpl(
     private val btnNewChip: AppCompatButton =
         findViewById(R.id.fragment_main__user_services__new_service__new_chip_btn)
 
-    private lateinit var datePicker: DatePicker
     private val selectedColor = getColorStateList(R.color.text_black)
     private val unselectedColor = getColorStateList(R.color.text_gray)
 
@@ -57,11 +56,11 @@ class NewServiceMvpViewImpl(
             listeners.forEach {
                 it.onCreateServiceBtnClicked(
                     title = etTitle.text.toString(),
-                    desc = etDescription.text.toString(),
+                    description = etDescription.text.toString(),
                     price = getPrice(),
-                    serviceType = getServiceTypeEnum(),
-                    deadline = "$300",
-                    tags = getTagsList()
+//                    serviceType = getServiceTypeEnum(),
+//                    deadline = "$300",
+//                    tags = getTagsList()
                 )
             }
         }
@@ -93,6 +92,7 @@ class NewServiceMvpViewImpl(
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     val textView = tab?.getTextView() ?: return
                     textView.makeSelectedStyle()
+                    listeners.forEach { it.onTypeSelected(getServiceTypeEnum()) }
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -118,22 +118,31 @@ class NewServiceMvpViewImpl(
         }
     }
 
+    override fun setTypeTab(type: ServiceTypeEnum) {
+        tlType.selectTab(
+            tlType.getTabAt(
+                when (type) {
+                    ServiceTypeEnum.OFFER -> 0
+                    ServiceTypeEnum.REQUEST -> 1
+                }
+            )
+        )
+    }
+
     private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {
-        val tabContainer = LayoutInflater.from(context)
-            .inflate(R.layout.custom_tab_item, this, false) as ViewGroup?
-        if (tabContainer != null) {
-            val textView =
-                tabContainer.findViewById<AppCompatTextView>(R.id.custom_tab_item__tv)
-            val newTab = newTab()
-            if (isSelected) {
-                textView.makeSelectedStyle()
-            } else {
-                textView.makeUnselectedStyle()
-            }
-            textView.text = text
-            newTab.customView = tabContainer
-            addTab(newTab)
+        val tabContainer =
+            layoutInflater.inflate(R.layout.custom_tab_item, this, false) as ViewGroup
+        val textView =
+            tabContainer.findViewById<AppCompatTextView>(R.id.custom_tab_item__tv)
+        val newTab = newTab()
+        textView.text = text
+        newTab.customView = tabContainer
+        if (isSelected) {
+            textView.makeSelectedStyle()
+        } else {
+            textView.makeUnselectedStyle()
         }
+        addTab(newTab)
     }
 
     private fun isNewTagUnique(text: String): Boolean {
@@ -172,11 +181,8 @@ class NewServiceMvpViewImpl(
         etNewChip.text?.clear()
     }
 
-    private fun getPrice(): Double =
-        if (etPrice.text!!.isEmpty()) 0.0
-        else etPrice.text.toString().toDouble()
-
-    private fun getDeadline(): String = tvDate.text.toString()
+    private fun getPrice(): Int =
+        if (etPrice.text!!.isEmpty()) 0 else etPrice.text.toString().toInt()
 
     private fun getTagsList(): List<String> {
         val checkedChipsText = mutableListOf<String>()

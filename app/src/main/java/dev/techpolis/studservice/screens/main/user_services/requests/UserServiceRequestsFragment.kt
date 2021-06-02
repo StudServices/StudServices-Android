@@ -1,4 +1,4 @@
-package dev.techpolis.studservice.screens.main.userservices.newservice
+package dev.techpolis.studservice.screens.main.user_services.requests
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,20 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import dev.techpolis.studservice.screens.common.base.BaseFragment
 
-class NewServiceFragment : BaseFragment() {
+class UserServiceRequestsFragment : BaseFragment() {
 
-    private lateinit var presenter: NewServicePresenter
+    private lateinit var presenter: UserServiceRequestsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = presenterFactory.createNewServicePresenter()
+        presenter = presenterFactory.createUserServiceRequestsPresenter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: NewServiceMvpView = mvpViewFactory.createNewServiceMvpView(container)
+        val view: UserServiceRequestsMvpView =
+            mvpViewFactory.createUserServiceRequestsMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
@@ -31,17 +32,17 @@ class NewServiceFragment : BaseFragment() {
     }
 
     override fun onStop() {
-        super.onStop()
         presenter.onStop()
+        super.onStop()
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         presenter.onDestroy()
+        super.onDestroy()
     }
 
     companion object {
-        fun newInstance(): Fragment = NewServiceFragment()
+        fun newInstance(): Fragment = UserServiceRequestsFragment()
     }
 
 }

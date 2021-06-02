@@ -5,22 +5,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.ncapdevi.fragnav.FragNavController
 import com.ncapdevi.fragnav.FragNavTransactionOptions
-import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.di.qual.MainBundle
 import dev.techpolis.studservice.di.qual.MainFragmentManager
 import dev.techpolis.studservice.di.scope.MainScope
-import dev.techpolis.studservice.screens.common.mvp.MvpView
 import dev.techpolis.studservice.screens.main.MainMvpView
 import dev.techpolis.studservice.screens.main.map.MapFragment
 import dev.techpolis.studservice.screens.main.profile.ProfileFragment
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsFragment
 import dev.techpolis.studservice.screens.main.search.SearchFragment
-import dev.techpolis.studservice.screens.main.serviceinfo.ServiceInfoFragment
+import dev.techpolis.studservice.screens.main.service_info.ServiceInfoFragment
 import dev.techpolis.studservice.screens.main.services.ServicesFragment
-import dev.techpolis.studservice.screens.main.userservices.UserServicesFragment
-import dev.techpolis.studservice.screens.main.userservices.datepicker.DatePickerFragment
-import dev.techpolis.studservice.screens.main.userservices.newservice.NewServiceFragment
+import dev.techpolis.studservice.screens.main.user_services.UserServicesFragment
+import dev.techpolis.studservice.screens.main.datepicker.DatePickerFragment
+import dev.techpolis.studservice.screens.main.user_services.new.NewServiceFragment
 import javax.inject.Inject
 
 @MainScope
@@ -81,21 +79,17 @@ class MainScreenRouterImpl @Inject constructor(
         }
     }
 
-    override fun navigateUp(isBottomBarVisible: Boolean) {
+    override fun navigateUp() {
         fragNavController.popFragment()
-        when (fragNavController.currentStackIndex) {
-            INDEX_USER_SERVICES -> {
-                bottomBar.bottomBarSetSelected(R.id.menu_item__userServices)
-            }
-
-            INDEX_PROFILE -> {
-                bottomBar.bottomBarSetSelected(R.id.menu_item__profile)
-            }
-            INDEX_SERVICES -> {
-                bottomBar.bottomBarSetSelected(R.id.menu_item__services)
+        if (fragNavController.isRootFragment) {
+            bottomBar.isBottomBarVisible(true)
+            when (fragNavController.currentStackIndex) {
+                INDEX_USER_SERVICES -> bottomBar.bottomBarSetSelected(R.id.menu_item__userServices)
+                INDEX_PROFILE -> bottomBar.bottomBarSetSelected(R.id.menu_item__profile)
+                INDEX_SERVICES -> bottomBar.bottomBarSetSelected(R.id.menu_item__services)
             }
         }
-        bottomBar.isBottomBarVisible(isBottomBarVisible)
+
     }
 
     override fun toProfile() {

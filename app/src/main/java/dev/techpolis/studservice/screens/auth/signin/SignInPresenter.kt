@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.interactors.AuthInteractor
+import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
@@ -17,7 +18,8 @@ import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
 class SignInPresenter(
     private val appScreenRouter: AppScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
-    private val authInteractor: AuthInteractor
+    private val authInteractor: AuthInteractor,
+    private val userProvider: UserProvider,
 ) : MvpPresenter<SignInMvpView>, SignInMvpView.Listener {
 
     private lateinit var view: SignInMvpView
@@ -50,7 +52,8 @@ class SignInPresenter(
 //                }
 //            }
 //        authInteractor.signInWithEmailAndPassword(username, password, listener)
-          appScreenRouter.toMain()
+        userProvider.userId = 2
+        appScreenRouter.toMain()
     }
 
     override fun onForgotPasswordTvClicked() {

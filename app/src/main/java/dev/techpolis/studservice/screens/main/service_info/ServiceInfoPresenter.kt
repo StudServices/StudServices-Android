@@ -1,45 +1,48 @@
-package dev.techpolis.studservice.screens.main.userservices
+package dev.techpolis.studservice.screens.main.service_info
 
 import android.util.Log
+import dev.techpolis.studservice.providers.ServiceInfoProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 
-class UserServicesPresenter(
+class ServiceInfoPresenter(
+    private val serviceInfoProvider: ServiceInfoProvider,
     private val backPressDispatcher: BackPressDispatcher,
     private val mainScreenRouter: MainScreenRouter
-): MvpPresenter<UserServicesMvpView>, UserServicesMvpView.Listener {
-    private lateinit var view: UserServicesMvpView
+) : MvpPresenter<ServiceInfoMvpView>, ServiceInfoMvpView.Listener {
+    private lateinit var view: ServiceInfoMvpView
 
-    override fun bindView(view: UserServicesMvpView) {
+    override fun bindView(view: ServiceInfoMvpView) {
         this.view = view
     }
 
     override fun onStart() {
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
-        Log.e("UserServicesPresenter", "onStart")
+        view.bindData(serviceInfoProvider.service)
     }
 
     override fun onStop() {
         view.unregisterListener(this)
         backPressDispatcher.unregisterListener(this)
-        Log.e("UserServicesPresenter", "onStop")
     }
 
     override fun onDestroy() {
 //        TODO("Not yet implemented")
     }
 
-    override fun onSearchViewFocus() {
-        mainScreenRouter.toSearchScreen()
+    override fun onContactBtnClicked() {
+//        TODO("Not yet implemented")
     }
 
-    override fun onNewBtnClicked() {
-        mainScreenRouter.toNewService()
+    override fun onBackArrowBtnClicked() {
+        onBackPressed()
     }
 
     override fun onBackPressed(): Boolean {
-        return false
+        Log.e("ServiceInfo", "NavigateUp")
+        mainScreenRouter.navigateUp()
+        return true
     }
 }
