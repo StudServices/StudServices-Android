@@ -31,14 +31,9 @@ class GoogleAuthInteractor @Inject constructor(private val signInClient: GoogleS
     fun getAccountFromIntent(data: Intent?): Resource<GoogleSignInAccount> =
         try {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            Log.e("GAI", task.toString())
             val account = task.getResult(ApiException::class.java)!!
-            Log.e("GAI", account.toString())
-
             Resource.success(account)
         } catch (e: ApiException) {
-            Log.e(TAG, "Google sign in failed", e)
-
             Resource.error(e)
         }
 
@@ -51,13 +46,11 @@ class GoogleAuthInteractor @Inject constructor(private val signInClient: GoogleS
         listener: OnCompleteListener<AuthResult>
     ): Resource<AuthCredential> =
         try {
-            Log.e("GoogleAuthInteractor", "FIREBASE AUTH WITH GOOGLE")
-
             val credential = GoogleAuthProvider.getCredential(idToken, null)
             firebaseAuth.signInWithCredential(credential).addOnCompleteListener(listener)
             Resource.success(credential)
         } catch (e: ApiException) {
-            Log.w(TAG, "Google sign in failed", e)
+            Log.e(TAG, "Google sign in failed", e)
             Resource.error(e)
         }
 }

@@ -43,7 +43,6 @@ class SignUpPresenter(
             OnCompleteListener<AuthResult> { result ->
                 if (result.isSuccessful) {
                     userProvider.userId = result.result!!.additionalUserInfo!!.providerId!!
-
                     appScreenRouter.toMain()
                 } else {
                     view.unsuccessSignUp()

@@ -30,13 +30,12 @@ class SignInPresenter(
     }
 
     fun handleResult(result: ActivityResult) {
-        Log.e("SignInPresenter", "HANDLE RESULTS")
         val accountFromResource = googleAuthInteractor.getAccountFromIntent(result.data)
-        Log.e("SignInPresenter", accountFromResource.status.toString())
         if (accountFromResource.status is Status.Success) {
             val listener =
                 OnCompleteListener<AuthResult> { resultListener ->
                     if (resultListener.isSuccessful) {
+                        userProvider.userId = resultListener.result!!.additionalUserInfo!!.providerId!!
                         appScreenRouter.toMain()
                     } else {
                         view.unsuccessAuth()
@@ -69,7 +68,6 @@ class SignInPresenter(
             OnCompleteListener<AuthResult> { result ->
                 if (result.isSuccessful) {
                     userProvider.userId = result.result!!.additionalUserInfo!!.providerId!!
-
                     appScreenRouter.toMain()
                 } else {
                     view.unsuccessAuth()
