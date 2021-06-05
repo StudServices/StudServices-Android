@@ -13,7 +13,6 @@ import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
 class DatePickerMvpViewImpl(
     layoutInflater: LayoutInflater,
     parent: ViewGroup?,
-    fragment: Fragment,
 ) : MvpViewObservableBase<DatePickerMvpView.Listener>(), DatePickerMvpView {
 
     override var rootView: View =
