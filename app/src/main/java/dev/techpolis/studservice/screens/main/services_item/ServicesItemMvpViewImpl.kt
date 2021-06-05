@@ -34,7 +34,7 @@ class ServicesItemMvpViewImpl(
     private lateinit var service: ServiceEntity
 
     init {
-        rootView.setOnClickListener { listener.onServiceClicked(service) }
+        rootView.setOnClickListener { listener.onServiceClicked(service)  }
     }
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n")

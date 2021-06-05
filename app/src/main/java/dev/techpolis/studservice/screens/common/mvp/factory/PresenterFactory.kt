@@ -4,6 +4,7 @@ import dev.techpolis.studservice.di.scope.ActivityScope
 import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.interactors.GoogleAuthInteractor
 import dev.techpolis.studservice.interactors.ServiceInteractor
+import dev.techpolis.studservice.providers.FiltersProvider
 import dev.techpolis.studservice.providers.NewServiceProvider
 import dev.techpolis.studservice.providers.ServiceInfoProvider
 import dev.techpolis.studservice.providers.UserProvider
@@ -38,6 +39,7 @@ class PresenterFactory @Inject constructor(
     private val serviceInfoProvider: ServiceInfoProvider,
     private val newServiceProvider: NewServiceProvider,
     private val userProvider: UserProvider,
+    private val filtersProvider: FiltersProvider
     private val googleAuthInteractor: GoogleAuthInteractor,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
@@ -124,7 +126,7 @@ class PresenterFactory @Inject constructor(
     }
 
     fun createSearchPresenter(): SearchPresenter {
-        return SearchPresenter(mainScreenRouter, backPressDispatcher)
+        return SearchPresenter(serviceInteractor, serviceInfoProvider, filtersProvider, mainScreenRouter, backPressDispatcher)
     }
 
     fun createDatePickerPresenter(): DatePickerPresenter {

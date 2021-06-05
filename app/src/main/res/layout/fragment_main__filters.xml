@@ -123,35 +123,6 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/fragment_main__filters_location_tv"
-                style="@style/EditTextTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/fragment_main__filters_location_tv"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_main__filters__price_from_ev" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/fragment_main__filters__location_spn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/edit_text_frame"
-                android:entries="@array/dormsList"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:paddingEnd="20dp"
-                android:paddingBottom="10dp"
-                android:spinnerMode="dropdown"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_main__filters_location_tv" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment_main__filters_tags_tv"
                 style="@style/EditTextTitle"
                 android:layout_width="wrap_content"
@@ -160,7 +131,7 @@
                 android:layout_marginTop="30dp"
                 android:text="@string/tags"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__location_spn" />
+                app:layout_constraintTop_toBottomOf="@id/fragment_main__filters__price_from_ev" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

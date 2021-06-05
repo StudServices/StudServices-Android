@@ -34,6 +34,7 @@ import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsM
 import dev.techpolis.studservice.screens.main.user_services.UserServicesMvpView
 import dev.techpolis.studservice.screens.main.user_services.UserServicesMvpViewImpl
 import dev.techpolis.studservice.screens.main.datepicker.DatePickerMvpViewImpl
+import dev.techpolis.studservice.screens.main.search.SearchResultAdapter
 import dev.techpolis.studservice.screens.main.user_services.new.NewServiceMvpView
 import dev.techpolis.studservice.screens.main.user_services.new.NewServiceMvpViewImpl
 import dev.techpolis.studservice.screens.main.user_services.offers.UserServiceOffersMvpView
@@ -94,6 +95,11 @@ class MvpViewFactory @Inject constructor(
     ): ServicesAdapter =
         ServicesAdapter(listener, this, glide)
 
+    fun createSearchResultAdapter(listener: ServicesItemMvpView.Listener,
+                                  glide: RequestManager
+    ): SearchResultAdapter =
+        SearchResultAdapter(listener, this, glide)
+
     fun createServiceItemMvpView(
         parent: ViewGroup,
         listener: ServicesItemMvpView.Listener,
@@ -103,9 +109,11 @@ class MvpViewFactory @Inject constructor(
     }
 
     fun createSearchMvpView(parent: ViewGroup?): SearchMvpView {
-        return SearchMvpViewImpl(layoutInflater, parent)
+        return SearchMvpViewImpl(layoutInflater, parent, this)
     }
+
 
     fun createDatePickerMvpView(parent: ViewGroup?): DatePickerMvpView =
         DatePickerMvpViewImpl(layoutInflater, parent)
+
 }

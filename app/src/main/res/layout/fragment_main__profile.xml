@@ -76,27 +76,6 @@
             android:layout_marginEnd="30dp"
             tools:text="@string/fragment_main__profile__username" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__location_title"
-            style="@style/EditTextTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/location" />
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/edit_text_frame"
-            android:entries="@array/dormsList"
-            android:paddingStart="20dp"
-            android:paddingTop="15dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="15dp"
-            android:spinnerMode="dropdown"
-            android:textSize="25sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/fragment_main__profile__description_title"
