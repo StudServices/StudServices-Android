@@ -14,9 +14,9 @@ interface LocalServicesRepo {
         offset: Int
     ): Flow<List<ServiceEntity>>
 
-    fun readServicesByUser(userId: Long, limit: Int, offset: Int): Flow<List<ServiceEntity>>
+    fun readServicesByUser(userId: String, limit: Int, offset: Int): Flow<List<ServiceEntity>>
     fun readServicesByUserAndType(
-        userId: Long,
+        userId: String,
         type: ServiceTypeEnum,
         limit: Int,
         offset: Int

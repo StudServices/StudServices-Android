@@ -28,7 +28,7 @@ class LocalServicesRepoImpl @Inject constructor(
     }
 
     override fun readServicesByUser(
-        userId: Long,
+        userId: String,
         limit: Int,
         offset: Int
     ): Flow<List<ServiceEntity>> {
@@ -36,7 +36,7 @@ class LocalServicesRepoImpl @Inject constructor(
     }
 
     override fun readServicesByUserAndType(
-        userId: Long,
+        userId: String,
         type: ServiceTypeEnum,
         limit: Int,
         offset: Int

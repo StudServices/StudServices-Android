@@ -16,7 +16,7 @@ data class ServiceEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val title: String,
-    val ownerId: Long,
+    val ownerId: String,
     val description: String,
     val price: Int,
 

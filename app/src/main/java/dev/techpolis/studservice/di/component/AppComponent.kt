@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import dev.techpolis.studservice.di.module.AppModule
+import dev.techpolis.studservice.di.module.GoogleAuthModule
 import dev.techpolis.studservice.di.module.NetworkModule
 import dev.techpolis.studservice.di.module.RoomModule
 import javax.inject.Singleton
@@ -13,7 +14,8 @@ import javax.inject.Singleton
         AppModule::class,
         AppModule.Binds::class,
         RoomModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        GoogleAuthModule::class
     ]
 )
 @Singleton
