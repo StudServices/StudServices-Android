@@ -18,7 +18,7 @@ class RemoteServicesRepoImpl @Inject constructor(
     }
 
     override fun readServicesByUser(
-        userId: Long,
+        userId: String,
         limit: Int,
         offset: Int
     ): Flow<List<ServiceEntity>> {

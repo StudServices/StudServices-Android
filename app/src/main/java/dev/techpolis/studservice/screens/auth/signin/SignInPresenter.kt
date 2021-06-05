@@ -1,14 +1,13 @@
 package dev.techpolis.studservice.screens.auth.signin
 
+import android.content.Intent
 import android.util.Log
-import android.widget.Toast
+import androidx.activity.result.ActivityResult
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.interactors.AuthInteractor
+import dev.techpolis.studservice.interactors.GoogleAuthInteractor
 import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
@@ -20,6 +19,8 @@ class SignInPresenter(
     private val backPressDispatcher: BackPressDispatcher,
     private val authInteractor: AuthInteractor,
     private val userProvider: UserProvider,
+    private val loginIntentListener: LoginIntentListener,
+    private val googleAuthInteractor: GoogleAuthInteractor,
 ) : MvpPresenter<SignInMvpView>, SignInMvpView.Listener {
 
     private lateinit var view: SignInMvpView
@@ -28,7 +29,27 @@ class SignInPresenter(
         this.view = view
     }
 
+    fun handleResult(result: ActivityResult) {
+        val accountFromResource = googleAuthInteractor.getAccountFromIntent(result.data)
+        if (accountFromResource.status is Status.Success) {
+            val listener =
+                OnCompleteListener<AuthResult> { resultListener ->
+                    if (resultListener.isSuccessful) {
+                        userProvider.userId = resultListener.result!!.additionalUserInfo!!.providerId!!
+                        appScreenRouter.toMain()
+                    } else {
+                        view.unsuccessAuth()
+                    }
+                }
+            googleAuthInteractor.firebaseAuthWithGoogle(
+                accountFromResource.data!!.idToken!!,
+                listener
+            )
+        }
+    }
+
     override fun onStart() {
+        //TODO: Check user autentificate
         view.registerListener(this)
         backPressDispatcher.registerListener(this)
     }
@@ -43,17 +64,22 @@ class SignInPresenter(
     }
 
     override fun onSignInBtnClicked(username: String, password: String) {
-//        val listener =
-//            OnCompleteListener<AuthResult> { result ->
-//                if (result.isSuccessful) {
-//                    appScreenRouter.toMain()
-//                } else {
-//                    view.unsuccessAuth()
-//                }
-//            }
-//        authInteractor.signInWithEmailAndPassword(username, password, listener)
-        userProvider.userId = 2
-        appScreenRouter.toMain()
+        val listener =
+            OnCompleteListener<AuthResult> { result ->
+                if (result.isSuccessful) {
+                    userProvider.userId = result.result!!.additionalUserInfo!!.providerId!!
+                    appScreenRouter.toMain()
+                } else {
+                    view.unsuccessAuth()
+                }
+            }
+        authInteractor.signInWithEmailAndPassword(username, password, listener)
+    }
+
+    override fun onGoogleAuthBtnClicked() {
+        val signInIntent: Intent = googleAuthInteractor.getSignInIntent()
+        loginIntentListener.launchLoginForResult(signInIntent)
+
     }
 
     override fun onForgotPasswordTvClicked() {

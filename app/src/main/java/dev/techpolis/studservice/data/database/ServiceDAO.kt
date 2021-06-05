@@ -12,11 +12,11 @@ interface ServiceDAO {
     fun readAllService(): Flow<List<ServiceEntity>>
 
     @Query("SELECT * FROM ${ServiceEntity.TABLE_NAME} WHERE ownerId=:userId")
-    fun readAllServiceByUserId(userId: Long): Flow<List<ServiceEntity>>
+    fun readAllServiceByUserId(userId: String): Flow<List<ServiceEntity>>
 
     @Query("SELECT * FROM ${ServiceEntity.TABLE_NAME} WHERE ownerId=:userId AND type=:type")
     fun readAllServiceByUserIdAndType(
-        userId: Long,
+        userId: String,
         type: ServiceTypeEnum
     ): Flow<List<ServiceEntity>>
 
