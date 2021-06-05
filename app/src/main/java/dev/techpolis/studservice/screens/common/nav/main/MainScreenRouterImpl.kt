@@ -10,7 +10,6 @@ import dev.techpolis.studservice.di.qual.MainBundle
 import dev.techpolis.studservice.di.qual.MainFragmentManager
 import dev.techpolis.studservice.di.scope.MainScope
 import dev.techpolis.studservice.screens.main.MainMvpView
-import dev.techpolis.studservice.screens.main.map.MapFragment
 import dev.techpolis.studservice.screens.main.profile.ProfileFragment
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsFragment
 import dev.techpolis.studservice.screens.main.search.SearchFragment
@@ -74,7 +73,6 @@ class MainScreenRouterImpl @Inject constructor(
             INDEX_PROFILE -> ProfileFragment.newInstance()
             INDEX_SERVICES -> ServicesFragment.newInstance()
             INDEX_USER_SERVICES -> UserServicesFragment.newInstance()
-//            INDEX_SERVICE_INFO -> ServiceInfoFragment.newInstance()
             else -> throw IllegalStateException("Need to send an index that we know")
         }
     }
@@ -114,10 +112,6 @@ class MainScreenRouterImpl @Inject constructor(
     override fun toUserServices() {
         bottomBar.isBottomBarVisible(true)
         fragNavController.switchTab(INDEX_USER_SERVICES)
-    }
-
-    override fun toMap() {
-        fragNavController.pushFragment(MapFragment.newInstance())
     }
 
     override fun toSearchScreen() {

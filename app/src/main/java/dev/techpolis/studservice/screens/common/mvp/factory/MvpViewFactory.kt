@@ -12,8 +12,6 @@ import dev.techpolis.studservice.screens.auth.signup.SignUpMvpViewImpl
 import dev.techpolis.studservice.screens.main.MainMvpView
 import dev.techpolis.studservice.screens.main.MainMvpViewImpl
 import dev.techpolis.studservice.screens.main.datepicker.DatePickerMvpView
-import dev.techpolis.studservice.screens.main.map.MapMvpView
-import dev.techpolis.studservice.screens.main.map.MapMvpViewImpl
 import dev.techpolis.studservice.screens.main.profile.ProfileMvpView
 import dev.techpolis.studservice.screens.main.profile.ProfileMvpViewImpl
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpView
@@ -76,9 +74,6 @@ class MvpViewFactory @Inject constructor(
 
     fun createServiceInfoMvpView(parent: ViewGroup?): ServiceInfoMvpView =
         ServiceInfoMvpViewImpl(layoutInflater, parent)
-
-    fun createMapMvpView(parent: ViewGroup?): MapMvpView =
-        MapMvpViewImpl(layoutInflater, parent)
 
     fun createServicesMvpView(parent: ViewGroup?, fragment: Fragment): ServicesMvpView =
         ServicesMvpViewImpl(layoutInflater, parent, fragment)

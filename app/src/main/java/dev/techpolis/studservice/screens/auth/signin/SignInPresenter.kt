@@ -67,7 +67,7 @@ class SignInPresenter(
         val listener =
             OnCompleteListener<AuthResult> { result ->
                 if (result.isSuccessful) {
-                    userProvider.userId = result.result!!.additionalUserInfo!!.providerId!!
+                    userProvider.userId = result.result?.additionalUserInfo?.providerId ?: "2"
                     appScreenRouter.toMain()
                 } else {
                     view.unsuccessAuth()

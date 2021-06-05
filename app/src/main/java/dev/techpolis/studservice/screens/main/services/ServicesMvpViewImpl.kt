@@ -79,8 +79,8 @@ class ServicesMvpViewImpl(
 
         })
 
-        etSearch.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
+        etSearch.setOnFocusChangeListener { _, b ->
+            if (b) {
                 listeners.forEach { it.onSearchViewFocus() }
             }
         }

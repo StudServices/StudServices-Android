@@ -26,10 +26,11 @@ class UserServicesMvpViewImpl(
         layoutInflater.inflate(R.layout.fragment_main__user_services, parent, false)
     private val viewPager: ViewPager2 = findViewById(R.id.fragment_main__user_services_pager)
     private val tabLayout: TabLayout = findViewById(R.id.fragment_main__user_services_tab_layout)
-    private val edSearch: AppCompatEditText = findViewById(R.id.fragment_main_user_services__search_edit_text)
+    private val etSearch: AppCompatEditText =
+        findViewById(R.id.fragment_main_user_services__search_edit_text)
     private val selectedColor = getColorStateList(R.color.text_black)
     private val unselectedColor = getColorStateList(R.color.text_gray)
-    private val btnNew : AppCompatButton = findViewById(R.id.fragment_main__user_services__new_btn)
+    private val btnNew: AppCompatButton = findViewById(R.id.fragment_main__user_services__new_btn)
 
     init {
         viewPager.adapter = ViewPagerAdapter(fragment)
@@ -79,7 +80,7 @@ class UserServicesMvpViewImpl(
 
         })
 
-        edSearch.setOnFocusChangeListener { _, b ->
+        etSearch.setOnFocusChangeListener { _, b ->
             if (b) {
                 listeners.forEach { it.onSearchViewFocus() }
             }

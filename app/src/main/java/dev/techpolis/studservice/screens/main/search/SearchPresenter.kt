@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.util.*
 
 class SearchPresenter(
     private val serviceInteractor: ServiceInteractor,
@@ -22,7 +23,7 @@ class SearchPresenter(
     private val filtersProvider: FiltersProvider,
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
-): MvpPresenter<SearchMvpView>, SearchMvpView.Listener, FiltersMvpView.Listener {
+) : MvpPresenter<SearchMvpView>, SearchMvpView.Listener, FiltersMvpView.Listener {
 
     private lateinit var view: SearchMvpView
     private lateinit var filtersMvpView: FiltersMvpView
@@ -44,6 +45,7 @@ class SearchPresenter(
         filtersMvpView.registerListener(this)
         backPressDispatcher.registerListener(this)
         filtersMvpView.setContentVisible(filtersProvider.isContentVisible)
+        view.setClearIconVisibility(filtersProvider.title.isNotEmpty())
     }
 
     override fun onStop() {
@@ -72,24 +74,19 @@ class SearchPresenter(
 
     override fun onClearIconClicked() {
         view.clearSearchFieldText()
+        filtersProvider.title = ""
+        initFilteredData()
     }
 
-    override fun onApplyButtonClicked(
-        priceFrom: Int,
-        priceTo: Int,
-    ) {
+    override fun onApplyButtonClicked(priceFrom: Int, priceTo: Int) {
         filtersProvider.priceFrom = priceFrom
         filtersProvider.priceTo = priceTo
         initFilteredData()
     }
 
     override fun onArrowClicked(isContentVisible: Boolean) {
-        if (isContentVisible) {
-            filtersMvpView.setContentVisible(false)
-        } else {
-            filtersMvpView.setContentVisible(true)
-        }
         filtersProvider.isContentVisible = !isContentVisible
+        filtersMvpView.setContentVisible(filtersProvider.isContentVisible)
     }
 
     override fun onServiceClicked(service: ServiceEntity) {
@@ -147,9 +144,13 @@ class SearchPresenter(
     }
 
     private fun filterPredicate(se: ServiceEntity): Boolean {
-       return se.tagList.containsAll(filtersProvider.tags) &&
-                se.price >= filtersProvider.priceFrom && se.price <= filtersProvider.priceTo &&
-                ( filtersProvider.type == se.type || filtersProvider.type == null ) &&
-                ( filtersProvider.title.isEmpty() || se.title.contains(filtersProvider.title) )
+        return se.tagList.map { it.toLowerCase(Locale.ROOT) }
+            .containsAll(filtersProvider.tags.map { it.toLowerCase(Locale.ROOT) })
+                && se.price in filtersProvider.priceFrom..filtersProvider.priceTo
+                && (filtersProvider.type == null || filtersProvider.type == se.type)
+                && (filtersProvider.title.isEmpty() || se.title.contains(
+            filtersProvider.title,
+            ignoreCase = true
+        ))
     }
 }

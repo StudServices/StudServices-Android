@@ -15,7 +15,6 @@ import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 import dev.techpolis.studservice.screens.main.MainPresenter
-import dev.techpolis.studservice.screens.main.map.MapPresenter
 import dev.techpolis.studservice.screens.main.profile.ProfilePresenter
 import dev.techpolis.studservice.screens.main.profile.settings.SettingsPresenter
 import dev.techpolis.studservice.screens.main.search.SearchPresenter
@@ -39,7 +38,7 @@ class PresenterFactory @Inject constructor(
     private val serviceInfoProvider: ServiceInfoProvider,
     private val newServiceProvider: NewServiceProvider,
     private val userProvider: UserProvider,
-    private val filtersProvider: FiltersProvider
+    private val filtersProvider: FiltersProvider,
     private val googleAuthInteractor: GoogleAuthInteractor,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
@@ -119,10 +118,6 @@ class PresenterFactory @Inject constructor(
 
     fun createSettingsPresenter(): SettingsPresenter {
         return SettingsPresenter(mainScreenRouter, backPressDispatcher)
-    }
-
-    fun createMapPresenter(): MapPresenter {
-        return MapPresenter()
     }
 
     fun createSearchPresenter(): SearchPresenter {
