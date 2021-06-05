@@ -11,6 +11,7 @@ import dev.techpolis.studservice.screens.auth.signup.SignUpMvpView
 import dev.techpolis.studservice.screens.auth.signup.SignUpMvpViewImpl
 import dev.techpolis.studservice.screens.main.MainMvpView
 import dev.techpolis.studservice.screens.main.MainMvpViewImpl
+import dev.techpolis.studservice.screens.main.datepicker.DatePickerMvpView
 import dev.techpolis.studservice.screens.main.map.MapMvpView
 import dev.techpolis.studservice.screens.main.map.MapMvpViewImpl
 import dev.techpolis.studservice.screens.main.profile.ProfileMvpView
@@ -111,7 +112,8 @@ class MvpViewFactory @Inject constructor(
         return SearchMvpViewImpl(layoutInflater, parent, this)
     }
 
-    fun createDatePickerMvpView(parent: ViewGroup?, fragment: Fragment): DatePickerMvpViewImpl =
-        DatePickerMvpViewImpl(layoutInflater, parent, fragment)
+
+    fun createDatePickerMvpView(parent: ViewGroup?): DatePickerMvpView =
+        DatePickerMvpViewImpl(layoutInflater, parent)
 
 }

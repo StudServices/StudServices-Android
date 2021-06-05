@@ -6,6 +6,7 @@ import dev.techpolis.studservice.screens.common.nav.BackPressedListener
 interface SignInMvpView : MvpViewObservable<SignInMvpView.Listener> {
     interface Listener : BackPressedListener {
         fun onSignInBtnClicked(username: String, password: String)
+        fun onGoogleAuthBtnClicked()
         fun onForgotPasswordTvClicked()
         fun onHaveNotAccTvClicked()
         fun onUsernameFieldTextChanged(text: String)

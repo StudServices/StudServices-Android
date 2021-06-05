@@ -52,7 +52,7 @@ class ServiceInteractor @Inject constructor(
         }
 
     suspend fun getUserServices(
-        userId: Long,
+        userId: String,
         type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =
         withContext(ioDispatcher) {
@@ -67,7 +67,7 @@ class ServiceInteractor @Inject constructor(
 
     suspend fun addUserService(
         title: String,
-        userId: Long,
+        userId: String,
         description: String,
         price: Int,
         tagList: List<String>,

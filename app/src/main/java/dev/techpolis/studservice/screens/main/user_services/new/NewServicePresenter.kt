@@ -59,7 +59,7 @@ class NewServicePresenter(
         coroutineScope.launch {
             serviceInteractor.addUserService(
                 title,
-                2,
+                "2",
                 description,
                 price,
                 newServiceProvider.tags,

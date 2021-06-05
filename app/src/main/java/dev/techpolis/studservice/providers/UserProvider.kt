@@ -6,5 +6,5 @@ import kotlin.properties.Delegates
 
 @Singleton
 class UserProvider @Inject constructor(){
-    var userId by Delegates.notNull<Long>()
+    var userId by Delegates.notNull<String>()
 }

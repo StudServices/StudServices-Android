@@ -39,17 +39,16 @@ class SignUpPresenter(
     }
 
     override fun onSignUpBtnClicked(username: String, email: String, password: String) {
-//        val listener =
-//            OnCompleteListener<AuthResult> { result ->
-//                if (result.isSuccessful) {
-//                    appScreenRouter.toMain()
-//                } else {
-//                    view.unsuccessSignUp()
-//                }
-//            }
-//        authInteractor.signUpWithEmailAndPassword(email, password, listener)
-        userProvider.userId = 2
-        appScreenRouter.toMain()
+        val listener =
+            OnCompleteListener<AuthResult> { result ->
+                if (result.isSuccessful) {
+                    userProvider.userId = result.result!!.additionalUserInfo!!.providerId!!
+                    appScreenRouter.toMain()
+                } else {
+                    view.unsuccessSignUp()
+                }
+            }
+        authInteractor.signUpWithEmailAndPassword(email, password, listener)
     }
 
     override fun onHaveAccTvClicked() {

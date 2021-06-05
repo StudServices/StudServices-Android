@@ -20,7 +20,7 @@ class DatePickerFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: DatePickerMvpView = mvpViewFactory.createDatePickerMvpView(container, this)
+        val view: DatePickerMvpView = mvpViewFactory.createDatePickerMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }

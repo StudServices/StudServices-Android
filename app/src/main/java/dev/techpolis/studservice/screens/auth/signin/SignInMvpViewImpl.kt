@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.widget.doOnTextChanged
 import dev.techpolis.studservice.R
@@ -22,6 +23,7 @@ class SignInMvpViewImpl (
     private val etUsername: AppCompatEditText = findViewById(R.id.fragment_auth__sign_in__login)
     private val etPassword: AppCompatEditText = findViewById(R.id.fragment_auth__sign_in__password)
     private val ibSignIn: AppCompatButton = findViewById(R.id.fragment_auth__sign_in__button)
+    private val ibGoogleAuth: AppCompatImageButton = findViewById(R.id.fragment_auth__google_sign_in_button)
     private val tvHaveNotAcc: AppCompatTextView = findViewById(R.id.fragment_auth__sign_in__link)
 
     init {
@@ -49,6 +51,12 @@ class SignInMvpViewImpl (
                     username = etUsername.text.toString(),
                     password = etPassword.text.toString()
                 )
+            }
+        }
+
+        ibGoogleAuth.setOnClickListener{
+            listeners.forEach{
+                it.onGoogleAuthBtnClicked()
             }
         }
     }

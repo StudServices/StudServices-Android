@@ -14,7 +14,6 @@ import java.util.*
 class DatePickerMvpViewImpl(
     layoutInflater: LayoutInflater,
     parent: ViewGroup?,
-    fragment: Fragment,
 ) : MvpViewObservableBase<DatePickerMvpView.Listener>(), DatePickerMvpView {
 
     override var rootView: View =

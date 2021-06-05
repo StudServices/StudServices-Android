@@ -2,11 +2,13 @@ package dev.techpolis.studservice.screens.common.mvp.factory
 
 import dev.techpolis.studservice.di.scope.ActivityScope
 import dev.techpolis.studservice.interactors.AuthInteractor
+import dev.techpolis.studservice.interactors.GoogleAuthInteractor
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.FiltersProvider
 import dev.techpolis.studservice.providers.NewServiceProvider
 import dev.techpolis.studservice.providers.ServiceInfoProvider
 import dev.techpolis.studservice.providers.UserProvider
+import dev.techpolis.studservice.screens.auth.signin.LoginIntentListener
 import dev.techpolis.studservice.screens.auth.signin.SignInPresenter
 import dev.techpolis.studservice.screens.auth.signup.SignUpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
@@ -38,12 +40,13 @@ class PresenterFactory @Inject constructor(
     private val newServiceProvider: NewServiceProvider,
     private val userProvider: UserProvider,
     private val filtersProvider: FiltersProvider
+    private val googleAuthInteractor: GoogleAuthInteractor,
 ) {
     lateinit var mainScreenRouter: MainScreenRouter
 
 
-    fun createSignInPresenter(): SignInPresenter =
-        SignInPresenter(appScreenRouter, backPressDispatcher, authInteractor, userProvider)
+    fun createSignInPresenter(loginIntentListener: LoginIntentListener): SignInPresenter =
+        SignInPresenter(appScreenRouter, backPressDispatcher, authInteractor, userProvider, loginIntentListener, googleAuthInteractor)
 
     fun createSignUpPresenter(): SignUpPresenter =
         SignUpPresenter(appScreenRouter, backPressDispatcher, authInteractor, userProvider)
