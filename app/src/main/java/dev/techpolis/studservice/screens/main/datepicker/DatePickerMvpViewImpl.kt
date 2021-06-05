@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import dev.techpolis.studservice.R
 import dev.techpolis.studservice.screens.common.mvp.MvpViewObservableBase
+import java.util.*
 
 class DatePickerMvpViewImpl(
     layoutInflater: LayoutInflater,
@@ -24,6 +25,8 @@ class DatePickerMvpViewImpl(
     private val backBtn: AppCompatImageButton = findViewById(R.id.fragment_main_user_services__date_picker__back_btn)
 
     init {
+        picker.minDate = Calendar.getInstance().timeInMillis
+
         okBtn.setOnClickListener {
             listeners.forEach {
                 it.onOkBtnClicked(

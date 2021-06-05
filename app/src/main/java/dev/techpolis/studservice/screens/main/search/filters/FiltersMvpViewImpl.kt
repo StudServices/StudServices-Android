@@ -30,8 +30,6 @@ class FiltersMvpViewImpl(
 
     private val contentFilter: ViewGroup = findViewById(R.id.fragment_main__filters__content)
 
-    private val spnLocation: AppCompatSpinner =
-        findViewById(R.id.fragment_main__filters__location_spn)
     private val cgTags: ChipGroup = findViewById(R.id.fragment_main__filters__cgTags)
 
     private val etNewChip: AppCompatEditText =
@@ -45,14 +43,14 @@ class FiltersMvpViewImpl(
     private val unselectedColor = getColorStateList(R.color.text_gray)
 
     init {
+
         ibArrow.setOnClickListener { listeners.forEach { it.onArrowClicked(contentFilter.isVisible) } }
 
         btnApply.setOnClickListener {
             listeners.forEach {
-                it.onFiltersChanged(
-                    serviceType = getServiceTypeEnum(),
-                    location = spnLocation.selectedItem.toString(),
-                    tags = getTagsList()
+                it.onApplyButtonClicked(
+                    priceFrom = getPriceFrom(),
+                    priceTo = getPriceTo()
                 )
             }
         }
@@ -71,6 +69,9 @@ class FiltersMvpViewImpl(
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     val textView = tab?.getTextView() ?: return
                     textView.makeSelectedStyle()
+                    listeners.forEach {
+                        it.onTabSelected(getServiceTypeEnum())
+                    }
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -94,7 +95,19 @@ class FiltersMvpViewImpl(
 
     }
 
-    private fun getTagsList(): List<String> {
+
+
+    private fun getPriceTo(): Int{
+        val price = etPriceTo.text.toString()
+        return if (price != "") price.toInt() else Int.MAX_VALUE
+    }
+
+    private fun getPriceFrom(): Int{
+        val price = etPriceFrom.text.toString()
+        return if (price != "") price.toInt() else Int.MIN_VALUE
+    }
+
+    private fun getTagList(): List<String> {
         val checkedChipsText = mutableListOf<String>()
         for (chip in cgTags.children) {
             checkedChipsText.add((chip as Chip).text.toString())
@@ -103,10 +116,12 @@ class FiltersMvpViewImpl(
     }
 
     private fun getServiceTypeEnum() =
-        if (tlType.selectedTabPosition == 0)
-            ServiceTypeEnum.OFFER
-        else
-            ServiceTypeEnum.REQUEST
+        when (tlType.selectedTabPosition) {
+            0 -> ServiceTypeEnum.OFFER
+            1 -> ServiceTypeEnum.REQUEST
+            else -> null
+        }
+
 
     private fun TabLayout.addTabWithText(text: String, isSelected: Boolean) {
         val tabContainer = LayoutInflater.from(context)
@@ -150,6 +165,37 @@ class FiltersMvpViewImpl(
         listeners.forEach { it.onChipAdded(tagText) }
         cgTags.addView(newChip)
         etNewChip.text?.clear()
+    }
+
+    private fun addChip(tagText: String) {
+        val newChip = layoutInflater.inflate(R.layout.custom_chip_closable, cgTags, false) as Chip
+        newChip.apply {
+            text = tagText
+            setOnCloseIconClickListener {
+                listeners.forEach { it.onChipDeleted(tagText) }
+                cgTags.removeView(newChip)
+            }
+        }
+        cgTags.addView(newChip)
+        etNewChip.text?.clear()
+    }
+
+    override fun setTagList(tagList: List<String>) {
+        tagList.forEach {
+            addChip(it)
+        }
+    }
+
+    override fun setTypeTab(type: ServiceTypeEnum?) {
+        tlType.selectTab(
+            tlType.getTabAt(
+                when (type) {
+                    ServiceTypeEnum.OFFER -> 0
+                    ServiceTypeEnum.REQUEST -> 1
+                    else -> 2
+                }
+            )
+        )
     }
 
     private fun AppCompatTextView.makeSelectedStyle() {
