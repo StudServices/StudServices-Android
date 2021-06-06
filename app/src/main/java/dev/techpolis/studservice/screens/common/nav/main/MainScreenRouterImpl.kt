@@ -10,13 +10,13 @@ import dev.techpolis.studservice.di.qual.MainBundle
 import dev.techpolis.studservice.di.qual.MainFragmentManager
 import dev.techpolis.studservice.di.scope.MainScope
 import dev.techpolis.studservice.screens.main.MainMvpView
-import dev.techpolis.studservice.screens.main.profile.ProfileFragment
-import dev.techpolis.studservice.screens.main.profile.settings.SettingsFragment
 import dev.techpolis.studservice.screens.main.search.SearchFragment
 import dev.techpolis.studservice.screens.main.service_info.ServiceInfoFragment
 import dev.techpolis.studservice.screens.main.services.ServicesFragment
 import dev.techpolis.studservice.screens.main.user_services.UserServicesFragment
 import dev.techpolis.studservice.screens.main.datepicker.DatePickerFragment
+import dev.techpolis.studservice.screens.main.my_profile.MyProfileFragment
+import dev.techpolis.studservice.screens.main.profile.ProfileFragment
 import dev.techpolis.studservice.screens.main.user_services.new.NewServiceFragment
 import javax.inject.Inject
 
@@ -28,7 +28,7 @@ class MainScreenRouterImpl @Inject constructor(
 
     companion object {
         const val TAG = "MainScreenRouterImpl"
-        const val INDEX_PROFILE = FragNavController.TAB1
+        const val INDEX_MY_PROFILE = FragNavController.TAB1
         const val INDEX_SERVICES = FragNavController.TAB2
         const val INDEX_USER_SERVICES = FragNavController.TAB3
         const val INDEX_SERVICE_INFO = FragNavController.TAB4
@@ -70,7 +70,7 @@ class MainScreenRouterImpl @Inject constructor(
 
     override fun getRootFragment(index: Int): Fragment {
         return when (index) {
-            INDEX_PROFILE -> ProfileFragment.newInstance()
+            INDEX_MY_PROFILE -> MyProfileFragment.newInstance()
             INDEX_SERVICES -> ServicesFragment.newInstance()
             INDEX_USER_SERVICES -> UserServicesFragment.newInstance()
             else -> throw IllegalStateException("Need to send an index that we know")
@@ -83,20 +83,20 @@ class MainScreenRouterImpl @Inject constructor(
             bottomBar.isBottomBarVisible(true)
             when (fragNavController.currentStackIndex) {
                 INDEX_USER_SERVICES -> bottomBar.bottomBarSetSelected(R.id.menu_item__userServices)
-                INDEX_PROFILE -> bottomBar.bottomBarSetSelected(R.id.menu_item__profile)
+                INDEX_MY_PROFILE -> bottomBar.bottomBarSetSelected(R.id.menu_item__my_profile)
                 INDEX_SERVICES -> bottomBar.bottomBarSetSelected(R.id.menu_item__services)
             }
         }
 
     }
 
-    override fun toProfile() {
+    override fun toMyProfile() {
         bottomBar.isBottomBarVisible(true)
-        fragNavController.switchTab(INDEX_PROFILE)
+        fragNavController.switchTab(INDEX_MY_PROFILE)
     }
 
-    override fun toProfileSettings() {
-        fragNavController.pushFragment(SettingsFragment.newInstance())
+    override fun toProfile() {
+        fragNavController.pushFragment(ProfileFragment.newInstance())
     }
 
     override fun toServiceInfo() {

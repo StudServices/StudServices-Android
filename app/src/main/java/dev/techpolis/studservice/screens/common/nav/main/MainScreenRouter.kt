@@ -7,8 +7,8 @@ import dev.techpolis.studservice.screens.common.mvp.MvpView
 import dev.techpolis.studservice.screens.main.MainMvpView
 
 interface MainScreenRouter : FragNavController.RootFragmentListener {
+    fun toMyProfile()
     fun toProfile()
-    fun toProfileSettings()
     fun toServiceInfo()
     fun toServices()
     fun toUserServices()

@@ -1,16 +1,18 @@
-package dev.techpolis.studservice.screens.main.profile.settings
+package dev.techpolis.studservice.screens.main.my_profile
 
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
+import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 
-class SettingsPresenter(
+class MyProfilePresenter(
+    private val appScreenRouter: AppScreenRouter,
     private val mainScreenRouter: MainScreenRouter,
-    private val backPressDispatcher: BackPressDispatcher,
-) : MvpPresenter<SettingsMvpView>, SettingsMvpView.Listener {
-    private lateinit var view: SettingsMvpView
+    private val backPressDispatcher: BackPressDispatcher
+): MvpPresenter<MyProfileMvpView>, MyProfileMvpView.Listener {
+    private lateinit var view: MyProfileMvpView
 
-    override fun bindView(view: SettingsMvpView) {
+    override fun bindView(view: MyProfileMvpView) {
         this.view = view
     }
 
@@ -25,20 +27,14 @@ class SettingsPresenter(
     }
 
     override fun onDestroy() {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
 
-    override fun onGeographyChanged(geography: String) {
-        TODO("Not yet implemented")
-    }
-
-
-    override fun onDescriptionFieldTextChanged(text: String) {
-        TODO("Not yet implemented")
+    override fun onLogoutBtnClicked() {
+        appScreenRouter.toAuth()
     }
 
     override fun onBackPressed(): Boolean {
-//        TODO("Not yet implemented")
         return false
     }
 }

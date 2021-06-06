@@ -37,7 +37,7 @@ class MainPresenter(
         when (item.itemId) {
             R.id.menu_item__userServices -> mainScreenRouter.toUserServices()
             R.id.menu_item__services -> mainScreenRouter.toServices()
-            R.id.menu_item__profile -> mainScreenRouter.toProfile()
+            R.id.menu_item__my_profile -> mainScreenRouter.toMyProfile()
         }
     }
 

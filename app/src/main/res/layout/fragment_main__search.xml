@@ -68,6 +68,20 @@
             android:layout_marginEnd="20dp"
             android:animateLayoutChanges="true" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_main__search__not_found_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:text="@string/fragment_main__search__not_found_tv"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_main__search__recycler"
             android:layout_width="match_parent"

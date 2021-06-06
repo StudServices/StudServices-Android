@@ -1,7 +1,6 @@
 package dev.techpolis.studservice.screens.auth.signin
 
 import android.content.Intent
-import android.util.Log
 import androidx.activity.result.ActivityResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -64,6 +63,9 @@ class SignInPresenter(
     }
 
     override fun onSignInBtnClicked(username: String, password: String) {
+        if (username.isEmpty() || password.isEmpty()) {
+            return
+        }
         val listener =
             OnCompleteListener<AuthResult> { result ->
                 if (result.isSuccessful) {
