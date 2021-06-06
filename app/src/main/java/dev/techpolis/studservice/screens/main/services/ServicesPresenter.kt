@@ -4,7 +4,6 @@ import android.util.Log
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
-import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouterImpl
 
 class ServicesPresenter(
     private val backPressDispatcher: BackPressDispatcher,

@@ -16,7 +16,6 @@ import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
 import dev.techpolis.studservice.screens.main.MainPresenter
 import dev.techpolis.studservice.screens.main.profile.ProfilePresenter
-import dev.techpolis.studservice.screens.main.profile.settings.SettingsPresenter
 import dev.techpolis.studservice.screens.main.search.SearchPresenter
 import dev.techpolis.studservice.screens.main.service_info.ServiceInfoPresenter
 import dev.techpolis.studservice.screens.main.services.ServicesPresenter
@@ -24,6 +23,7 @@ import dev.techpolis.studservice.screens.main.services.offers.ServiceOffersPrese
 import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsPresenter
 import dev.techpolis.studservice.screens.main.user_services.UserServicesPresenter
 import dev.techpolis.studservice.screens.main.datepicker.DatePickerPresenter
+import dev.techpolis.studservice.screens.main.my_profile.MyProfilePresenter
 import dev.techpolis.studservice.screens.main.user_services.new.NewServicePresenter
 import dev.techpolis.studservice.screens.main.user_services.offers.UserServiceOffersPresenter
 import dev.techpolis.studservice.screens.main.user_services.requests.UserServiceRequestsPresenter
@@ -54,7 +54,7 @@ class PresenterFactory @Inject constructor(
         MainPresenter(mainScreenRouter, backPressDispatcher)
 
     fun createProfilePresenter(): ProfilePresenter {
-        return ProfilePresenter(appScreenRouter, mainScreenRouter, backPressDispatcher)
+        return ProfilePresenter(mainScreenRouter, backPressDispatcher)
     }
 
     fun createServiceRequestPresenter(): ServiceRequestsPresenter {
@@ -116,9 +116,6 @@ class PresenterFactory @Inject constructor(
         return ServiceInfoPresenter(serviceInfoProvider, backPressDispatcher, mainScreenRouter)
     }
 
-    fun createSettingsPresenter(): SettingsPresenter {
-        return SettingsPresenter(mainScreenRouter, backPressDispatcher)
-    }
 
     fun createSearchPresenter(): SearchPresenter {
         return SearchPresenter(serviceInteractor, serviceInfoProvider, filtersProvider, mainScreenRouter, backPressDispatcher)
@@ -126,6 +123,10 @@ class PresenterFactory @Inject constructor(
 
     fun createDatePickerPresenter(): DatePickerPresenter {
         return DatePickerPresenter(mainScreenRouter, backPressDispatcher, newServiceProvider)
+    }
+
+    fun createMyProfilePresenter(): MyProfilePresenter {
+        return MyProfilePresenter(appScreenRouter, mainScreenRouter, backPressDispatcher)
     }
 
 }

@@ -12,10 +12,6 @@ import dev.techpolis.studservice.screens.auth.signup.SignUpMvpViewImpl
 import dev.techpolis.studservice.screens.main.MainMvpView
 import dev.techpolis.studservice.screens.main.MainMvpViewImpl
 import dev.techpolis.studservice.screens.main.datepicker.DatePickerMvpView
-import dev.techpolis.studservice.screens.main.profile.ProfileMvpView
-import dev.techpolis.studservice.screens.main.profile.ProfileMvpViewImpl
-import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpView
-import dev.techpolis.studservice.screens.main.profile.settings.SettingsMvpViewImpl
 import dev.techpolis.studservice.screens.main.search.SearchMvpView
 import dev.techpolis.studservice.screens.main.search.SearchMvpViewImpl
 import dev.techpolis.studservice.screens.main.service_info.ServiceInfoMvpView
@@ -32,6 +28,10 @@ import dev.techpolis.studservice.screens.main.services.requests.ServiceRequestsM
 import dev.techpolis.studservice.screens.main.user_services.UserServicesMvpView
 import dev.techpolis.studservice.screens.main.user_services.UserServicesMvpViewImpl
 import dev.techpolis.studservice.screens.main.datepicker.DatePickerMvpViewImpl
+import dev.techpolis.studservice.screens.main.my_profile.MyProfileMvpView
+import dev.techpolis.studservice.screens.main.my_profile.MyProfileMvpViewImpl
+import dev.techpolis.studservice.screens.main.profile.ProfileMvpView
+import dev.techpolis.studservice.screens.main.profile.ProfileMvpViewImpl
 import dev.techpolis.studservice.screens.main.search.SearchResultAdapter
 import dev.techpolis.studservice.screens.main.user_services.new.NewServiceMvpView
 import dev.techpolis.studservice.screens.main.user_services.new.NewServiceMvpViewImpl
@@ -66,11 +66,11 @@ class MvpViewFactory @Inject constructor(
     fun createNewServiceMvpView(parent: ViewGroup?): NewServiceMvpView =
         NewServiceMvpViewImpl(layoutInflater, parent)
 
-    fun createSettingsMvpView(parent: ViewGroup?): SettingsMvpView =
-        SettingsMvpViewImpl(layoutInflater, parent)
-
     fun createProfileMvpView(parent: ViewGroup?): ProfileMvpView =
         ProfileMvpViewImpl(layoutInflater, parent)
+
+    fun createMyProfileMvpView(parent: ViewGroup?): MyProfileMvpView =
+        MyProfileMvpViewImpl(layoutInflater, parent)
 
     fun createServiceInfoMvpView(parent: ViewGroup?): ServiceInfoMvpView =
         ServiceInfoMvpViewImpl(layoutInflater, parent)
@@ -107,8 +107,6 @@ class MvpViewFactory @Inject constructor(
         return SearchMvpViewImpl(layoutInflater, parent, this)
     }
 
-
     fun createDatePickerMvpView(parent: ViewGroup?): DatePickerMvpView =
         DatePickerMvpViewImpl(layoutInflater, parent)
-
 }

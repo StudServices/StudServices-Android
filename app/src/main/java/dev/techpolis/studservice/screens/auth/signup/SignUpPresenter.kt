@@ -1,15 +1,12 @@
 package dev.techpolis.studservice.screens.auth.signup
 
-import android.util.Log
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
-import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
-import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouterImpl
 
 class SignUpPresenter(
     private val appScreenRouter: AppScreenRouter,

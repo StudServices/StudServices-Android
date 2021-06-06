@@ -33,7 +33,7 @@ class ServiceInfoPresenter(
     }
 
     override fun onContactBtnClicked() {
-//        TODO("Not yet implemented")
+        mainScreenRouter.toProfile()
     }
 
     override fun onBackArrowBtnClicked() {

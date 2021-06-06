@@ -13,54 +13,45 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fragment_main__profile__top_bar"
+        <RelativeLayout
+            android:id="@+id/fragment_main__my_profile__top_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/fragment_main__profile__back_btn"
-                android:layout_width="35dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/ic_back_arrow"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_main__my_profile__fr_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/my_profile"
+                android:textColor="@color/dark"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/fragment_main__profile__fr_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/dark"
-                android:textSize="36sp"
-                app:layout_constraintBottom_toBottomOf="@+id/fragment_main__profile__back_btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@+id/fragment_main__profile__back_btn"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/profile"
-                />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/fragment_main__my_profile__logout_btn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/ic_logout" />
+        </RelativeLayout>
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__name_title"
+            android:id="@+id/fragment_main__my_profile__name_title"
             style="@style/EditTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_main__my_profile__name_title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__title"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/fragment_main__my_profile__title"
             style="@style/EditTextStyle"
-            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -69,16 +60,15 @@
             tools:text="Name" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__username_title"
+            android:id="@+id/fragment_main__my_profile__username_title"
             style="@style/EditTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_main__profile__username" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__username"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/fragment_main__my_profile__username"
             style="@style/EditTextStyle"
-            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -88,16 +78,15 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__description_title"
+            android:id="@+id/fragment_main__my_profile__description_title"
             style="@style/EditTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fragment_main__profile__description" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__description"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/fragment_main__my_profile__description"
             style="@style/EditTextStyle.Text"
-            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -109,16 +98,15 @@
             tools:text="С другой стороны постоянное информационно-пропагандистское обеспечение нашей деятельности обеспечивает широкому кругу (специалистов) участие в формировании позиций, занимаемых участниками в отношении поставленных задач. Идейные соображения высшего порядка, а также укрепление и развитие структуры играет важную роль в формировании существенных финансовых и административных условий. Значимость этих проблем настолько очевидна, что дальнейшее развитие различных форм деятельности обеспечивает широкому кругу (специалистов) участие в формировании новых предложений." />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__contacts_title"
+            android:id="@+id/fragment_main__my_profile__contacts_title"
             style="@style/EditTextTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contacts" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/fragment_main__profile__contacts"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/fragment_main__my_profile__contacts"
             style="@style/EditTextStyle.Text"
-            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"

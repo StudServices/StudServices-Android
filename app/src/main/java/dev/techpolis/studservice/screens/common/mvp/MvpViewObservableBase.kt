@@ -1,5 +1,7 @@
 package dev.techpolis.studservice.screens.common.mvp
 
+import dev.techpolis.studservice.screens.main.my_profile.MyProfilePresenter
+
 abstract class MvpViewObservableBase<ListenerType>
     : MvpViewBase(), MvpViewObservable<ListenerType> {
 

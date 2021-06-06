@@ -14,9 +14,13 @@ class ProfileMvpViewImpl(
     override var rootView: View =
         layoutInflater.inflate(R.layout.fragment_main__profile, parent, false)
 
-    private val ibLogout: AppCompatImageButton = findViewById(R.id.fragment_main__profile__logout_btn)
+    private val backBtn: AppCompatImageButton = findViewById(R.id.fragment_main__profile__back_btn)
 
     init {
-        ibLogout.setOnClickListener { listeners.forEach { it.onLogoutBtnClicked() } }
+        backBtn.setOnClickListener {
+            listeners.forEach {
+                it.onBackBtnClicked()
+            }
+        }
     }
 }

@@ -1,26 +1,26 @@
-package dev.techpolis.studservice.screens.main.profile.settings
+package dev.techpolis.studservice.screens.main.my_profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import dev.techpolis.studservice.screens.common.base.BaseFragment
 
-class SettingsFragment : BaseFragment() {
+class MyProfileFragment : BaseFragment() {
 
-    private lateinit var presenter: SettingsPresenter
+    private lateinit var presenter: MyProfilePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = presenterFactory.createSettingsPresenter()
+        presenter = presenterFactory.createMyProfilePresenter()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: SettingsMvpView = mvpViewFactory.createSettingsMvpView(container)
+        val view: MyProfileMvpView = mvpViewFactory.createMyProfileMvpView(container)
         presenter.bindView(view)
         return view.rootView
     }
@@ -31,17 +31,17 @@ class SettingsFragment : BaseFragment() {
     }
 
     override fun onStop() {
-        presenter.onStop()
         super.onStop()
+        presenter.onStop()
     }
 
     override fun onDestroy() {
-        presenter.onDestroy()
         super.onDestroy()
+        presenter.onDestroy()
     }
 
     companion object {
-        fun newInstance(): Fragment = SettingsFragment()
+        fun newInstance(): Fragment = MyProfileFragment()
     }
 
 }
