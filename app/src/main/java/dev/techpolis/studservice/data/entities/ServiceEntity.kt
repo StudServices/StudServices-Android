@@ -1,6 +1,5 @@
 package dev.techpolis.studservice.data.entities
 
-import android.app.Service
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter

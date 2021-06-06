@@ -210,12 +210,12 @@ class FiltersMvpViewImpl(
         setPadding(0, 0, 0, 0)
     }
 
-    override fun setContentVisible(isContentVisible: Boolean) {
+    override fun setContentVisible(isContentVisible: Boolean, withAnimation: Boolean) {
         contentFilter.apply {
             if (isContentVisible) {
-                expand()
+                if (withAnimation) expand() else isVisible = true
             } else {
-                collapse()
+                if (withAnimation) collapse() else isVisible = false
             }
         }
         ibArrow.setBackgroundResource(if (isContentVisible) R.drawable.ic_arrow_up else R.drawable.ic_arrow_down)

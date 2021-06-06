@@ -35,17 +35,17 @@ class ServiceInteractor @Inject constructor(
             try {
                 val cacheServices = localServicesRepo.readServicesByType(type, 100, 0).firstOrNull()
                 if (cacheServices.isNullOrEmpty()) {
-                    val newServices = mutableListOf<ServiceEntity>()
-                    newServices.addAll(generateOffers(ServiceTypeEnum.OFFER))
-                    newServices.addAll(generateOffers(ServiceTypeEnum.REQUEST))
+                    val newServices =
+//                        remoteServicesRepo.readServicesByType(type, 100, 0)
+                        generateOffers(type)
                     localServicesRepo.addServices(newServices)
                     Log.e(
                         TAG,
                         newServices.joinToString(separator = "\n", prefix = "NEW SERVICES:\n")
                     )
-                    return@withContext getServices(type)
+                    return@withContext Resource.success(newServices)
                 }
-                return@withContext Resource.success(cacheServices)
+                return@withContext Resource.success(cacheServices ?: emptyList())
             } catch (t: Throwable) {
                 return@withContext Resource.error()
             }
@@ -59,6 +59,17 @@ class ServiceInteractor @Inject constructor(
             try {
                 val cacheServices =
                     localServicesRepo.readServicesByUserAndType(userId, type, 100, 0).firstOrNull()
+                if (cacheServices.isNullOrEmpty()) {
+                    val newServices =
+//                        remoteServicesRepo.readServicesByUserAndType(userId, type, 100, 0)
+                        generateOffers(userId, type)
+                    localServicesRepo.addServices(newServices)
+                    Log.e(
+                        TAG,
+                        newServices.joinToString(separator = "\n", prefix = "NEW SERVICES:\n")
+                    )
+                    return@withContext Resource.success(newServices)
+                }
                 return@withContext Resource.success(cacheServices ?: listOf())
             } catch (t: Throwable) {
                 return@withContext Resource.error()
@@ -76,17 +87,17 @@ class ServiceInteractor @Inject constructor(
     ): Resource<Boolean> =
         withContext(ioDispatcher) {
             try {
-                localServicesRepo.addService(
-                    ServiceEntity(
-                        title = title,
-                        ownerId = userId,
-                        description = description,
-                        price = price,
-                        type = type,
-                        deadlineTime = deadlineTime,
-                        tagList = tagList
-                    )
+                val serviceEntity = ServiceEntity(
+                    title = title,
+                    ownerId = userId,
+                    description = description,
+                    price = price,
+                    type = type,
+                    deadlineTime = deadlineTime,
+                    tagList = tagList
                 )
+//                remoteServicesRepo.addService(serviceEntity)
+                localServicesRepo.addService(serviceEntity)
                 return@withContext Resource.success(true)
             } catch (t: Throwable) {
                 return@withContext Resource.error()

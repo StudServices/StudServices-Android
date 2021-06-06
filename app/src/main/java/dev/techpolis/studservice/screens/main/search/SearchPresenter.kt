@@ -44,7 +44,7 @@ class SearchPresenter(
         view.registerListener(this)
         filtersMvpView.registerListener(this)
         backPressDispatcher.registerListener(this)
-        filtersMvpView.setContentVisible(filtersProvider.isContentVisible)
+        filtersMvpView.setContentVisible(filtersProvider.isContentVisible, false)
         view.setClearIconVisibility(filtersProvider.title.isNotEmpty())
     }
 

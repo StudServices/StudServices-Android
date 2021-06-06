@@ -40,6 +40,7 @@ object AppModule {
         @dagger.Binds
         fun localServicesRepo(servicesRepoImpl: LocalServicesRepoImpl): LocalServicesRepo
 
+        @kotlinx.coroutines.ExperimentalCoroutinesApi
         @dagger.Binds
         fun remoteServicesRepo(remoteServicesRepoImpl: RemoteServicesRepoImpl): RemoteServicesRepo
     }
