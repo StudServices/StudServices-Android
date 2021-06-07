@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.activity.result.ActivityResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
+import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.interactors.GoogleAuthInteractor
@@ -11,6 +12,8 @@ import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
+import dev.techpolis.studservice.utils.isValidEmail
+import dev.techpolis.studservice.utils.isValidPassword
 
 
 class SignInPresenter(
@@ -26,6 +29,7 @@ class SignInPresenter(
 
     override fun bindView(view: SignInMvpView) {
         this.view = view
+        view.setStateSignInButton(false)
     }
 
     fun handleResult(result: ActivityResult) {
@@ -63,9 +67,10 @@ class SignInPresenter(
     }
 
     override fun onSignInBtnClicked(username: String, password: String) {
-        if (username.isEmpty() || password.isEmpty()) {
+        if (!isValidEmail(username) || !isValidPassword(password)) {
             return
         }
+
         val listener =
             OnCompleteListener<AuthResult> { result ->
                 if (result.isSuccessful) {
@@ -93,15 +98,28 @@ class SignInPresenter(
     }
 
     override fun onUsernameFieldTextChanged(text: String) {
-//        TODO("Not yet implemented")
+        if (!isValidEmail(text)) {
+            view.setStateSignInButton(false)
+            view.showUsernameFieldError(R.string.incorrect_email)
+        } else {
+            view.hideUsernameFieldError()
+            view.setStateSignInButton(true)
+        }
     }
 
     override fun onPasswordFieldTextChanged(text: String) {
-//        TODO("Not yet implemented")
+        if (!isValidPassword(text)) {
+            view.setStateSignInButton(false)
+            view.showPasswordFieldError(R.string.incorrect_username)
+        } else {
+            view.hidePasswordFieldError()
+            view.setStateSignInButton(true)
+        }
     }
 
     override fun onBackPressed(): Boolean {
         return false
     }
+
 
 }

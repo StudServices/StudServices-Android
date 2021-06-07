@@ -1,6 +1,7 @@
 package dev.techpolis.studservice.screens.main.search
 
 import android.util.Log
+import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
@@ -58,6 +59,39 @@ class SearchPresenter(
         filtersProvider.clear()
     }
 
+    override fun onPriceFromFieldChanged(text: String) {
+        if (text.isEmpty()) {
+            filtersProvider.priceFrom = Int.MIN_VALUE
+            hidePriceErrors()
+            return
+        }
+
+        if (text.toInt() <= filtersProvider.priceTo) {
+            filtersProvider.priceFrom = text.toInt()
+            hidePriceErrors()
+        } else {
+            filtersProvider.priceFrom = text.toInt()
+            filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+            filtersMvpView.setStateApplyButton(false)
+        }
+    }
+
+    override fun onPriceToFieldChanged(text: String) {
+        if (text.isEmpty()) {
+            filtersProvider.priceTo = Int.MAX_VALUE
+            hidePriceErrors()
+            return
+        }
+        if (text.toInt() >= filtersProvider.priceFrom) {
+            filtersProvider.priceTo = text.toInt()
+            hidePriceErrors()
+        } else {
+            filtersProvider.priceTo = text.toInt()
+            filtersMvpView.showPriceToFieldError(R.string.price_incorrect)
+            filtersMvpView.setStateApplyButton(false)
+        }
+    }
+
     override fun onSearchFieldTextChanged(text: String) {
         if (text.isNotEmpty()) {
             view.setClearIconVisibility(true)
@@ -79,6 +113,12 @@ class SearchPresenter(
     }
 
     override fun onApplyButtonClicked(priceFrom: Int, priceTo: Int) {
+        if (priceFrom > priceTo) {
+//            showPriceErrors()
+            filtersMvpView.setStateApplyButton(false)
+            return
+        }
+        filtersMvpView.setStateApplyButton(true)
         filtersProvider.priceFrom = priceFrom
         filtersProvider.priceTo = priceTo
         initFilteredData()
@@ -110,6 +150,17 @@ class SearchPresenter(
 
     override fun onTabSelected(serviceTypeEnum: ServiceTypeEnum?) {
         filtersProvider.type = serviceTypeEnum
+    }
+
+//    private fun showPriceErrors() {
+//        filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+//        filtersMvpView.showPriceToFieldError(R.string.price_incorrect)
+//    }
+
+    private fun hidePriceErrors() {
+        filtersMvpView.hidePriceFromFieldError()
+        filtersMvpView.hidePriceToFieldError()
+        filtersMvpView.setStateApplyButton(true)
     }
 
     private fun initFilteredData() {

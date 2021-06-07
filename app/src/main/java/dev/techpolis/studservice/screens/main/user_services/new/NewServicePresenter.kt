@@ -1,12 +1,14 @@
 package dev.techpolis.studservice.screens.main.user_services.new
 
 import android.util.Log
+import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.NewServiceProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
+import dev.techpolis.studservice.utils.isValidServiceTitle
 import kotlinx.coroutines.*
 
 class NewServicePresenter(
@@ -55,6 +57,11 @@ class NewServicePresenter(
 //        deadline: Long,
 //        tags: List<String>
     ) {
+        if (!isValidServiceTitle(title)) {
+            view.showTitleError(R.string.incorrect_title)
+            return
+        }
+
         coroutineScope.launch {
             serviceInteractor.addUserService(
                 title,
@@ -94,6 +101,16 @@ class NewServicePresenter(
         newServiceProvider.clear()
         mainScreenRouter.navigateUp()
         return true
+    }
+
+    override fun onTitleChanged(title: String) {
+        if (!isValidServiceTitle(title)) {
+            view.showTitleError(R.string.incorrect_title)
+            view.setNewServiceBtnEnabled(false)
+        } else {
+            view.hideTitleError()
+            view.setNewServiceBtnEnabled(true)
+        }
     }
 }
 

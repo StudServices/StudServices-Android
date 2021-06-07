@@ -16,7 +16,6 @@ class SignUpMvpViewImpl(
     parent: ViewGroup?
 ) : MvpViewObservableBase<SignUpMvpView.Listener>(), SignUpMvpView {
 
-
     override var rootView: View = inflater.inflate(R.layout.fragment_auth__sign_up, parent, false)
 
     //   private val pbLoading: ProgressBar = findViewById(R.id.fragment_signup__loading)
@@ -72,27 +71,27 @@ class SignUpMvpViewImpl(
     }
 
     override fun showUsernameFieldError(msgId: Int) {
-        TODO("Not yet implemented")
+        etUsername.error = getString(msgId)
     }
 
     override fun showEmailFieldError(msgId: Int) {
-        TODO("Not yet implemented")
+        etEmail.error = getString(msgId)
     }
 
     override fun showPasswordFieldError(msgId: Int) {
-        TODO("Not yet implemented")
+        etPassword.error = getString(msgId)
     }
 
     override fun hideUsernameFieldError() {
-        TODO("Not yet implemented")
+        etUsername.error = null
     }
 
     override fun hideEmailFieldError() {
-        TODO("Not yet implemented")
+        etEmail.error = null
     }
 
     override fun hidePasswordFieldError() {
-        TODO("Not yet implemented")
+        etPassword.error = null
     }
 
     override fun setStateSignUpButton(isEnabled: Boolean) {
