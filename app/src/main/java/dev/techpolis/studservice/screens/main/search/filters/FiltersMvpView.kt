@@ -23,4 +23,5 @@ interface FiltersMvpView : MvpViewObservable<FiltersMvpView.Listener> {
     fun hidePriceFromFieldError()
     fun hidePriceToFieldError()
 
+    fun setStateApplyButton(isEnabled: Boolean)
 }

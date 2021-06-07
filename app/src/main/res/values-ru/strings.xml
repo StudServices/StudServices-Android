@@ -50,6 +50,6 @@
     <string name="incorrect_username">Длина имени в диапазоне 8 – 20</string>
     <string name="incorrect_email">Некорректный email</string>
     <string name="incorrect_password">Длина пароля в диапазоне 8 – 20</string>
-    <string name="incorrect_title">Title length in range 8 – 50</string>
-    <string name="price_incorrect">Price from should be less than price to</string>
+    <string name="incorrect_title">Длина названия в диапазоне 8 – 50</string>
+    <string name="price_incorrect">Начальная цена не должна быть больше конечной</string>
 </resources>

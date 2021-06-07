@@ -108,7 +108,9 @@ class FiltersMvpViewImpl(
 
     }
 
-
+    override fun setStateApplyButton(isEnabled: Boolean) {
+        btnApply.isEnabled = isEnabled
+    }
 
     private fun getPriceTo(): Int{
         val price = etPriceTo.text.toString()
@@ -228,7 +230,7 @@ class FiltersMvpViewImpl(
     }
 
     private fun AppCompatTextView.makeSelectedStyle() {
-        textSize = 20f
+        textSize = 19f
         setTextColor(selectedColor)
         setPadding(0, 0, 0, 0)
     }

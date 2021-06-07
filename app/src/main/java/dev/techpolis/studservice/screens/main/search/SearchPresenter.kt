@@ -72,6 +72,7 @@ class SearchPresenter(
         } else {
             filtersProvider.priceFrom = text.toInt()
             filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+            filtersMvpView.setStateApplyButton(false)
         }
     }
 
@@ -83,11 +84,11 @@ class SearchPresenter(
         }
         if (text.toInt() >= filtersProvider.priceFrom) {
             filtersProvider.priceTo = text.toInt()
-            filtersMvpView.hidePriceToFieldError()
-            filtersMvpView.hidePriceFromFieldError()
+            hidePriceErrors()
         } else {
             filtersProvider.priceTo = text.toInt()
             filtersMvpView.showPriceToFieldError(R.string.price_incorrect)
+            filtersMvpView.setStateApplyButton(false)
         }
     }
 
@@ -114,8 +115,10 @@ class SearchPresenter(
     override fun onApplyButtonClicked(priceFrom: Int, priceTo: Int) {
         if (priceFrom > priceTo) {
 //            showPriceErrors()
+            filtersMvpView.setStateApplyButton(false)
             return
         }
+        filtersMvpView.setStateApplyButton(true)
         filtersProvider.priceFrom = priceFrom
         filtersProvider.priceTo = priceTo
         initFilteredData()
@@ -157,6 +160,7 @@ class SearchPresenter(
     private fun hidePriceErrors() {
         filtersMvpView.hidePriceFromFieldError()
         filtersMvpView.hidePriceToFieldError()
+        filtersMvpView.setStateApplyButton(true)
     }
 
     private fun initFilteredData() {
