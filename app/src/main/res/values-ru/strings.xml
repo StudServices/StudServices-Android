@@ -47,4 +47,9 @@
     <string name="fragment_main__search__not_found_tv">По вашему запросу ничего не найдено</string>
     <string name="profile">Профиль</string>
     <string name="fragment_main__my_profile__name_title">Имя</string>
+    <string name="incorrect_username">Длина имени в диапазоне 8 – 20</string>
+    <string name="incorrect_email">Некорректный email</string>
+    <string name="incorrect_password">Длина пароля в диапазоне 8 – 20</string>
+    <string name="incorrect_title">Title length in range 8 – 50</string>
+    <string name="price_incorrect">Price from should be less than price to</string>
 </resources>

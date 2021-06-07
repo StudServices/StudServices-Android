@@ -21,10 +21,13 @@ interface NewServiceMvpView : MvpViewObservable<NewServiceMvpView.Listener> {
         fun onChipDeleted(name: String)
         fun getToDatePicker()
         fun onTypeSelected(type: ServiceTypeEnum)
+        fun onTitleChanged(title: String)
     }
 
     fun setDate(deadline: DeadlineDate)
     fun setTagList(tagList: List<String>)
     fun setTypeTab(type: ServiceTypeEnum)
-
+    fun setNewServiceBtnEnabled(isEnabled: Boolean)
+    fun showTitleError(id: Int)
+    fun hideTitleError()
 }

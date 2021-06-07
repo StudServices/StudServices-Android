@@ -107,6 +107,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
             android:hint="@string/fragment_main__user_services__new_service_price_tv"
+            android:digits="0123456789"
             android:inputType="numberDecimal" />
 
         <androidx.appcompat.widget.AppCompatTextView

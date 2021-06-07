@@ -1,6 +1,7 @@
 package dev.techpolis.studservice.screens.main.search
 
 import android.util.Log
+import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.Status
 import dev.techpolis.studservice.data.entities.ServiceEntity
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
@@ -58,6 +59,35 @@ class SearchPresenter(
         filtersProvider.clear()
     }
 
+    override fun onPriceFromFieldChanged(text: String) {
+        if (text.isEmpty()) {
+            filtersProvider.priceFrom = Int.MIN_VALUE
+            filtersMvpView.hidePriceFromFieldError()
+            return
+        }
+
+        if (text.toInt() < filtersProvider.priceTo) {
+            filtersProvider.priceFrom = text.toInt()
+            filtersMvpView.hidePriceFromFieldError()
+        } else {
+            filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+        }
+    }
+
+    override fun onPriceToFieldChanged(text: String) {
+        if (text.isEmpty()) {
+            filtersProvider.priceTo = Int.MAX_VALUE
+            filtersMvpView.hidePriceToFieldError()
+            return
+        }
+        if (text.toInt() > filtersProvider.priceFrom) {
+            filtersProvider.priceTo = text.toInt()
+            filtersMvpView.hidePriceToFieldError()
+        } else {
+            filtersMvpView.showPriceToFieldError(R.string.price_incorrect)
+        }
+    }
+
     override fun onSearchFieldTextChanged(text: String) {
         if (text.isNotEmpty()) {
             view.setClearIconVisibility(true)
@@ -79,6 +109,9 @@ class SearchPresenter(
     }
 
     override fun onApplyButtonClicked(priceFrom: Int, priceTo: Int) {
+        if (priceFrom > priceTo) {
+            filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+        }
         filtersProvider.priceFrom = priceFrom
         filtersProvider.priceTo = priceTo
         initFilteredData()

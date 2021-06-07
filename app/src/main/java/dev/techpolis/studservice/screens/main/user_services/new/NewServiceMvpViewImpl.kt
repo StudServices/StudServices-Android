@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import androidx.appcompat.widget.*
 import androidx.core.view.children
+import androidx.core.widget.doOnTextChanged
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.tabs.TabLayout
@@ -46,6 +47,12 @@ class NewServiceMvpViewImpl(
     private val unselectedColor = getColorStateList(R.color.text_gray)
 
     init {
+        etTitle.doOnTextChanged { title, _, _, _ ->
+            listeners.forEach {
+                it.onTitleChanged(title.toString())
+            }
+        }
+
         tvDate.setOnClickListener {
             listeners.forEach {
                 it.getToDatePicker()
@@ -106,6 +113,18 @@ class NewServiceMvpViewImpl(
             })
 
         }
+    }
+
+    override fun showTitleError(id: Int) {
+        etTitle.error = getString(id)
+    }
+
+    override fun hideTitleError() {
+        etTitle.error = null
+    }
+
+    override fun setNewServiceBtnEnabled(isEnabled: Boolean) {
+        btnCreate.isEnabled = isEnabled
     }
 
     override fun setDate(deadline: DeadlineDate) {

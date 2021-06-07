@@ -47,4 +47,10 @@
     <string name="fragment_main__search__not_found_tv">No results containing all terms were found</string>
     <string name="profile">Profile</string>
     <string name="fragment_main__my_profile__name_title">Name</string>
+    <string name="incorrect_email">Invalid email</string>
+    <string name="incorrect_password">Password length in range 8 – 20</string>
+    <string name="incorrect_username">Username length in range 8 – 20</string>
+    <string name="incorrect_title">Title length in range 8 – 50</string>
+    <string name="price_incorrect">Price from should be less than price to</string>
+
 </resources>

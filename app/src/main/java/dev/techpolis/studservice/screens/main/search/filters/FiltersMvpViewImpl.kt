@@ -8,6 +8,7 @@ import android.view.animation.Transformation
 import androidx.appcompat.widget.*
 import androidx.core.view.children
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.tabs.TabLayout
@@ -93,6 +94,18 @@ class FiltersMvpViewImpl(
             }
         }
 
+        etPriceFrom.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onPriceFromFieldChanged(text.toString())
+            }
+        }
+
+        etPriceTo.doOnTextChanged { text, _, _, _ ->
+            listeners.forEach {
+                it.onPriceToFieldChanged(text.toString())
+            }
+        }
+
     }
 
 
@@ -142,6 +155,22 @@ class FiltersMvpViewImpl(
                 selectTab(newTab)
             }
         }
+    }
+
+    override fun showPriceFromFieldError(msgId: Int) {
+        etPriceFrom.error = getString(msgId)
+    }
+
+    override fun showPriceToFieldError(msgId: Int) {
+        etPriceTo.error = getString(msgId)
+    }
+
+    override fun hidePriceFromFieldError() {
+        etPriceFrom.error = null
+    }
+
+    override fun hidePriceToFieldError() {
+        etPriceTo.error = null
     }
 
     private fun isNewTagUnique(text: String): Boolean {

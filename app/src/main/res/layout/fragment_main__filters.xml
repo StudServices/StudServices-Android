@@ -94,6 +94,7 @@
                     android:inputType="numberDecimal"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
+                    android:digits="1234567890"
                     tools:text="1000" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -117,8 +118,10 @@
                     android:layout_gravity="center_vertical"
                     android:gravity="start|center_vertical"
                     android:hint="@string/fragment_main__filters__price_to_ev"
+                    android:inputType="numberDecimal"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
+                    android:digits="1234567890"
                     tools:text="1500" />
             </LinearLayout>
 

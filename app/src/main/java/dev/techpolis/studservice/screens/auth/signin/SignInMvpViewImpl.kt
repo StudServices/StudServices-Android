@@ -22,7 +22,7 @@ class SignInMvpViewImpl (
 
     private val etUsername: AppCompatEditText = findViewById(R.id.fragment_auth__sign_in__login)
     private val etPassword: AppCompatEditText = findViewById(R.id.fragment_auth__sign_in__password)
-    private val ibSignIn: AppCompatButton = findViewById(R.id.fragment_auth__sign_in__button)
+    private val btnSignIn: AppCompatButton = findViewById(R.id.fragment_auth__sign_in__button)
     private val ibGoogleAuth: AppCompatImageButton = findViewById(R.id.fragment_auth__google_sign_in_button)
     private val tvHaveNotAcc: AppCompatTextView = findViewById(R.id.fragment_auth__sign_in__link)
 
@@ -45,7 +45,7 @@ class SignInMvpViewImpl (
             }
         }
 
-        ibSignIn.setOnClickListener {
+        btnSignIn.setOnClickListener {
             listeners.forEach {
                 it.onSignInBtnClicked(
                     username = etUsername.text.toString(),
@@ -74,26 +74,27 @@ class SignInMvpViewImpl (
     }
 
     override fun showUsernameFieldError(msgId: Int) {
-        TODO("Not yet implemented")
+        etUsername.error = getString(msgId)
     }
 
     override fun showPasswordFieldError(msgId: Int) {
-        TODO("Not yet implemented")
+        etPassword.error = getString(msgId)
     }
 
     override fun hideUsernameFieldError() {
-        TODO("Not yet implemented")
+        etUsername.error = null
     }
 
     override fun hidePasswordFieldError() {
-        TODO("Not yet implemented")
+        etPassword.error = null
     }
 
     override fun setStateSignInButton(isEnabled: Boolean) {
-        ibSignIn.isEnabled = isEnabled
+        btnSignIn.isEnabled = isEnabled
     }
 
     override fun unsuccessAuth() {
         Toast.makeText(this.context, "Unsuccessful authorization", Toast.LENGTH_SHORT).show()
     }
+
 }

@@ -11,10 +11,16 @@ interface FiltersMvpView : MvpViewObservable<FiltersMvpView.Listener> {
         fun onChipDeleted(tagText: String)
         fun onChipAdded(tagText: String)
         fun onTabSelected(serviceTypeEnum: ServiceTypeEnum?)
+        fun onPriceFromFieldChanged(text: String)
+        fun onPriceToFieldChanged(text: String)
     }
 
     fun setContentVisible(isContentVisible: Boolean, withAnimation: Boolean = true)
     fun setTagList(tagList: List<String>)
     fun setTypeTab(type: ServiceTypeEnum?)
+    fun showPriceFromFieldError(msgId: Int)
+    fun showPriceToFieldError(msgId: Int)
+    fun hidePriceFromFieldError()
+    fun hidePriceToFieldError()
 
 }

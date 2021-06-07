@@ -2,11 +2,14 @@ package dev.techpolis.studservice.screens.auth.signup
 
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
+import dev.techpolis.studservice.R
 import dev.techpolis.studservice.interactors.AuthInteractor
 import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.app.AppScreenRouter
+import dev.techpolis.studservice.utils.isValidEmail
+import dev.techpolis.studservice.utils.isValidPassword
 
 class SignUpPresenter(
     private val appScreenRouter: AppScreenRouter,
@@ -36,6 +39,9 @@ class SignUpPresenter(
     }
 
     override fun onSignUpBtnClicked(username: String, email: String, password: String) {
+        if (!isValidPassword(password) || !isValidEmail(email) || !isValidPassword(username)) {
+            return
+        }
         val listener =
             OnCompleteListener<AuthResult> { result ->
                 if (result.isSuccessful) {
@@ -53,15 +59,33 @@ class SignUpPresenter(
     }
 
     override fun onUsernameFieldTextChanged(text: String) {
-//        TODO("Not yet implemented")
-    }
-
-    override fun onEmailFieldTextChanged(text: String) {
-//        TODO("Not yet implemented")
+        if (!isValidPassword(text)) {
+            view.setStateSignUpButton(false)
+            view.showUsernameFieldError(R.string.incorrect_username)
+        } else {
+            view.hideUsernameFieldError()
+            view.setStateSignUpButton(true)
+        }
     }
 
     override fun onPasswordFieldTextChanged(text: String) {
-//        TODO("Not yet implemented")
+        if (!isValidPassword(text)) {
+            view.setStateSignUpButton(false)
+            view.showPasswordFieldError(R.string.incorrect_username)
+        } else {
+            view.hidePasswordFieldError()
+            view.setStateSignUpButton(true)
+        }
+    }
+
+    override fun onEmailFieldTextChanged(text: String) {
+        if (!isValidEmail(text)) {
+            view.setStateSignUpButton(false)
+            view.showEmailFieldError(R.string.incorrect_email)
+        } else {
+            view.hideEmailFieldError()
+            view.setStateSignUpButton(true)
+        }
     }
 
     override fun onHaveAccClicked() {
