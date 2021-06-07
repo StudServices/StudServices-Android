@@ -39,28 +39,9 @@ class RemoteServicesRepoImpl @Inject constructor() : RemoteServicesRepo {
         suspendCancellableCoroutine { coroutine->
             database.child(Collections.SERVICES.collectionName).get()
                 .addOnSuccessListener {
-                    coroutine.resume((it.value as List<ServiceEntity>), null)
+                    coroutine.resume(((it.value as HashMap<String, ServiceEntity>).values.toList()), null)
                 }
         }
-
-//        var list: MutableList<ServiceEntity> = mutableListOf()
-//            database.child(Collections.SERVICES.collectionName).get()
-//                .addOnSuccessListener {
-//                    it.value as List<ServiceEntity>
-//                    return@addOnSuccessListener
-//            }
-//     =   suspendCancellableCoroutine { coroutine ->
-//            serviceCollection.get()
-//                .addOnSuccessListener { services ->
-//                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-//                        coroutine.resumeWithException(it)
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    coroutine.resumeWithException(it)
-//                }
-//        }
-
 
     override suspend fun readServicesByType(
         type: ServiceTypeEnum,
@@ -72,45 +53,18 @@ class RemoteServicesRepoImpl @Inject constructor() : RemoteServicesRepo {
        return suspendCancellableCoroutine { coroutine->
             database.child(Collections.SERVICES.collectionName).get()
                 .addOnSuccessListener {services ->
-                    coroutine.resume(((services.value as HashMap<String, ServiceEntity>).values as List<ServiceEntity>).filter { it.type == type }, null)
+                    coroutine.resume(((services.value as HashMap<String, ServiceEntity>).values.toList().filter { it.type == type }), null)
                 }.addOnFailureListener {
                     coroutine.resumeWithException(it)
                 }
         }
     }
 
-//        suspendCancellableCoroutine { coroutine ->
-//            serviceCollection
-//                .whereEqualTo("type", type.ordinal)
-//                .get()
-//                .addOnSuccessListener { services ->
-//                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-//                        coroutine.resumeWithException(it)
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    coroutine.resumeWithException(it)
-//                }
-//        }
-
     override suspend fun readServicesByUser(
         userId: String,
         limit: Int,
         offset: Int
-    ): List<ServiceEntity> =
-        suspendCancellableCoroutine { coroutine ->
-            serviceCollection
-                .whereEqualTo("ownerId", userId)
-                .get()
-                .addOnSuccessListener { services ->
-                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-                        coroutine.resumeWithException(it)
-                    }
-                }
-                .addOnFailureListener {
-                    coroutine.resumeWithException(it)
-                }
-        }
+    ): List<ServiceEntity> = emptyList()
 
     override suspend fun readServicesByUserAndType(
         userId: String,
@@ -121,24 +75,10 @@ class RemoteServicesRepoImpl @Inject constructor() : RemoteServicesRepo {
         suspendCancellableCoroutine { coroutine->
             database.child(Collections.SERVICES.collectionName).get()
                 .addOnSuccessListener {services ->
-                    coroutine.resume((services.value as HashMap<String, ServiceEntity>).values.filter { it.type == type }, null)
+                    coroutine.resume((((services.value as HashMap<String, ServiceEntity>).values).toList().filter { it.type == type }), null)
 
                 }
         }
-//        suspendCancellableCoroutine { coroutine ->
-//            serviceCollection
-//                .whereEqualTo("ownerId", userId)
-//                .whereEqualTo("type", type.ordinal)
-//                .get()
-//                .addOnSuccessListener { services ->
-//                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-//                        coroutine.resumeWithException(it)
-//                    }
-//                }
-//                .addOnFailureListener {
-//                    coroutine.resumeWithException(it)
-//                }
-//        }
 
     override suspend fun addServices(services: List<ServiceEntity>) {
         services.forEach { addService(it) }

@@ -33,17 +33,14 @@ class ServiceInteractor @Inject constructor(
         type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =
         withContext(ioDispatcher) {
-            Log.e("ServiceInteractor", "BEFORE TRY")
 
             try {
-                Log.e("ServiceInteractor", "INSIDE TRY")
 
                 val cacheServices = localServicesRepo.readServicesByType(type, 100, 0).firstOrNull()
                 if (cacheServices.isNullOrEmpty()) {
                     val newServices =
                         remoteServicesRepo.readServicesByType(type, 100, 0)
-                    Log.e("ServiceInteractor", newServices.toString())
-                    Log.e("ServiceInteractor", "newServices")
+
                         generateOffers(type)
                     localServicesRepo.addServices(newServices)
                     Log.e(
@@ -52,7 +49,7 @@ class ServiceInteractor @Inject constructor(
                     )
                     return@withContext Resource.success(newServices)
                 }
-                return@withContext Resource.success(cacheServices)
+                return@withContext Resource.success(data = cacheServices)
             } catch (t: Throwable) {
                 Log.e("ServiceInteractor", "${t.message}")
 
@@ -65,13 +62,19 @@ class ServiceInteractor @Inject constructor(
         type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =
         withContext(ioDispatcher) {
+            Log.e("ServiceInteractor", "BEFORE TRY")
+
             try {
+                Log.e("ServiceInteractor", "INSIDE TRY")
+
                 val cacheServices =
                     localServicesRepo.readServicesByUserAndType(userId, type, 100, 0).firstOrNull()
                 if (cacheServices.isNullOrEmpty()) {
                     val newServices =
                         remoteServicesRepo.readServicesByUserAndType(userId, type, 100, 0)
                         generateOffers(userId, type)
+                    Log.e("ServiceInteractor", newServices.toString())
+                    Log.e("ServiceInteractor", "newServices")
                     localServicesRepo.addServices(newServices)
                     Log.e(
                         TAG,
@@ -79,7 +82,7 @@ class ServiceInteractor @Inject constructor(
                     )
                     return@withContext Resource.success(newServices)
                 }
-                return@withContext Resource.success(cacheServices ?: listOf())
+                return@withContext Resource.success(data = cacheServices)
             } catch (t: Throwable) {
                 return@withContext Resource.error()
             }
