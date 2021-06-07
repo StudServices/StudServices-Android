@@ -62,14 +62,15 @@ class SearchPresenter(
     override fun onPriceFromFieldChanged(text: String) {
         if (text.isEmpty()) {
             filtersProvider.priceFrom = Int.MIN_VALUE
-            filtersMvpView.hidePriceFromFieldError()
+            hidePriceErrors()
             return
         }
 
-        if (text.toInt() < filtersProvider.priceTo) {
+        if (text.toInt() <= filtersProvider.priceTo) {
             filtersProvider.priceFrom = text.toInt()
-            filtersMvpView.hidePriceFromFieldError()
+            hidePriceErrors()
         } else {
+            filtersProvider.priceFrom = text.toInt()
             filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
         }
     }
@@ -77,13 +78,15 @@ class SearchPresenter(
     override fun onPriceToFieldChanged(text: String) {
         if (text.isEmpty()) {
             filtersProvider.priceTo = Int.MAX_VALUE
-            filtersMvpView.hidePriceToFieldError()
+            hidePriceErrors()
             return
         }
-        if (text.toInt() > filtersProvider.priceFrom) {
+        if (text.toInt() >= filtersProvider.priceFrom) {
             filtersProvider.priceTo = text.toInt()
             filtersMvpView.hidePriceToFieldError()
+            filtersMvpView.hidePriceFromFieldError()
         } else {
+            filtersProvider.priceTo = text.toInt()
             filtersMvpView.showPriceToFieldError(R.string.price_incorrect)
         }
     }
@@ -110,7 +113,8 @@ class SearchPresenter(
 
     override fun onApplyButtonClicked(priceFrom: Int, priceTo: Int) {
         if (priceFrom > priceTo) {
-            filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+//            showPriceErrors()
+            return
         }
         filtersProvider.priceFrom = priceFrom
         filtersProvider.priceTo = priceTo
@@ -143,6 +147,16 @@ class SearchPresenter(
 
     override fun onTabSelected(serviceTypeEnum: ServiceTypeEnum?) {
         filtersProvider.type = serviceTypeEnum
+    }
+
+//    private fun showPriceErrors() {
+//        filtersMvpView.showPriceFromFieldError(R.string.price_incorrect)
+//        filtersMvpView.showPriceToFieldError(R.string.price_incorrect)
+//    }
+
+    private fun hidePriceErrors() {
+        filtersMvpView.hidePriceFromFieldError()
+        filtersMvpView.hidePriceToFieldError()
     }
 
     private fun initFilteredData() {
