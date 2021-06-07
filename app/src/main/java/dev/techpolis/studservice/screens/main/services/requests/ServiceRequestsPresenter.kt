@@ -28,6 +28,7 @@ class ServiceRequestsPresenter(
 
     private fun initData() {
         coroutineScope.launch {
+            Log.e("ServicesReqPresenter", "INIT DATA")
             val services = serviceInteractor.getServices(type = ServiceTypeEnum.REQUEST)
             if (services.status is Status.Success) {
                 view.bindData(services.data!!)

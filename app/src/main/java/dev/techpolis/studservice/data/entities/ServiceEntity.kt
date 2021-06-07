@@ -14,6 +14,7 @@ import java.lang.IllegalArgumentException
 data class ServiceEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
+    var firebaseId: String? = null,
     val title: String,
     val ownerId: String,
     val description: String,

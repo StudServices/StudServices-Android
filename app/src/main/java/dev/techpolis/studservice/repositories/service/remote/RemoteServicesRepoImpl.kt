@@ -1,6 +1,6 @@
 package dev.techpolis.studservice.repositories.service.remote
-
 import android.util.Log
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import dev.techpolis.studservice.data.entities.ServiceEntity
@@ -11,49 +11,87 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.coroutines.resumeWithException
 
+
 @ExperimentalCoroutinesApi
 @Singleton
 class RemoteServicesRepoImpl @Inject constructor() : RemoteServicesRepo {
 
     private val db = Firebase.firestore
+    private val database = Firebase.database.reference
     private val serviceCollection = db.collection(Collections.SERVICES.collectionName)
 
     companion object {
         const val TAG = "RemoteServicesRepoImpl"
     }
 
-    override suspend fun readServices(limit: Int, offset: Int): List<ServiceEntity> =
-        suspendCancellableCoroutine { coroutine ->
-            serviceCollection.get()
-                .addOnSuccessListener { services ->
-                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-                        coroutine.resumeWithException(it)
-                    }
-                }
-                .addOnFailureListener {
-                    coroutine.resumeWithException(it)
+    override suspend fun readServices(limit: Int, offset: Int): List<ServiceEntity>  =
+//        suspendCancellableCoroutine { coroutine ->
+//            database.child(Collections.SERVICES.collectionName).get()
+//                .addOnSuccessListener { services ->
+//                    coroutine.resume((services.value as List<*>).map { it.toObject(ServiceEntity::class.java) }) {
+//                        coroutine.resumeWithException(it)
+//                    }
+//                }
+//                .addOnFailureListener {
+//                    coroutine.resumeWithException(it)
+//                }
+//        }
+        suspendCancellableCoroutine { coroutine->
+            database.child(Collections.SERVICES.collectionName).get()
+                .addOnSuccessListener {
+                    coroutine.resume((it.value as List<ServiceEntity>), null)
                 }
         }
+
+//        var list: MutableList<ServiceEntity> = mutableListOf()
+//            database.child(Collections.SERVICES.collectionName).get()
+//                .addOnSuccessListener {
+//                    it.value as List<ServiceEntity>
+//                    return@addOnSuccessListener
+//            }
+//     =   suspendCancellableCoroutine { coroutine ->
+//            serviceCollection.get()
+//                .addOnSuccessListener { services ->
+//                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
+//                        coroutine.resumeWithException(it)
+//                    }
+//                }
+//                .addOnFailureListener {
+//                    coroutine.resumeWithException(it)
+//                }
+//        }
 
 
     override suspend fun readServicesByType(
         type: ServiceTypeEnum,
         limit: Int,
         offset: Int
-    ): List<ServiceEntity> =
-        suspendCancellableCoroutine { coroutine ->
-            serviceCollection
-                .whereEqualTo("type", type.ordinal)
-                .get()
-                .addOnSuccessListener { services ->
-                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-                        coroutine.resumeWithException(it)
-                    }
-                }
-                .addOnFailureListener {
+    ): List<ServiceEntity>
+    {
+        Log.e("RepoIMPLLLL", "readServicesByType")
+       return suspendCancellableCoroutine { coroutine->
+            database.child(Collections.SERVICES.collectionName).get()
+                .addOnSuccessListener {services ->
+                    coroutine.resume(((services.value as HashMap<String, ServiceEntity>).values as List<ServiceEntity>).filter { it.type == type }, null)
+                }.addOnFailureListener {
                     coroutine.resumeWithException(it)
                 }
         }
+    }
+
+//        suspendCancellableCoroutine { coroutine ->
+//            serviceCollection
+//                .whereEqualTo("type", type.ordinal)
+//                .get()
+//                .addOnSuccessListener { services ->
+//                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
+//                        coroutine.resumeWithException(it)
+//                    }
+//                }
+//                .addOnFailureListener {
+//                    coroutine.resumeWithException(it)
+//                }
+//        }
 
     override suspend fun readServicesByUser(
         userId: String,
@@ -80,31 +118,30 @@ class RemoteServicesRepoImpl @Inject constructor() : RemoteServicesRepo {
         limit: Int,
         offset: Int
     ): List<ServiceEntity> =
-        suspendCancellableCoroutine { coroutine ->
-            serviceCollection
-                .whereEqualTo("ownerId", userId)
-                .whereEqualTo("type", type.ordinal)
-                .get()
-                .addOnSuccessListener { services ->
-                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
-                        coroutine.resumeWithException(it)
-                    }
-                }
-                .addOnFailureListener {
-                    coroutine.resumeWithException(it)
+        suspendCancellableCoroutine { coroutine->
+            database.child(Collections.SERVICES.collectionName).get()
+                .addOnSuccessListener {services ->
+                    coroutine.resume((services.value as HashMap<String, ServiceEntity>).values.filter { it.type == type }, null)
+
                 }
         }
+//        suspendCancellableCoroutine { coroutine ->
+//            serviceCollection
+//                .whereEqualTo("ownerId", userId)
+//                .whereEqualTo("type", type.ordinal)
+//                .get()
+//                .addOnSuccessListener { services ->
+//                    coroutine.resume(services.map { it.toObject(ServiceEntity::class.java) }) {
+//                        coroutine.resumeWithException(it)
+//                    }
+//                }
+//                .addOnFailureListener {
+//                    coroutine.resumeWithException(it)
+//                }
+//        }
 
     override suspend fun addServices(services: List<ServiceEntity>) {
         services.forEach { addService(it) }
-    }
-
-    override suspend fun deleteService(service: ServiceEntity) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun updateService(newService: ServiceEntity) {
-        TODO("Not yet implemented")
     }
 
     override suspend fun addService(service: ServiceEntity) {
@@ -116,6 +153,17 @@ class RemoteServicesRepoImpl @Inject constructor() : RemoteServicesRepo {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
+        val firebaseId = database.push().key
+        service.firebaseId = firebaseId
+        database.child(Collections.SERVICES.collectionName).child(firebaseId!!).setValue(service)
+    }
+
+    override suspend fun deleteService(service: ServiceEntity) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateService(newService: ServiceEntity) {
+        TODO("Not yet implemented")
     }
 
 //    private fun ServiceEntity.toMap(): Map<String, Any> = mapOf(
