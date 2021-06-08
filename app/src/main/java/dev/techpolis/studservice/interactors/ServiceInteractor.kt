@@ -29,6 +29,10 @@ class ServiceInteractor @Inject constructor(
         const val TAG = "ServiceInteractor"
     }
 
+    init {
+
+    }
+
     suspend fun getServices(
         type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =

@@ -1,6 +1,7 @@
 package dev.techpolis.studservice.screens.auth.signin
 
 import android.content.Intent
+import android.util.Log
 import androidx.activity.result.ActivityResult
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -34,16 +35,19 @@ class SignInPresenter(
             val listener =
                 OnCompleteListener<AuthResult> { resultListener ->
                     if (resultListener.isSuccessful) {
-                        userProvider.userId = resultListener.result!!.additionalUserInfo!!.providerId!!
+                        Log.e("USER ID", userProvider.userId)
                         appScreenRouter.toMain()
                     } else {
                         view.unsuccessAuth()
                     }
                 }
+            val listIds: MutableList<String> = mutableListOf()
             googleAuthInteractor.firebaseAuthWithGoogle(
                 accountFromResource.data!!.idToken!!,
-                listener
+                listener,
+                listIds
             )
+            userProvider.userId = listIds[0]
         }
     }
 

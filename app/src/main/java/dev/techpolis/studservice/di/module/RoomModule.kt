@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module
 object RoomModule {
-    private const val DATABASE_NAME = "stud_database_new"
+    private const val DATABASE_NAME = "stud_database_three"
 
     @Singleton
     @Provides
