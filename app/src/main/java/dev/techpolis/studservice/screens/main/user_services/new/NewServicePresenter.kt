@@ -5,6 +5,7 @@ import dev.techpolis.studservice.R
 import dev.techpolis.studservice.data.model.ServiceTypeEnum
 import dev.techpolis.studservice.interactors.ServiceInteractor
 import dev.techpolis.studservice.providers.NewServiceProvider
+import dev.techpolis.studservice.providers.UserProvider
 import dev.techpolis.studservice.screens.common.mvp.MvpPresenter
 import dev.techpolis.studservice.screens.common.nav.BackPressDispatcher
 import dev.techpolis.studservice.screens.common.nav.main.MainScreenRouter
@@ -15,6 +16,7 @@ class NewServicePresenter(
     private val mainScreenRouter: MainScreenRouter,
     private val backPressDispatcher: BackPressDispatcher,
     private val newServiceProvider: NewServiceProvider,
+    private val userProvider: UserProvider,
     private val serviceInteractor: ServiceInteractor,
 ) : MvpPresenter<NewServiceMvpView>, NewServiceMvpView.Listener {
 
@@ -65,7 +67,7 @@ class NewServicePresenter(
         coroutineScope.launch {
             serviceInteractor.addUserService(
                 title,
-                "2",
+                userProvider.userId,
                 description,
                 price,
                 newServiceProvider.tags,

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.techpolis.studservice">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".StudServicesApp"
         android:allowBackup="true"

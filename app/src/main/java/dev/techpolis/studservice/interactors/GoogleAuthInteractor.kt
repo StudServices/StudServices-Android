@@ -43,11 +43,13 @@ class GoogleAuthInteractor @Inject constructor(private val signInClient: GoogleS
 
     fun firebaseAuthWithGoogle(
         idToken: String,
-        listener: OnCompleteListener<AuthResult>
+        listener: OnCompleteListener<AuthResult>,
+        id: MutableList<String>
     ): Resource<AuthCredential> =
         try {
             val credential = GoogleAuthProvider.getCredential(idToken, null)
             firebaseAuth.signInWithCredential(credential).addOnCompleteListener(listener)
+            id.add(firebaseAuth.currentUser!!.uid)
             Resource.success(credential)
         } catch (e: ApiException) {
             Log.e(TAG, "Google sign in failed", e)

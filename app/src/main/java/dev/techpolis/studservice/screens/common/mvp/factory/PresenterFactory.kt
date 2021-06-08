@@ -108,6 +108,7 @@ class PresenterFactory @Inject constructor(
             mainScreenRouter,
             backPressDispatcher,
             newServiceProvider,
+            userProvider,
             serviceInteractor
         )
     }

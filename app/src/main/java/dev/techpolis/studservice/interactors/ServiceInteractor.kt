@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.jvm.Throws
 
 @Singleton
 class ServiceInteractor @Inject constructor(
@@ -28,15 +29,22 @@ class ServiceInteractor @Inject constructor(
         const val TAG = "ServiceInteractor"
     }
 
+    init {
+
+    }
+
     suspend fun getServices(
         type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =
         withContext(ioDispatcher) {
+
             try {
+
                 val cacheServices = localServicesRepo.readServicesByType(type, 100, 0).firstOrNull()
                 if (cacheServices.isNullOrEmpty()) {
                     val newServices =
-//                        remoteServicesRepo.readServicesByType(type, 100, 0)
+                        remoteServicesRepo.readServicesByType(type, 100, 0)
+
                         generateOffers(type)
                     localServicesRepo.addServices(newServices)
                     Log.e(
@@ -45,8 +53,10 @@ class ServiceInteractor @Inject constructor(
                     )
                     return@withContext Resource.success(newServices)
                 }
-                return@withContext Resource.success(cacheServices ?: emptyList())
+                return@withContext Resource.success(data = cacheServices)
             } catch (t: Throwable) {
+                Log.e("ServiceInteractor", "${t.message}")
+
                 return@withContext Resource.error()
             }
         }
@@ -56,13 +66,19 @@ class ServiceInteractor @Inject constructor(
         type: ServiceTypeEnum
     ): Resource<List<ServiceEntity>> =
         withContext(ioDispatcher) {
+            Log.e("ServiceInteractor", "BEFORE TRY")
+
             try {
+                Log.e("ServiceInteractor", "INSIDE TRY")
+
                 val cacheServices =
                     localServicesRepo.readServicesByUserAndType(userId, type, 100, 0).firstOrNull()
                 if (cacheServices.isNullOrEmpty()) {
                     val newServices =
-//                        remoteServicesRepo.readServicesByUserAndType(userId, type, 100, 0)
+                        remoteServicesRepo.readServicesByUserAndType(userId, type, 100, 0)
                         generateOffers(userId, type)
+                    Log.e("ServiceInteractor", newServices.toString())
+                    Log.e("ServiceInteractor", "newServices")
                     localServicesRepo.addServices(newServices)
                     Log.e(
                         TAG,
@@ -70,7 +86,7 @@ class ServiceInteractor @Inject constructor(
                     )
                     return@withContext Resource.success(newServices)
                 }
-                return@withContext Resource.success(cacheServices ?: listOf())
+                return@withContext Resource.success(data = cacheServices)
             } catch (t: Throwable) {
                 return@withContext Resource.error()
             }
@@ -96,7 +112,7 @@ class ServiceInteractor @Inject constructor(
                     deadlineTime = deadlineTime,
                     tagList = tagList
                 )
-//                remoteServicesRepo.addService(serviceEntity)
+                remoteServicesRepo.addService(serviceEntity)
                 localServicesRepo.addService(serviceEntity)
                 return@withContext Resource.success(true)
             } catch (t: Throwable) {
