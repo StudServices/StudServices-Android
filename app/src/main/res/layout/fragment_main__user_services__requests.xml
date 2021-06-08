@@ -6,11 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".screens.main.user_services.requests.UserServiceRequestsFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_main__user_services__requests__recycler"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_main__user_services__requests__not_found_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/montserrat_medium"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:text="@string/fragment_main__search__not_found_tv"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_main__user_services__requests__recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </FrameLayout>
 
 </FrameLayout>

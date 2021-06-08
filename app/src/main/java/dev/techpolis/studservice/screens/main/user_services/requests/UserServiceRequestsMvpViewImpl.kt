@@ -3,6 +3,8 @@ package dev.techpolis.studservice.screens.main.user_services.requests
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -28,6 +30,8 @@ class UserServiceRequestsMvpViewImpl(
         findViewById(R.id.fragment_main__user_services__requests__recycler)
     private val servicesAdapter: ServicesAdapter =
         viewFactory.createServicesAdapter(this, Glide.with(context))
+    private val tvNoResults: AppCompatTextView = findViewById(R.id.fragment_main__user_services__requests__not_found_tv)
+
 
     init {
         recyclerView.apply {
@@ -38,6 +42,7 @@ class UserServiceRequestsMvpViewImpl(
     }
 
     override fun bindData(listRequests: List<ServiceEntity>) {
+        tvNoResults.isVisible = listRequests.isEmpty()
         servicesAdapter.bindData(listRequests)
     }
 
